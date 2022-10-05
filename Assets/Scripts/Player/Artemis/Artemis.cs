@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : CharacterTemplate
+public class Artemis : CharacterTemplate
 {
     [SerializeField] TMPro.TMP_Text HealthDisplay;
     [SerializeField] TMPro.TMP_Text EnergyDisplay;
@@ -26,8 +26,8 @@ public class Player : CharacterTemplate
         currentAbilityThreeCooldown -= Time.deltaTime; 
         animationTimer -= Time.deltaTime;
         
-        HealthDisplay.SetText("Health: " + health.GetCurrent().ToString());
-        EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString());
+        //HealthDisplay.SetText("Health: " + health.GetCurrent().ToString());
+        //EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString());
 
         if (health.GetCurrent() <= 0)
         {
@@ -53,7 +53,7 @@ public class Player : CharacterTemplate
     {
         Debug.Log("You Died!, now reseting health");
 //        animator.SetTrigger("Dead");
-        health.Heal(100);
+        //health.Heal(100);
     }
 
     //Abilities

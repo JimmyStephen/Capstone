@@ -29,7 +29,7 @@ public class Damage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<Player>(out Player player))
+        if(other.TryGetComponent<CharacterTemplate>(out CharacterTemplate player))
         {
             float damageDealt = HealthDamage -= player.resistanceFlat;
             damageDealt -= damageDealt * player.resistancePercent;
