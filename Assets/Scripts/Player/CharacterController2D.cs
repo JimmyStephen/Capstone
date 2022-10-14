@@ -60,6 +60,13 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
+	public void Dash(float move)
+    {
+		// Move the character by finding the target velocity
+		Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody.velocity.y);
+		// And then smoothing it out and applying it to the character
+		m_Rigidbody.velocity = Vector3.SmoothDamp(m_Rigidbody.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+	}
 
 	public void Move(float move, bool crouch, bool jump)
 	{
@@ -133,8 +140,15 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
-
-	private void Flip()
+	/// <summary>
+	/// Returns true if facing right, false if facing left
+	/// </summary>
+	/// <returns></returns>
+	public bool GetDirection()
+    {
+		return m_FacingRight;
+    }
+	public void Flip()
 	{
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;

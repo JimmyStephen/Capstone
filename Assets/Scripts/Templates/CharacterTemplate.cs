@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class CharacterTemplate : MonoBehaviour
 {
+    [HideInInspector] public bool playerOne = false;
     [Header("Animator")]
     public  Animator animator;
     [Header("Movement")]
@@ -14,8 +15,8 @@ public abstract class CharacterTemplate : MonoBehaviour
     public Resource health;
     public Resource energy;
     [Header("Damage Resistance")]
-    public float resistanceFlat;
-    public float resistancePercent;
+    public float resistanceFlat = 0;
+    public float resistancePercent = 1;
     [Header("Projectiles")]
     public GameObject BasicAttackObject;
     public GameObject abilityOneProjectile;
@@ -27,29 +28,92 @@ public abstract class CharacterTemplate : MonoBehaviour
     public GameObject abilityTwoProjectilePosition;
     public GameObject abilityThreeProjectilePosition;
     [Header("Times")]
+    public float basicAttackDuration = 0;
     public float animationOneDuration = 0;
     public float animationTwoDuration = 0;
     public float animationThreeDuration = 0;
+    public float basicAttackDelay = 0;
     public float abilityOneDelay = 0;
     public float abilityTwoDelay = 0;
     public float abilityThreeDelay = 0;
 
+    [HideInInspector] public CharacterController2D characterController;
+
+    [HideInInspector] public List<Effect> effects = new List<Effect>();
     [HideInInspector] public float currentBasicAttackCooldown = 0;
     [HideInInspector] public float currentAbilityOneCooldown = 0;
     [HideInInspector] public float currentAbilityTwoCooldown = 0;
     [HideInInspector] public float currentAbilityThreeCooldown = 0;
     [HideInInspector] public float animationTimer = 0;
 
+    [HideInInspector] public float currentDamageMultiplier = 1;
+    [HideInInspector] public float currentSpeedMultiplier = 1;
+
+    [HideInInspector] public bool isImmune = false;
+    [HideInInspector] public bool CCImmune = false;
+    [HideInInspector] public bool effectImmune = false;
+
+    [HideInInspector] public TMPro.TMP_Text HealthDisplay;
+    [HideInInspector] public TMPro.TMP_Text EnergyDisplay;
+
+    //used by AI to find the opponent
+    /*[HideInInspector]*/ public GameObject opponent;
+
+
     public IEnumerator SpawnAfterDelay(GameObject owner, GameObject location, GameObject spawnObject, float delay)
     {
         yield return new WaitForSeconds(delay);
-        bool right = owner.transform.localScale.x > 0;
+        bool right = owner.transform.rotation.y < 0;
         float angle = (right) ? 0 : 180;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //Debug.Log("Angle: " + angle);
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
+
         GameObject temp = Instantiate(spawnObject, location.transform.position, rotation);
-        temp.GetComponent<AbilityTemplate>().shotFromTag = owner.transform.tag;
+        temp.GetComponent<AbilityTemplate>().parentTag = owner.transform.tag;
+        temp.GetComponent<AbilityTemplate>().parent = owner;
     }
 
+    public IEnumerator SpawnAfterDelayParent(GameObject owner, GameObject location, GameObject spawnObject, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        GameObject temp = Instantiate(spawnObject, location.transform);
+        temp.GetComponent<AbilityTemplate>().parentTag = owner.transform.tag;
+        temp.GetComponent<AbilityTemplate>().parent = owner;
+        temp.GetComponent<AbilityTemplate>().damageMultiplier = owner.GetComponent<CharacterTemplate>().currentDamageMultiplier;
+    }
+
+    public void TriggerEffects()
+    {
+        currentDamageMultiplier = 1;
+        currentSpeedMultiplier = 1;
+
+        List<Effect> eRemove = new List<Effect>();
+        foreach(Effect e in effects)
+        {
+            e.updateTrigger(health, energy);
+            if (e.getRemainingDuration() > 0)
+            {
+                currentDamageMultiplier = (currentDamageMultiplier + e.getDamageMultipler() > 0) ? currentDamageMultiplier += e.getDamageMultipler() : 1f;
+                currentSpeedMultiplier = (currentSpeedMultiplier + e.getSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.getSpeedMultiplier() : 1f;
+            }
+            else
+            {
+                eRemove.Add(e);
+            }
+        }
+
+        foreach(Effect e in eRemove)
+        {
+            effects.Remove(e);
+        }
+    }
+
+    public void setDesplay(TMPro.TMP_Text healthDisplay, TMPro.TMP_Text energyDisplay)
+    {
+        HealthDisplay = healthDisplay;
+        EnergyDisplay = energyDisplay;
+    }
     //Abstract
 
     /// <summary>
@@ -74,4 +138,9 @@ public abstract class CharacterTemplate : MonoBehaviour
     /// What will happen when you press the button for your ultimate ability
     /// </summary>
     abstract public void AbilityThree();
+
+    /// <summary>
+    /// Stuff that MUST happen every update
+    /// </summary>
+    abstract public void CharacterRequiredUpdates();
 }

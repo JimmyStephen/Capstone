@@ -4,30 +4,31 @@ using UnityEngine;
 
 public class ArtemisBasic : AbilityTemplate
 {
+    [SerializeField] float knockbackForce = 0;
     public override void OnCreation()
     {
-        throw new System.NotImplementedException();
+        //
     }
 
     public override void OnDestroy()
     {
-        throw new System.NotImplementedException();
+        //
     }
 
     public override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.gameObject == parent) return;
+        //knockback the target
+        if(other.TryGetComponent<CharacterTemplate>(out CharacterTemplate ct))
+        {
+            //damage health
+            float damageDealt = HealthDamage -= ct.resistanceFlat;
+            damageDealt -= damageDealt * ct.resistancePercent;
+            if (damageDealt < 0) damageDealt = 0;
+            ct.health.Damage(damageDealt * damageMultiplier);
+            //knockback
+            Debug.Log("knockback here... (help)");
+            //ct.characterController.Dash((ct.characterController.GetDirection() ? knockbackForce : -knockbackForce));
+        }
     }
 }

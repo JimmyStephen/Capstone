@@ -40,14 +40,6 @@ public class Effect
         this.stun = stun;
     }
 
-    /// <summary>
-    /// If this resource requires an update
-    /// </summary>
-    /// <returns></returns>
-    public bool updateNeeded()
-    {
-        return (healthDamagePerSec != 0 && healthHealingPerSec != 0 && energyHealingPerSec != 0 && energyDamagePerSec != 0);
-    }
 
     /// <summary>
     /// Call during every update, will effect health/energy as needed
@@ -56,12 +48,19 @@ public class Effect
     /// <param name="energy">Energy to effect</param>
     public void updateTrigger(Resource health, Resource energy)
     {
-        health.Heal(healthHealingPerSec);
-        health.Damage(healthDamagePerSec);
-        energy.Heal(energyHealingPerSec);
-        energy.Damage(energyDamagePerSec);
+        //reduce the duration
+        duration -= Time.deltaTime;
+        health.Heal(healthHealingPerSec * Time.deltaTime);
+        health.Damage(healthDamagePerSec * Time.deltaTime);
+        energy.Heal(energyHealingPerSec * Time.deltaTime);
+        energy.Damage(energyDamagePerSec * Time.deltaTime);
     }
 
+
+    public float getRemainingDuration()
+    {
+        return duration;
+    }
     public float getDamageMultipler()
     {
         return damageMultiplier;

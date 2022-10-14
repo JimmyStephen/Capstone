@@ -18,11 +18,12 @@ abstract public class AbilityTemplate : MonoBehaviour
     [SerializeField] float Speed = 1;
 
     [Header("Destruction")]
-    public bool destroyOnHit = false;
     [SerializeField] bool destroyAfterDuration = false;
-    [SerializeField] float destroyAfterSeconds = 1;
+    [SerializeField] public float destroyAfterSeconds = 1;
 
-    [HideInInspector] public string shotFromTag;
+    [HideInInspector] public float damageMultiplier = 1;
+    [HideInInspector] public string parentTag;
+    [HideInInspector] public GameObject parent;
 
     Rigidbody rb;
 
@@ -30,7 +31,8 @@ abstract public class AbilityTemplate : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Vector3 forceSpeed = Vector3.right * Speed;
-        if (transform.rotation.z == 1)
+        //Debug.Log("Rotation: x:" + transform.rotation.x + "y: " + transform.rotation.y + "z: " + transform.rotation.z);
+        if (Mathf.Abs(transform.rotation.y) != 1)
         {
             forceSpeed *= -1;
         }

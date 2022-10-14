@@ -5,11 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Artemis : CharacterTemplate
 {
-    [SerializeField] TMPro.TMP_Text HealthDisplay;
-    [SerializeField] TMPro.TMP_Text EnergyDisplay;
-
     private float currentJumpCD = 0;
-    private CharacterController2D characterController;
 
     Vector3 direction = Vector3.zero;
     bool jump = false;
@@ -20,19 +16,16 @@ public class Artemis : CharacterTemplate
     }
     void Update()
     {
-        currentJumpCD -= Time.deltaTime;
-        currentAbilityOneCooldown -= Time.deltaTime;
-        currentAbilityTwoCooldown -= Time.deltaTime;
-        currentAbilityThreeCooldown -= Time.deltaTime; 
-        animationTimer -= Time.deltaTime;
+        CharacterRequiredUpdates();
         
-        //HealthDisplay.SetText("Health: " + health.GetCurrent().ToString());
-        //EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString());
 
-        if (health.GetCurrent() <= 0)
+        foreach(Effect effect in effects)
         {
-            OnDeath();
-            return;
+            if (effect.isStunned())
+            {
+                characterController.Move(0, false, false);
+                return;
+            }
         }
         
         if(animationTimer >= 0)
@@ -51,22 +44,32 @@ public class Artemis : CharacterTemplate
     //on death
     public override void OnDeath()
     {
-        Debug.Log("You Died!, now reseting health");
 //        animator.SetTrigger("Dead");
-        //health.Heal(100);
     }
 
     //Abilities
     public override void BasicAttack()
     {
-        Debug.Log("Use basic attack");
+        Debug.Log("Basic Attack Activated");
+
+        AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
+        if (!at.canUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
+        {
+            Debug.Log("Ability Cannot Be Used");
+            return;
+        }
+        currentBasicAttackCooldown = at.useAbility(health, energy);
+
         animator.SetTrigger("Basic");
+        animationTimer = basicAttackDuration;
+        StartCoroutine(SpawnAfterDelayParent(this.gameObject, BasicAttackPosition, BasicAttackObject, basicAttackDelay));
     }
     public override void AbilityOne()
     {
+        //dodge roll
         Debug.Log("Ability 1 Activated");
-        AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
 
+        AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
         if(!at.canUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0){
             Debug.Log("Ability Cannot Be Used");
             return;
@@ -75,6 +78,7 @@ public class Artemis : CharacterTemplate
 
         animator.SetTrigger("Ability1");
         animationTimer = animationOneDuration;
+
         StartCoroutine(SpawnAfterDelay(this.gameObject, abilityOneProjectilePosition, abilityOneProjectile, abilityOneDelay));
     }
     public override void AbilityTwo()
@@ -107,17 +111,9 @@ public class Artemis : CharacterTemplate
         }
         currentAbilityThreeCooldown = at.useAbility(health, energy);
 
-        //Not using delay because it is instant
-        bool right = transform.localScale.x > 0;
-        float angle = (right) ? 0 : 180;
-
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        GameObject temp = Instantiate(abilityThreeProjectile, abilityTwoProjectilePosition.transform.position, rotation);
-        temp.GetComponent<AbilityTemplate>().shotFromTag = tag;
-        //temp.GetComponent<AbilityThree>().setOwner(this.gameObject);
-
         animationTimer = animationThreeDuration;
         animator.SetTrigger("Ability3");
+        StartCoroutine(SpawnAfterDelay(this.gameObject, abilityThreeProjectilePosition, abilityThreeProjectile, abilityThreeDelay));
     }
 
     //Input System
@@ -141,4 +137,26 @@ public class Artemis : CharacterTemplate
     public void OnAbilityOne() { AbilityOne(); }
     public void OnAbilityTwo() { AbilityTwo(); }
     public void OnUltimateAbility() { AbilityThree(); }
+
+    public override void CharacterRequiredUpdates()
+    {
+        //reduce CD
+        currentJumpCD -= Time.deltaTime;
+        currentBasicAttackCooldown -= Time.deltaTime;
+        currentAbilityOneCooldown -= Time.deltaTime;
+        currentAbilityTwoCooldown -= Time.deltaTime;
+        currentAbilityThreeCooldown -= Time.deltaTime;
+        animationTimer -= Time.deltaTime;
+
+        TriggerEffects();
+
+        HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
+        EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+
+        if (health.GetCurrent() <= 0)
+        {
+            OnDeath();
+            return;
+        }
+    }
 }

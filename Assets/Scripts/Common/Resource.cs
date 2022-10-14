@@ -73,6 +73,15 @@ public class Resource : MonoBehaviour
     }
 
     /// <summary>
+    /// Returns the max value of the resource
+    /// </summary>
+    /// <returns>The Max Value</returns>
+    public float GetMax()
+    {
+        return MaxValue;
+    }
+
+    /// <summary>
     /// Method that returns if the current value is 0 or lower
     /// </summary>
     /// <returns>if the current value is less than 0</returns>
