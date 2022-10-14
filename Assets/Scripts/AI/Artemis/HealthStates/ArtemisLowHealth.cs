@@ -6,6 +6,10 @@ public class ArtemisLowHealth : HealthStateTemplate
 {
     public ArtemisLowHealth(CharacterTemplate owner, string name, State[] childStates) : base(owner, name, childStates) { }
 
+    public FloatRef distance;
+    public BoolRef abilityOnCD;
+
+
     public override void OnCreate()
     {
         //create transitions
@@ -15,11 +19,7 @@ public class ArtemisLowHealth : HealthStateTemplate
 
         //to passive
 
-/*        sMachine.AddTransition();
-        sMachine.AddTransition();
-        sMachine.AddTransition();
-        sMachine.AddTransition();
-        sMachine.AddTransition();*/
+//        sMachine.AddTransition();
     }
 
     public override void OnEnter()
@@ -34,14 +34,15 @@ public class ArtemisLowHealth : HealthStateTemplate
 
     public override void OnUpdate()
     {
-        float distanceAcross = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
+        //distance update
+        distance.value = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
+
+        //ability update
         bool basicOnCD = owner.basicAttackDuration > 0;
         bool abilityOneCD = owner.currentAbilityOneCooldown > 0;
         bool abilityTwoCD = owner.currentAbilityTwoCooldown > 0;
         bool ultCD = owner.currentAbilityThreeCooldown > 0;
-
-        bool abilityOnCD = basicOnCD && abilityOneCD && abilityTwoCD && ultCD;
-        bool damageAbilityOnCD = basicOnCD && abilityTwoCD && ultCD;
+        abilityOnCD.value = basicOnCD && abilityOneCD && abilityTwoCD && ultCD;
 
         sMachine.Update();
     }
