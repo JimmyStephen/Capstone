@@ -6,6 +6,8 @@ public class ArtemisPassive : State
 {
     public ArtemisPassive(CharacterTemplate owner, string name) : base(owner, name) { }
 
+    float attackTimer = 2;
+
     public override void OnEnter()
     {
         //throw new System.NotImplementedException();
@@ -19,6 +21,7 @@ public class ArtemisPassive : State
     public override void OnUpdate()
     {
         //throw new System.NotImplementedException();
+        attackTimer -= Time.deltaTime;
     }
 
     public override bool shouldJump()
@@ -33,6 +36,8 @@ public class ArtemisPassive : State
 
     public override int UseAbility()
     {
+        //dont use abilities to often while in passive state
+        if (attackTimer > 0) return 4;
         //0 basic
         //1 basic ability
         //2 secondary ability
@@ -64,28 +69,33 @@ public class ArtemisPassive : State
                     break;
             }
         }
+
+        attackTimer = 2;
         return retVal;
         //throw new System.NotImplementedException();
     }
-
     public override bool useBasicAbility()
     {
         //conditions to use
-        throw new System.NotImplementedException();
+        //enemy close
+        return (owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) < 2);
     }
     public override bool useAbilityOne()
     {
         //conditions to use
-        throw new System.NotImplementedException();
+        //enemy very close
+        return (owner.currentAbilityOneCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) < 1);
     }
     public override bool useAbilityTwo()
     {
         //conditions to use
-        throw new System.NotImplementedException();
+        //enemy far
+        return (owner.currentAbilityTwoCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) > 3);
     }
     public override bool useAbilityThree()
     {
         //conditions to use
-        throw new System.NotImplementedException();
+        //enemy far
+        return (owner.currentAbilityThreeCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) > 3);
     }
 }
