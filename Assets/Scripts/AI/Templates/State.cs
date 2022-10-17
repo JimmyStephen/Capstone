@@ -13,6 +13,19 @@ public abstract class State
         this.name = name;
     }
 
+    public int[] shuffle(int[] toShuffle)
+    {
+        int temp = 0;
+        for(int i = 0; i < toShuffle.Length; i++)
+        {
+            int rnd = Random.Range(0, toShuffle.Length);
+            temp = toShuffle[rnd];
+            toShuffle[rnd] = toShuffle[i];
+            toShuffle[i] = temp;
+        }
+        return toShuffle;
+    }
+
     public abstract void OnEnter();
     public abstract void OnUpdate();
     public abstract void OnExit();
@@ -23,4 +36,5 @@ public abstract class State
     public abstract bool useAbilityOne();
     public abstract bool useAbilityTwo();
     public abstract bool useAbilityThree();
+    public abstract int UseAbility();
 }

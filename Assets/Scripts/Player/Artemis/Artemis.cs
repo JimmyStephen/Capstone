@@ -59,7 +59,6 @@ public class Artemis : CharacterTemplate
             return;
         }
         currentBasicAttackCooldown = at.useAbility(health, energy);
-
         animator.SetTrigger("Basic");
         animationTimer = basicAttackDuration;
         StartCoroutine(SpawnAfterDelayParent(this.gameObject, BasicAttackPosition, BasicAttackObject, basicAttackDelay));
