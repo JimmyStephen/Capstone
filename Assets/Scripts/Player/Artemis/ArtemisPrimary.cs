@@ -17,7 +17,7 @@ public class ArtemisPrimary : AbilityTemplate
     public override void OnCreation()
     {
         //save character controller
-        cc = parent.GetComponent<Artemis>().characterController;
+        cc = parent.GetComponent<CharacterTemplate>().characterController;
         //flip
         cc.Flip();
         //make immune

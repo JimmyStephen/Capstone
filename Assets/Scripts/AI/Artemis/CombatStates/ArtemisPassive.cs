@@ -7,10 +7,12 @@ public class ArtemisPassive : State
     public ArtemisPassive(CharacterTemplate owner, string name) : base(owner, name) { }
 
     float attackTimer = 2;
+    float startingDistance = 0;
 
     public override void OnEnter()
     {
         //throw new System.NotImplementedException();
+        startingDistance = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
     }
 
     public override void OnExit()
@@ -26,12 +28,22 @@ public class ArtemisPassive : State
 
     public override bool shouldJump()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
     public override float StateMovement()
     {
-        throw new System.NotImplementedException();
+        float retVal = 1;
+        float distance = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
+
+        if (Mathf.Approximately(startingDistance, distance) || distance > 5)
+        {
+            retVal = 0;
+        }
+
+        retVal *= Mathf.Sign(startingDistance - distance);
+
+        return retVal;
     }
 
     public override int UseAbility()

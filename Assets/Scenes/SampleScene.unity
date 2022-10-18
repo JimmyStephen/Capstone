@@ -1955,25 +1955,9 @@ PrefabInstance:
       propertyPath: opponent
       value: 
       objectReference: {fileID: 1545979873}
-    - target: {fileID: 1720692125540154997, guid: 0a8fe15e358258246a81c14f3121f110, type: 3}
-      propertyPath: abilityTwoDelay
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720692125540154997, guid: 0a8fe15e358258246a81c14f3121f110, type: 3}
-      propertyPath: abilityThreeDelay
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720692125540154997, guid: 0a8fe15e358258246a81c14f3121f110, type: 3}
-      propertyPath: animationTwoDuration
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720692125540154997, guid: 0a8fe15e358258246a81c14f3121f110, type: 3}
-      propertyPath: animationThreeDuration
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3995940729525829731, guid: 0a8fe15e358258246a81c14f3121f110, type: 3}
       propertyPath: DefaultRegenerationRate
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6455646749914766931, guid: 0a8fe15e358258246a81c14f3121f110, type: 3}
       propertyPath: m_RootOrder

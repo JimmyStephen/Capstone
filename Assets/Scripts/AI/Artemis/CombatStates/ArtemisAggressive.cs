@@ -23,12 +23,22 @@ public class ArtemisAggressive : State
 
     public override bool shouldJump()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
     public override float StateMovement()
     {
-        throw new System.NotImplementedException();
+        float retVal = 1;
+        float distance = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
+
+        if (distance > 5)
+        {
+            return 0;
+        }
+
+        retVal *= Mathf.Sign(distance);
+
+        return retVal;
     }
 
     public override int UseAbility()

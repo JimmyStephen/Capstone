@@ -18,6 +18,8 @@ public class ArtemisAI : CharacterTemplate
 
     void Start()
     {
+        characterController = GetComponent<CharacterController2D>();
+
         //make combat states
         ArtemisAggressive aAggressive   = new ArtemisAggressive(this, typeof(ArtemisAggressive).Name);
         ArtemisDefensive aDefensive     = new ArtemisDefensive(this, typeof(ArtemisDefensive).Name);
@@ -36,9 +38,11 @@ public class ArtemisAI : CharacterTemplate
         currentState = aHighHealth;
     }
 
+    bool attack = true;
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Current State: " + currentState.name + " Inner State: " + currentState.sMachine.currentState.name);  
         stateUpdates();
         CharacterRequiredUpdates();
 
@@ -48,14 +52,22 @@ public class ArtemisAI : CharacterTemplate
         if (animationTimer >= 0)
         {
             Debug.Log("Timer Active");
+            animator.SetFloat("Speed", 0);
             return;
         }
 
-        //check for ability
-        useAbility();
+        if (attack)
+        {
+            //check for ability
+            useAbility();
+        }
+        else
+        {
+            //check for movement
+            AIMovement();
+        }
 
-        //check for movement
-        //AIMovement();
+        attack = !attack;
     }
 
     /// <summary>
@@ -63,11 +75,9 @@ public class ArtemisAI : CharacterTemplate
     /// </summary>
     private void AIMovement()
     {
-        //if using an ability don't move
-        if (animationTimer >= 0) return;
-
         float movement = currentState.StateMovement();
         bool shouldJump = currentState.shouldJump();
+        animator.SetFloat("Speed", Mathf.Abs(movement));
         characterController.Move(movement, false, shouldJump);
     }
 

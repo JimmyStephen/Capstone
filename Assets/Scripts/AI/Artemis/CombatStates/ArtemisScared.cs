@@ -23,69 +23,35 @@ public class ArtemisScared : State
 
     public override bool shouldJump()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
 
     public override float StateMovement()
     {
-        throw new System.NotImplementedException();
+        float distance = owner.transform.position.x - owner.opponent.transform.position.x;
+        return Mathf.Sign(distance);
     }
 
     public override int UseAbility()
     {
-        //0 basic
-        //1 basic ability
-        //2 secondary ability
-        //3 ult
-        //4 none
-        int[] abilityOptions = new int[] { 0, 1, 2, 3, 4 };
-        abilityOptions = shuffle(abilityOptions);
-
-        int retVal = 4;
-
-        for (int i = 0; i < abilityOptions.Length; i++)
-        {
-            switch (abilityOptions[i])
-            {
-                case 0:
-                    if (useBasicAbility()) retVal = 0;
-                    break;
-                case 1:
-                    if (useAbilityOne()) retVal = 1;
-                    break;
-                case 2:
-                    if (useAbilityTwo()) retVal = 2;
-                    break;
-                case 3:
-                    if (useAbilityThree()) retVal = 3;
-                    break;
-                default:
-                    retVal = 4;
-                    break;
-            }
-        }
-        return retVal;
-        //throw new System.NotImplementedException();
+        return useAbilityOne() ? 1 : 4;
     }
 
     public override bool useBasicAbility()
     {
-        //conditions to use
-        throw new System.NotImplementedException();
+        return (owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) < 2);
     }
     public override bool useAbilityOne()
     {
         //conditions to use
-        throw new System.NotImplementedException();
+        return (owner.currentAbilityOneCooldown <= 0);
     }
     public override bool useAbilityTwo()
     {
-        //conditions to use
-        throw new System.NotImplementedException();
+        return false;
     }
     public override bool useAbilityThree()
     {
-        //conditions to use
-        throw new System.NotImplementedException();
+        return false;
     }
 }

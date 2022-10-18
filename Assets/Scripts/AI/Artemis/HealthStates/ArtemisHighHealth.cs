@@ -63,7 +63,7 @@ public class ArtemisHighHealth : HealthStateTemplate
 
     public override bool shouldJump()
     {
-        throw new System.NotImplementedException();
+        return sMachine.currentState.shouldJump();
     }
     public override float StateMovement()
     {
