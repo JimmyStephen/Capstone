@@ -43,7 +43,7 @@ public class ArtemisHighHealth : HealthStateTemplate
     public override void OnExit()
     {
         //        throw new System.NotImplementedException();
-        Debug.Log("Exit");
+//        Debug.Log("Exit");
     }
 
     public override void OnUpdate()
@@ -58,7 +58,6 @@ public class ArtemisHighHealth : HealthStateTemplate
         abilityOnCD.value = basicOnCD && abilityOneCD && abilityTwoCD && ultCD;
 
         sMachine.Update();
-//        Debug.Log("Current Health State: " + name + "Current State In Health: " + sMachine.currentState.name);
     }
 
     public override bool shouldJump()

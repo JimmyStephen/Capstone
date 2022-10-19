@@ -121,7 +121,8 @@ MonoBehaviour:
   EnergyDamage: 0
   Speed: 100
   destroyAfterDuration: 1
-  destroyAfterSeconds: 2
+  destroyAfterSeconds: 10
+  damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}
 --- !u!65 &3113993172452181801

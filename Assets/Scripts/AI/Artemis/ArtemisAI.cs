@@ -47,11 +47,19 @@ public class ArtemisAI : CharacterTemplate
         CharacterRequiredUpdates();
 
         //check for stun
+        foreach (Effect effect in effects)
+        {
+            if (effect.isStunned())
+            {
+                characterController.Move(0, false, false);
+                return;
+            }
+        }
 
         //check for animation
         if (animationTimer >= 0)
         {
-            Debug.Log("Timer Active");
+            //Debug.Log("Timer Active");
             animator.SetFloat("Speed", 0);
             return;
         }
@@ -86,7 +94,7 @@ public class ArtemisAI : CharacterTemplate
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
         if (!at.canUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
+            //Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentBasicAttackCooldown = at.useAbility(health, energy);
@@ -97,12 +105,12 @@ public class ArtemisAI : CharacterTemplate
     public override void AbilityOne()
     {
         //dodge roll
-        Debug.Log("Ability 1 Activated");
+        //Debug.Log("Ability 1 Activated");
 
         AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
         if (!at.canUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
+            //Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentAbilityOneCooldown = at.useAbility(health, energy);
@@ -113,12 +121,12 @@ public class ArtemisAI : CharacterTemplate
     }
     public override void AbilityTwo()
     {
-        Debug.Log("Ability 2 Activated");
+        //Debug.Log("Ability 2 Activated");
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
 
         if (!at.canUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
+            //Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentAbilityTwoCooldown = at.useAbility(health, energy);
@@ -130,13 +138,13 @@ public class ArtemisAI : CharacterTemplate
     }
     public override void AbilityThree()
     {
-        Debug.Log("Ultimate Ability Activated");
+        //Debug.Log("Ultimate Ability Activated");
 
         AbilityTemplate at = abilityThreeProjectile.GetComponent<AbilityTemplate>();
 
         if (!at.canUse(health, energy, currentAbilityThreeCooldown))
         {
-            Debug.Log("Not enough resources or it is on CD");
+            //Debug.Log("Not enough resources or it is on CD");
             return;
         }
         currentAbilityThreeCooldown = at.useAbility(health, energy);
@@ -162,14 +170,27 @@ public class ArtemisAI : CharacterTemplate
         TriggerEffects();
 
         //update GUI
-        //HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
-        //EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        if (HealthDisplay != null)
+        {
+            HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
+        }
+        else
+        {
+            Debug.Log("No Health Display");
+        }
+        if (EnergyDisplay != null)
+        {
+            EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        }
+        else
+        {
+            Debug.Log("No Energy Display");
+        }
 
         //check dead
         if (health.GetCurrent() <= 0)
         {
             OnDeath();
-            return;
         }
     }
 
@@ -235,6 +256,11 @@ public class ArtemisAI : CharacterTemplate
 
     public override void OnDeath()
     {
-        throw new System.NotImplementedException();
+        //died
+        Debug.Log("YOU DIED!!!!");
+        //set the winner to your opponent
+        ///
+        //destroy this object
+        Destroy(gameObject);
     }
 }

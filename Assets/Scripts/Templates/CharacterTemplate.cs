@@ -16,7 +16,7 @@ public abstract class CharacterTemplate : MonoBehaviour
     public Resource energy;
     [Header("Damage Resistance")]
     public float resistanceFlat = 0;
-    public float resistancePercent = 1;
+    [Tooltip("Enter a value from -100 (double dmg) - 100 (no dmg)"), Range(-100,100)]public float resistancePercent = 1;
     [Header("Projectiles")]
     public GameObject BasicAttackObject;
     public GameObject abilityOneProjectile;
@@ -53,8 +53,8 @@ public abstract class CharacterTemplate : MonoBehaviour
     [HideInInspector] public bool CCImmune = false;
     [HideInInspector] public bool effectImmune = false;
 
-    [HideInInspector] public TMPro.TMP_Text HealthDisplay;
-    [HideInInspector] public TMPro.TMP_Text EnergyDisplay;
+    /*[HideInInspector]*/ public TMPro.TMP_Text HealthDisplay;
+    /*[HideInInspector]*/ public TMPro.TMP_Text EnergyDisplay;
 
     //used by AI to find the opponent
     /*[HideInInspector]*/ public GameObject opponent;

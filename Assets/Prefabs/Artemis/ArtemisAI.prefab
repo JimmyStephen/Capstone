@@ -733,7 +733,6 @@ GameObject:
   - component: {fileID: 3995940729525829731}
   - component: {fileID: 3995940729525829730}
   - component: {fileID: 1720692125540154996}
-  - component: {fileID: 3995940729525829735}
   - component: {fileID: 1720692125540154997}
   m_Layer: 0
   m_Name: ArtemisAI
@@ -867,7 +866,7 @@ MonoBehaviour:
   Name: Health
   MaxValue: 100
   StartValue: 100
-  DefaultRegenerationRate: -1
+  DefaultRegenerationRate: 0
 --- !u!114 &3995940729525829730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,36 +899,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &3995940729525829735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549038174206234895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 294f1a8002911e0479e3f4b08b540bf7, type: 3}
-  m_NotificationBehavior: 1
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &1720692125540154997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,7 +919,7 @@ MonoBehaviour:
   health: {fileID: 3995940729525829731}
   energy: {fileID: 3995940729525829730}
   resistanceFlat: 0
-  resistancePercent: 100
+  resistancePercent: 1
   BasicAttackObject: {fileID: 8071598748878194940, guid: dd7d40b4b2ca83d4fb1a8ae82a513769, type: 3}
   abilityOneProjectile: {fileID: 828160462470238761, guid: 99f52e8fa1db2a640a40c9a46c3135e1, type: 3}
   abilityTwoProjectile: {fileID: 5759779447630247014, guid: da013c348b7f2da45b83c26dae8b718c, type: 3}

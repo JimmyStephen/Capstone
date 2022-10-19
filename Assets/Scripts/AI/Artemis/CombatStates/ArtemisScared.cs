@@ -19,10 +19,18 @@ public class ArtemisScared : State
     public override void OnUpdate()
     {
         //throw new System.NotImplementedException();
+        justJumped -= Time.deltaTime;
     }
 
+    float justJumped = 0;
     public override bool shouldJump()
     {
+        if (justJumped >= 0) return false;
+        if(Random.Range(0, 1.0f) > .5f)
+        {
+            justJumped = 1;
+            return true;
+        }
         return false;
     }
 
@@ -34,7 +42,9 @@ public class ArtemisScared : State
 
     public override int UseAbility()
     {
-        return useAbilityOne() ? 1 : 4;
+        int retVal = useAbilityOne() ? 1 : 4;
+        if (retVal != 4) checkDirection();
+        return retVal;
     }
 
     public override bool useBasicAbility()

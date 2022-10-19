@@ -23,7 +23,9 @@ public class ArtemisBasic : AbilityTemplate
         {
             //damage health
             float damageDealt = HealthDamage -= ct.resistanceFlat;
-            damageDealt -= damageDealt * ct.resistancePercent;
+            //get the percent damage
+            float tempPercent = ct.resistanceFlat != 0 ? 100 / ct.resistanceFlat : 1;
+            damageDealt *= tempPercent;
             if (damageDealt < 0) damageDealt = 0;
             ct.health.Damage(damageDealt * damageMultiplier);
             //knockback

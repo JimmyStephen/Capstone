@@ -18,27 +18,33 @@ public class ArtemisAggressive : State
 
     public override void OnUpdate()
     {
+        justJumped -= Time.deltaTime;
         //throw new System.NotImplementedException();
     }
 
+    float justJumped = 0;
     public override bool shouldJump()
     {
+        float distanceHeight = owner.opponent.transform.position.y - owner.transform.position.y;
+        //condition to jump
+        if ((distanceHeight > 3 && justJumped <= 0))
+        {
+            justJumped = 1;
+            return true;
+        }
         return false;
     }
 
     public override float StateMovement()
     {
-        float retVal = 1;
-        float distance = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
+        float distance = owner.transform.position.x - owner.opponent.transform.position.x;
 
-        if (distance > 5)
+        if (Mathf.Abs(distance) > 5)
         {
             return 0;
         }
 
-        retVal *= Mathf.Sign(distance);
-
-        return retVal;
+        return Mathf.Sign(distance);
     }
 
     public override int UseAbility()
@@ -74,6 +80,7 @@ public class ArtemisAggressive : State
                     break;
             }
         }
+        if (retVal != 4) checkDirection();
         return retVal;
     }
 

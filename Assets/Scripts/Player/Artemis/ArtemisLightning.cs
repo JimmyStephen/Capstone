@@ -23,7 +23,8 @@ public class ArtemisLightning : MonoBehaviour
             if (!player.isImmune)
             {
                 float damageDealt = healthDamage -= player.resistanceFlat;
-                damageDealt -= damageDealt * player.resistancePercent;
+                float tempPercent = player.resistanceFlat != 0 ? 100 / player.resistanceFlat : 1;
+                damageDealt *= tempPercent;
                 if (damageDealt < 0) damageDealt = 0;
                 player.health.Damage(damageDealt);
                 player.energy.Damage(energyDamage);

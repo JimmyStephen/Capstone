@@ -8,6 +8,7 @@ public class ArtemisPassive : State
 
     float attackTimer = 2;
     float startingDistance = 0;
+    float jumpTimer = 5;
 
     public override void OnEnter()
     {
@@ -24,26 +25,32 @@ public class ArtemisPassive : State
     {
         //throw new System.NotImplementedException();
         attackTimer -= Time.deltaTime;
+        justJumped -= Time.deltaTime;
     }
 
+    float justJumped = 0;
     public override bool shouldJump()
     {
+        float distanceHeight = owner.opponent.transform.position.y - owner.transform.position.y;
+        //condition to jump
+        if ((distanceHeight > 3 && justJumped <= 0) || jumpTimer <= 0)
+        {
+            justJumped = 1;
+            jumpTimer = Random.Range(1, 3);
+            return true;
+        }
         return false;
     }
 
     public override float StateMovement()
     {
-        float retVal = 1;
-        float distance = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
-
-        if (Mathf.Approximately(startingDistance, distance) || distance > 5)
+        float distance = owner.transform.position.x - owner.opponent.transform.position.x;
+        if (Mathf.Approximately(startingDistance, distance) || Mathf.Abs(distance) > 5)
         {
-            retVal = 0;
+            return 0;
         }
 
-        retVal *= Mathf.Sign(startingDistance - distance);
-
-        return retVal;
+        return Mathf.Sign(distance);
     }
 
     public override int UseAbility()
@@ -81,7 +88,7 @@ public class ArtemisPassive : State
                     break;
             }
         }
-
+        if(retVal != 4) checkDirection();
         attackTimer = 2;
         return retVal;
         //throw new System.NotImplementedException();

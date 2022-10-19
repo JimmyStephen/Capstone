@@ -11,7 +11,7 @@ public class ArtemisMediumHealth : HealthStateTemplate
     public FloatRef damageTaken;
     public FloatRef scaredDuration;
 
-    private float dmgForScared;
+    private float dmgForScared = 20;
 
     private float distanceForAggression = 5;
     float currentH = 0;
@@ -68,7 +68,7 @@ public class ArtemisMediumHealth : HealthStateTemplate
         if(damageTaken.value < 0) damageTaken.value = 0;
         if(damageTaken.value > dmgForScared && scaredDuration.value <= 3)
         {
-            scaredDuration.value = 2;
+            scaredDuration.value = 1;
         }
         else
         {
@@ -86,8 +86,6 @@ public class ArtemisMediumHealth : HealthStateTemplate
         abilityOnCD.value = basicOnCD && abilityOneCD && abilityTwoCD && ultCD;
 
         sMachine.Update();
-//        Debug.Log("Current Health State: " + name + "Current State In Health: " + sMachine.currentState.name);
-//        Debug.Log("Ability on CD: " + abilityOnCD.value);
     }
 
     public override bool shouldJump()

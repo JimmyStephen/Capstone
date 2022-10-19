@@ -26,6 +26,19 @@ public abstract class State
         return toShuffle;
     }
 
+    /// <summary>
+    /// Makes sure your facing the right direction
+    /// </summary>
+    public void checkDirection()
+    {
+        //get direction
+        float direction = Mathf.Sign(owner.transform.position.x - owner.opponent.transform.position.x);
+        if((direction > 0 && owner.characterController.GetDirection()) || (direction < 0 && !owner.characterController.GetDirection()))
+        {
+            owner.characterController.Flip();
+        }
+    }
+
     public abstract void OnEnter();
     public abstract void OnUpdate();
     public abstract void OnExit();

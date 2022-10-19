@@ -121,7 +121,8 @@ MonoBehaviour:
   EnergyDamage: 0
   Speed: 200
   destroyAfterDuration: 1
-  destroyAfterSeconds: 2
+  destroyAfterSeconds: 10
+  damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}
   onHitEffect: {fileID: 5001941298892612464, guid: 4139abf70b6a7694e861a255429240fa, type: 3}

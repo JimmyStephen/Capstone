@@ -6,6 +6,8 @@ public class ArtemisDefensive : State
 {
     public ArtemisDefensive(CharacterTemplate owner, string name) : base(owner, name) { }
 
+    float jumpTimer = 5;
+
     public override void OnEnter()
     {
         //throw new System.NotImplementedException();
@@ -19,16 +21,33 @@ public class ArtemisDefensive : State
     public override void OnUpdate()
     {
         //throw new System.NotImplementedException();
+        jumpTimer -= Time.deltaTime;
+        justJumped -= Time.deltaTime;
     }
 
+    float justJumped = 0;
     public override bool shouldJump()
     {
+        float distanceHeight = owner.opponent.transform.position.y - owner.transform.position.y;
+        //condition to jump
+        if ((distanceHeight > 3 && justJumped <= 0) || jumpTimer <= 0)
+        {
+            justJumped = 1;
+            jumpTimer = Random.Range(3, 6);
+            return true;
+        }
         return false;
     }
 
     public override float StateMovement()
     {
         float distance = owner.transform.position.x - owner.opponent.transform.position.x;
+
+        if (Mathf.Abs(distance) > 5)
+        {
+            return 0;
+        }
+
         return Mathf.Sign(distance);
     }
 
@@ -59,6 +78,7 @@ public class ArtemisDefensive : State
                     break;
             }
         }
+        if (retVal != 4) checkDirection();
         return retVal;
         //throw new System.NotImplementedException();
     }
