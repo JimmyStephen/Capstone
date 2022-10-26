@@ -6,22 +6,22 @@ public abstract class JackTemplate : CharacterTemplate
 {
     public override void BasicAttack()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Stabby stab");
     }
 
     public override void AbilityOne()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Place Trap");
     }
 
     public override void AbilityTwo()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Place Trap");
     }
 
     public override void AbilityThree()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Vanish");
     }
 
     public override void OnDeath()

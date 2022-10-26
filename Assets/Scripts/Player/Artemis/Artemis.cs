@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class Artemis : CharacterTemplate
 {
     private float currentJumpCD = 0;
-
     Vector3 direction = Vector3.zero;
     bool jump = false;
 
@@ -16,8 +15,7 @@ public class Artemis : CharacterTemplate
     }
     void Update()
     {
-        CharacterRequiredUpdates();
-        
+        CharacterRequiredUpdates();        
 
         foreach(Effect effect in effects)
         {
@@ -149,13 +147,12 @@ public class Artemis : CharacterTemplate
 
         TriggerEffects();
 
-        //HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
-        //EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
+        EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
 
         if (health.GetCurrent() <= 0)
         {
             OnDeath();
-            return;
         }
     }
 }

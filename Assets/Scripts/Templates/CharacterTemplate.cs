@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class CharacterTemplate : MonoBehaviour
 {
     [HideInInspector] public bool playerOne = false;
     [Header("Animator")]
-    public  Animator animator;
+    public Animator animator;
     [Header("Movement")]
     public float speed = 1;
     public float jumpCD = 1;

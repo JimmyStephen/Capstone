@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -20,7 +21,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] TMPro.TMP_Text PlayerTwoEnergyDisplay;
 
     [SerializeField] GameObject cursor;
-
+    [SerializeField] PlayerInput playerInput;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,7 @@ public class GameManager : Singleton<GameManager>
         
     }
 
-    public void selectCharacter(int characterSelect, int player)
+    public string selectCharacter(int characterSelect, int player)
     {
         if(player == 1)
         {
@@ -43,6 +44,20 @@ public class GameManager : Singleton<GameManager>
         {
             playerTwo = playerCharacters[characterSelect];
         }
+        return playerCharacters[characterSelect].name.ToString();
+    }
+
+    public string selectAI(int characterSelect, int player)
+    {
+        if (player == 1)
+        {
+            playerOne = aiCharacters[characterSelect];
+        }
+        else
+        {
+            playerTwo = aiCharacters[characterSelect];
+        }
+        return aiCharacters[characterSelect].name.ToString();
     }
 
     public void startGame()
@@ -65,6 +80,8 @@ public class GameManager : Singleton<GameManager>
     IEnumerator placeCharacters()
     {
         yield return new WaitForSeconds(4);
+
+
         var p1 = Instantiate(playerOne, playerOneSpawn.position, playerOneSpawn.rotation);
         var p2 = Instantiate(playerTwo, playerTwoSpawn.position, playerTwoSpawn.rotation);
 

@@ -417,6 +417,7 @@ MonoBehaviour:
   PlayerTwoHealthDisplay: {fileID: 163938381}
   PlayerTwoEnergyDisplay: {fileID: 1976208799}
   cursor: {fileID: 1012728623}
+  playerInput: {fileID: 0}
 --- !u!114 &163938381 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4476516961283472655, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
@@ -1757,6 +1758,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 731871696}
     m_Modifications:
+    - target: {fileID: 1262285662104590015, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_text
+      value: '
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3364678073829164825, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_text
+      value: '
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779524250171815330, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_text
+      value: '
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476516961283472655, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_text
+      value: '
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 4624004079049852905, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
       propertyPath: dontDestroy.Array.data[0]
       value: 
