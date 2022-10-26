@@ -149,8 +149,8 @@ public class Artemis : CharacterTemplate
 
         TriggerEffects();
 
-        HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
-        EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        //HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
+        //EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
 
         if (health.GetCurrent() <= 0)
         {

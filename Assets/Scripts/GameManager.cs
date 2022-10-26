@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] GameObject[] characters;
+    [SerializeField] GameObject[] playerCharacters;
+    [SerializeField] GameObject[] aiCharacters;
 
     public GameObject playerOne = null;
     public GameObject playerTwo = null;
@@ -18,10 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMPro.TMP_Text PlayerTwoHealthDisplay;
     [SerializeField] TMPro.TMP_Text PlayerTwoEnergyDisplay;
 
+    [SerializeField] GameObject cursor;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //find the text boxes
     }
 
     // Update is called once per frame
@@ -34,11 +37,11 @@ public class GameManager : MonoBehaviour
     {
         if(player == 1)
         {
-            playerOne = characters[characterSelect];
+            playerOne = playerCharacters[characterSelect];
         }
         else
         {
-            playerTwo = characters[characterSelect];
+            playerTwo = playerCharacters[characterSelect];
         }
     }
 
@@ -47,20 +50,28 @@ public class GameManager : MonoBehaviour
         //if nothing selected choose random
         if(playerOne == null)
         {
-            playerOne = characters[Random.Range(0, characters.Length)];
+            playerOne = aiCharacters[Random.Range(0, aiCharacters.Length)];
         }
         if(playerTwo == null)
         {
-            playerTwo= characters[Random.Range(0,characters.Length)];
+            playerTwo= aiCharacters[Random.Range(0, aiCharacters.Length)];
         }
 
+        cursor.SetActive(false);
+        SceneLoader.Instance.LoadScene(2);
+        StartCoroutine(placeCharacters());
+    }
+
+    IEnumerator placeCharacters()
+    {
+        yield return new WaitForSeconds(4);
         var p1 = Instantiate(playerOne, playerOneSpawn.position, playerOneSpawn.rotation);
         var p2 = Instantiate(playerTwo, playerTwoSpawn.position, playerTwoSpawn.rotation);
 
-        p1.GetComponent<CharacterTemplate>().setDesplay(PlayerOneHealthDisplay, PlayerOneEnergyDisplay);
+        p1.GetComponent<CharacterTemplate>().setDisplay(PlayerOneHealthDisplay, PlayerOneEnergyDisplay);
         p1.GetComponent<CharacterTemplate>().opponent = p2;
 
-        p2.GetComponent<CharacterTemplate>().setDesplay(PlayerTwoHealthDisplay, PlayerTwoEnergyDisplay);
+        p2.GetComponent<CharacterTemplate>().setDisplay(PlayerTwoHealthDisplay, PlayerTwoEnergyDisplay);
         p2.GetComponent<CharacterTemplate>().opponent = p1;
     }
 }

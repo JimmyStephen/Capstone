@@ -109,7 +109,7 @@ public abstract class CharacterTemplate : MonoBehaviour
         }
     }
 
-    public void setDesplay(TMPro.TMP_Text healthDisplay, TMPro.TMP_Text energyDisplay)
+    public void setDisplay(TMPro.TMP_Text healthDisplay, TMPro.TMP_Text energyDisplay)
     {
         HealthDisplay = healthDisplay;
         EnergyDisplay = energyDisplay;
