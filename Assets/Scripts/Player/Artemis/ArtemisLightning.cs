@@ -18,6 +18,7 @@ public class ArtemisLightning : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == owner) return;
+
         if (other.TryGetComponent<CharacterTemplate>(out CharacterTemplate player))
         {
             if (!player.isImmune)

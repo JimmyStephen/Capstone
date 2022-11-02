@@ -4,28 +4,84 @@ using UnityEngine;
 
 public abstract class JackTemplate : CharacterTemplate
 {
+    //maybe??
+    //[SerializeField] Resource traps;
+//    [SerializeField, Tooltip("The Main Body")] GameObject owner;
+
     public override void BasicAttack()
     {
         Debug.Log("Stabby stab");
+        AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
+        if (!at.canUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
+        {
+            Debug.Log("Ability Cannot Be Used");
+            return;
+        }
+        currentBasicAttackCooldown = at.useAbility(health, energy);
+        animator.SetTrigger("Stab");
+        animationTimer = basicAttackDuration;
+        StartCoroutine(SpawnAfterDelayParent(this.gameObject, BasicAttackPosition, BasicAttackObject, basicAttackDelay));
     }
-
     public override void AbilityOne()
     {
         Debug.Log("Place Trap");
-    }
 
+        AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
+        if (!at.canUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
+        {
+            Debug.Log("Ability Cannot Be Used");
+            return;
+        }
+        currentAbilityOneCooldown = at.useAbility(health, energy);
+
+        animator.SetTrigger("PlaceTrap");
+        animationTimer = animationOneDuration;
+
+        StartCoroutine(SpawnAfterDelay(this.gameObject, abilityOneProjectilePosition, abilityOneProjectile, abilityOneDelay));
+    }
     public override void AbilityTwo()
     {
         Debug.Log("Place Trap");
-    }
 
+        AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
+        if (!at.canUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
+        {
+            Debug.Log("Ability Cannot Be Used");
+            return;
+        }
+        currentAbilityTwoCooldown = at.useAbility(health, energy);
+
+        animator.SetTrigger("PlaceTrap");
+        animationTimer = animationTwoDuration;
+
+        StartCoroutine(SpawnAfterDelay(this.gameObject, abilityTwoProjectilePosition, abilityTwoProjectile, abilityTwoDelay));
+    }
     public override void AbilityThree()
     {
         Debug.Log("Vanish");
+        Debug.Log("Ultimate Ability Activated");
+
+        AbilityTemplate at = abilityThreeProjectile.GetComponent<AbilityTemplate>();
+
+        if (!at.canUse(health, energy, currentAbilityThreeCooldown))
+        {
+            Debug.Log("Not enough resources or it is on CD");
+            return;
+        }
+        currentAbilityThreeCooldown = at.useAbility(health, energy);
+
+        animationTimer = animationThreeDuration;
+        animator.SetTrigger("Ult");
+        StartCoroutine(SpawnAfterDelay(this.gameObject, abilityThreeProjectilePosition, abilityThreeProjectile, abilityThreeDelay));
     }
 
     public override void OnDeath()
     {
-        throw new System.NotImplementedException();
+        //died
+        Debug.Log("YOU DIED!!!!");
+        //set the winner to your opponent
+        ///
+        //destroy this object
+        Destroy(gameObject);
     }
 }

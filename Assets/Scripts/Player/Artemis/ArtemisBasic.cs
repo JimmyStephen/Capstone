@@ -21,6 +21,10 @@ public class ArtemisBasic : AbilityTemplate
         //knockback the target
         if(other.TryGetComponent<CharacterTemplate>(out CharacterTemplate ct))
         {
+            if (ct.isImmune)
+            {
+                return;
+            }
             //damage health
             float damageDealt = HealthDamage -= ct.resistanceFlat;
             //get the percent damage
@@ -31,6 +35,7 @@ public class ArtemisBasic : AbilityTemplate
             //knockback
             Debug.Log("knockback here... (help)");
             //ct.characterController.Dash((ct.characterController.GetDirection() ? knockbackForce : -knockbackForce));
+            Destroy(this.gameObject, .05f);
         }
     }
 }

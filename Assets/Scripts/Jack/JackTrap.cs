@@ -4,15 +4,88 @@ using UnityEngine;
 
 public class JackTrap : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Settup")]
+    [SerializeField] float setupDuration = 0;
+    [SerializeField] bool destroyAfterDuration = false;
+    [SerializeField] float trapDuration = 0;
+
+
+    [Header("If something happens")]
+    [SerializeField] bool applyDot = false;
+    [SerializeField] bool applySlow = false;
+    [SerializeField] bool applyStun = false;
+
+    [Header("How long the durations are")]
+    [SerializeField] float dotDuration = 0;
+    [SerializeField] float slowDuration = 0;
+    [SerializeField] float stunDuration = 0;
+
+    [Header("How bad the effects are")]
+    [SerializeField] float dotDamage = 0;
+    [SerializeField] float slowPercent = 0;
+
+    //who the owner of the trap is
+    [HideInInspector] public GameObject owner;
+
+    private List<Effect> effectsToApply = new List<Effect>();
+
+    private void Start()
     {
-        
+        //ready effects & add to effectsToApply
+
+        //dot (if needed)
+        if (applyDot)
+        {
+            effectsToApply.Add(new Effect(dotDuration, dotDamage, 0, 0, 0, 0, 0, false));
+        }
+        //slow (if needed)
+        if (applySlow)
+        {
+            effectsToApply.Add(new Effect(slowDuration, 0, 0, 0, 0, 0, slowPercent, false));
+        }
+        //stun (if needed)
+        if (applyStun)
+        {
+            effectsToApply.Add(new Effect(stunDuration, 0, 0, 0, 0, 0, 0, true));
+        }
+
+        if (destroyAfterDuration) Destroy(this.gameObject, trapDuration);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (setupDuration > 0)
+        {
+            setupDuration -= Time.deltaTime;
+            if (setupDuration <= 0) Debug.Log("Trap <" + this.gameObject.name + "> Has been set");
+        }
+        else
+        {
+            setupDuration = 0;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //make sure its a valid target
+        //apply the effects
+        //destroy the trap
+        if (other.gameObject == owner) return;
+        if (setupDuration > 0) return;
+
+        if (other.TryGetComponent<CharacterTemplate>(out CharacterTemplate player))
+        {
+            if (!player.isImmune)
+            {
+                if (!player.effectImmune && !player.CCImmune)
+                {
+                    foreach(Effect effect in effectsToApply)
+                    {
+                        player.effects.Add(effect);
+                    }
+                }
+            }
+            Destroy(this.gameObject, .25f);
+        }
     }
 }

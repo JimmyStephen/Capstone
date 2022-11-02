@@ -95,8 +95,8 @@ public abstract class CharacterTemplate : MonoBehaviour
             e.updateTrigger(health, energy);
             if (e.getRemainingDuration() > 0)
             {
-                currentDamageMultiplier = (currentDamageMultiplier + e.getDamageMultipler() > 0) ? currentDamageMultiplier += e.getDamageMultipler() : 1f;
-                currentSpeedMultiplier = (currentSpeedMultiplier + e.getSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.getSpeedMultiplier() : 1f;
+                currentDamageMultiplier = (currentDamageMultiplier + e.getDamageMultipler() > 0) ? currentDamageMultiplier += e.getDamageMultipler() : .01f;
+                currentSpeedMultiplier = (currentSpeedMultiplier + e.getSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.getSpeedMultiplier() : .01f;
             }
             else
             {

@@ -22,6 +22,14 @@ public class ArtemisUltimate : AbilityTemplate
     public override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == parent) return;
+        //make sure the object you collide with doesnt share a parent
+        if (other.gameObject.TryGetComponent<AbilityTemplate>(out AbilityTemplate at))
+        {
+            if (at.parent == parent) return;
+        }
+
+        if (other.tag == "Trap") return;
+
         if (other.TryGetComponent<CharacterTemplate>(out CharacterTemplate ct))
         {
             //damage health

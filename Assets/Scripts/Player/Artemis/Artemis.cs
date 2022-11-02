@@ -33,7 +33,7 @@ public class Artemis : CharacterTemplate
             return;
         }
 
-        direction.x = Input.GetAxis("Horizontal") * speed;
+        direction.x = Input.GetAxis("Horizontal") * speed * currentSpeedMultiplier;
         characterController.Move(direction.x, false, jump);
         animator.SetFloat("Speed", Mathf.Abs(direction.x));
         jump = false;
@@ -42,7 +42,12 @@ public class Artemis : CharacterTemplate
     //on death
     public override void OnDeath()
     {
-//        animator.SetTrigger("Dead");
+        //died
+        Debug.Log("YOU DIED!!!!");
+        //set the winner to your opponent
+        ///
+        //destroy this object
+        Destroy(gameObject);
     }
 
     //Abilities
@@ -147,8 +152,8 @@ public class Artemis : CharacterTemplate
 
         TriggerEffects();
 
-        HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
-        EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        if (HealthDisplay != null) HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
+        if (EnergyDisplay != null) EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
 
         if (health.GetCurrent() <= 0)
         {

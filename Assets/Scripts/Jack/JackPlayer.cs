@@ -31,7 +31,7 @@ public class JackPlayer : JackTemplate
             return;
         }
 
-        direction.x = Input.GetAxis("Horizontal") * speed;
+        direction.x = Input.GetAxis("Horizontal") * speed * currentSpeedMultiplier;
         characterController.Move(direction.x, false, jump);
         animator.SetFloat("Speed", Mathf.Abs(direction.x));
         jump = false;
@@ -71,8 +71,8 @@ public class JackPlayer : JackTemplate
 
         TriggerEffects();
 
-        HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
-        EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        if (HealthDisplay != null) HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
+        if (EnergyDisplay != null) EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
 
         if (health.GetCurrent() <= 0)
         {

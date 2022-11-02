@@ -28,7 +28,7 @@ public class ArtemisScared : State
         if (justJumped >= 0) return false;
         if(Random.Range(0, 1.0f) > .5f)
         {
-            justJumped = 1;
+            justJumped = 3;
             return true;
         }
         return false;

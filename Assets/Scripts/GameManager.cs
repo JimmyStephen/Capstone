@@ -10,6 +10,8 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject playerOne = null;
     public GameObject playerTwo = null;
+    private bool characterOnePlayer = true;
+    private bool characterTwoPlayer = false;
 
     [SerializeField] Transform playerOneSpawn;
     [SerializeField] Transform playerTwoSpawn;
@@ -21,28 +23,20 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] TMPro.TMP_Text PlayerTwoEnergyDisplay;
 
     [SerializeField] GameObject cursor;
-    [SerializeField] PlayerInput playerInput;
-    // Start is called before the first frame update
-    void Start()
-    {
-        //find the text boxes
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] GameObject gpCursor;
+    [SerializeField] GameObject destroyOnPlay;
 
     public string selectCharacter(int characterSelect, int player)
     {
         if(player == 1)
         {
             playerOne = playerCharacters[characterSelect];
+            characterOnePlayer = true;
         }
         else
         {
             playerTwo = playerCharacters[characterSelect];
+            characterTwoPlayer = true;
         }
         return playerCharacters[characterSelect].name.ToString();
     }
@@ -52,10 +46,12 @@ public class GameManager : Singleton<GameManager>
         if (player == 1)
         {
             playerOne = aiCharacters[characterSelect];
+            characterOnePlayer = false;
         }
         else
         {
             playerTwo = aiCharacters[characterSelect];
+            characterTwoPlayer = false;
         }
         return aiCharacters[characterSelect].name.ToString();
     }
@@ -66,13 +62,17 @@ public class GameManager : Singleton<GameManager>
         if(playerOne == null)
         {
             playerOne = aiCharacters[Random.Range(0, aiCharacters.Length)];
+            characterOnePlayer = false;
         }
         if(playerTwo == null)
         {
-            playerTwo= aiCharacters[Random.Range(0, aiCharacters.Length)];
+            playerTwo = aiCharacters[Random.Range(0, aiCharacters.Length)];
+            characterTwoPlayer = false;
         }
 
         cursor.SetActive(false);
+        Destroy(destroyOnPlay, 0.05f);
+        Destroy(gpCursor, 0.05f);
         SceneLoader.Instance.LoadScene(2);
         StartCoroutine(placeCharacters());
     }

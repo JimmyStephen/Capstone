@@ -37,9 +37,9 @@ public class GamepadCurser : MonoBehaviour
 
     private void OnDisable()
     {
+        Debug.Log("Disable Cursor");
         InputSystem.RemoveDevice(virtualMouse);
         InputSystem.onAfterUpdate -= UpdateMotion;
-
     }
 
     private void UpdateMotion()

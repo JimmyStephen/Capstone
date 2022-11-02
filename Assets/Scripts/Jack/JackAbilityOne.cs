@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class JackAbilityOne : AbilityTemplate
 {
+    //Snare Trap
+    [SerializeField] GameObject createOnDestroy;
     public override void OnCreation()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void OnDestroy()
     {
-        throw new System.NotImplementedException();
+        var temp = Instantiate(createOnDestroy, this.transform.position, this.transform.rotation);
+        temp.GetComponent<JackTrap>().owner = parent;
     }
 
     public override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }

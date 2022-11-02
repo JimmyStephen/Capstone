@@ -6,16 +6,16 @@ public class JackAbilityThree : AbilityTemplate
 {
     public override void OnCreation()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void OnDestroy()
     {
-        throw new System.NotImplementedException();
+//        throw new System.NotImplementedException();
     }
 
     public override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }

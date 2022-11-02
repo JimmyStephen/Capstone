@@ -28,7 +28,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
         if (instance == null)
         {
             instance = this as T;
-            Debug.Log(this.name);
+            //Debug.Log(this.name);
             DontDestroyOnLoad(this.gameObject);
         }
         else
