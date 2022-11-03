@@ -8,10 +8,10 @@ public class JackAbilityThree : AbilityTemplate
     {
         //throw new System.NotImplementedException();
         //cleanse all debuffs
-        List<Effect> effects = new List<Effect>();
+        List<Effect> effects = new();
         foreach(var e in parent.GetComponent<CharacterTemplate>().effects)
         {
-            if (e.checkIsDebuff())
+            if (e.CheckIsDebuff())
             {
                 effects.Add(e);
             }
@@ -21,13 +21,23 @@ public class JackAbilityThree : AbilityTemplate
         {
             parent.GetComponent<CharacterTemplate>().effects.Remove(e);
         }
-
+        //
+        if (audioOnCreate != null)
+        {
+            //play
+            audioOnCreate.Play();
+        }
 
     }
 
     public override void OnDestroy()
     {
-//        throw new System.NotImplementedException();
+        //        throw new System.NotImplementedException();
+        if (audioOnDestroy != null)
+        {
+            //play
+            audioOnDestroy.Play();
+        }
     }
 
     public override void OnTriggerEnter(Collider other)

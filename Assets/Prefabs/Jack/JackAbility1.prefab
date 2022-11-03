@@ -135,6 +135,8 @@ MonoBehaviour:
   Speed: 0
   destroyAfterDuration: 1
   destroyAfterSeconds: 0.5
+  audioOnCreate: {fileID: 0}
+  audioOnDestroy: {fileID: 0}
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}

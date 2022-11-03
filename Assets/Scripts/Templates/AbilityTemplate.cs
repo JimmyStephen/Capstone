@@ -19,7 +19,11 @@ abstract public class AbilityTemplate : MonoBehaviour
 
     [Header("Destruction")]
     [SerializeField] bool destroyAfterDuration = false;
-    [SerializeField] public float destroyAfterSeconds = 1;
+    public float destroyAfterSeconds = 1;
+
+    [Header("SFX")]
+    public AudioSource audioOnCreate;
+    public AudioSource audioOnDestroy;
 
     [HideInInspector] public float damageMultiplier = 1;
     [HideInInspector] public string parentTag;
@@ -47,7 +51,7 @@ abstract public class AbilityTemplate : MonoBehaviour
     /// <param name="health">Your health component</param>
     /// <param name="energy">You energy component</param>
     /// <returns>If you can use the ability</returns>
-    public bool canUse(Resource health, Resource energy, float currentCooldown)
+    public bool CanUse(Resource health, Resource energy, float currentCooldown)
     {
         return(health.GetCurrent() >= HealthCost && energy.GetCurrent() >= EnergyCost && currentCooldown <= 0);
     }
@@ -57,7 +61,7 @@ abstract public class AbilityTemplate : MonoBehaviour
     /// <param name="health">Your health component</param>
     /// <param name="energy">You energy component</param>
     /// <returns>The cooldown of the ability</returns>
-    public float useAbility(Resource health, Resource energy)
+    public float UseAbility(Resource health, Resource energy)
     {
         health.Damage(HealthCost);
         energy.Damage(EnergyCost);

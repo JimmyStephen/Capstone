@@ -11,9 +11,9 @@ public class ArtemisLowHealth : HealthStateTemplate
     public FloatRef damageTaken;
     public FloatRef scaredDuration;
 
-    private float dmgForScared = 20;
+    private const float dmgForScared = 20;
 
-    private float distanceForAggression = 5;
+    private const float distanceForAggression = 5;
     float currentH = 0;
 
 

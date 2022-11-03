@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5721879883680278373}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -135,6 +135,8 @@ MonoBehaviour:
   Speed: 0
   destroyAfterDuration: 1
   destroyAfterSeconds: 2
+  audioOnCreate: {fileID: 0}
+  audioOnDestroy: {fileID: 0}
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}

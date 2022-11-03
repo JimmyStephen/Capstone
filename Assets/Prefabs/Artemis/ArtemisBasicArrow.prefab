@@ -117,11 +117,13 @@ MonoBehaviour:
   HealthCost: 0
   EnergyCost: 5
   Cooldown: 1
-  HealthDamage: 15
+  HealthDamage: 5
   EnergyDamage: 0
   Speed: 100
   destroyAfterDuration: 1
   destroyAfterSeconds: 10
+  audioOnCreate: {fileID: 0}
+  audioOnDestroy: {fileID: 0}
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}

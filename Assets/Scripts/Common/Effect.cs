@@ -7,16 +7,16 @@ public class Effect
     //How long it lasts
     private float duration = 1;
     //How much to damage/heal per second (0 for none)
-    private float healthDamagePerSec = 0;
-    private float healthHealingPerSec = 0;
-    private float energyDamagePerSec = 0;
-    private float energyHealingPerSec = 0;
+    private readonly float healthDamagePerSec = 0;
+    private readonly float healthHealingPerSec = 0;
+    private readonly float energyDamagePerSec = 0;
+    private readonly float energyHealingPerSec = 0;
     //How much to multiply stats by 1 is default
-    private float damageMultiplier = 1;
-    private float speedMultiplier = 1;
+    private readonly float damageMultiplier = 1;
+    private readonly float speedMultiplier = 1;
     //bonus effects
-    private bool stun = false;
-    private bool IsDebuff = false;
+    private readonly bool stun = false;
+    private readonly bool IsDebuff = false;
 
     /// <summary>
     /// What this effect does
@@ -48,7 +48,7 @@ public class Effect
     /// </summary>
     /// <param name="health">The health to effect</param>
     /// <param name="energy">Energy to effect</param>
-    public void updateTrigger(Resource health, Resource energy)
+    public void UpdateTrigger(Resource health, Resource energy)
     {
         //reduce the duration
         duration -= Time.deltaTime;
@@ -59,25 +59,25 @@ public class Effect
     }
 
 
-    public float getRemainingDuration()
+    public float GetRemainingDuration()
     {
         return duration;
     }
-    public float getDamageMultipler()
+    public float GetDamageMultipler()
     {
         return damageMultiplier;
     }
-    public float getSpeedMultiplier()
+    public float GetSpeedMultiplier()
     {
         return speedMultiplier;
     }
     
     
-    public bool isStunned()
+    public bool IsStunned()
     {
         return stun;
     }
-    public bool checkIsDebuff()
+    public bool CheckIsDebuff()
     {
         return IsDebuff;
     }

@@ -9,13 +9,13 @@ public class Storage : MonoBehaviour
 
     public void SelectCharacter(int character)
     {
-        string ret = GameManager.Instance.selectCharacter(character, 1);
+        string ret = GameManager.Instance.SelectCharacter(character, 1);
         if (player1Select != null) player1Select.SetText(ret);
     }
 
     public void SelectAI(int character)
     {
-        string ret = GameManager.Instance.selectAI(character, 2);
+        string ret = GameManager.Instance.SelectAI(character, 2);
         if(player2Select != null) player2Select.SetText(ret);
     }
 
@@ -26,6 +26,6 @@ public class Storage : MonoBehaviour
 
     public void StartGame()
     {
-        GameManager.Instance.startGame();
+        GameManager.Instance.StartGame();
     }
 }

@@ -9,10 +9,15 @@ public class ArtemisLightning : MonoBehaviour
     [SerializeField, Tooltip("Damage to energy")] float energyDamage = 0;
     [SerializeField, Tooltip("How long to stun")] float stunDuration = 0;
     [HideInInspector] public GameObject owner;
+    [SerializeField] AudioSource audioOnCreate;
 
     private void Start()
     {
         Destroy(gameObject, stormDuration);
+        if(audioOnCreate != null)
+        {
+            audioOnCreate.Play();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,7 +36,7 @@ public class ArtemisLightning : MonoBehaviour
                 player.energy.Damage(energyDamage);
                 if (!player.effectImmune && !player.CCImmune)
                 {
-                    player.effects.Add(new Effect(stunDuration, 0, 0, 0, 0, 1, 0, true));
+                    player.effects.Add(new Effect(true, stunDuration, 0, 0, 0, 0, 1, 0, true));
                 }
             }
         }

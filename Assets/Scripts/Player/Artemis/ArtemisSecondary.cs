@@ -7,11 +7,23 @@ public class ArtemisSecondary : AbilityTemplate
     public override void OnCreation()
     {
         //throw new System.NotImplementedException();
+        //
+        if (audioOnCreate != null)
+        {
+            //play
+            audioOnCreate.Play();
+        }
     }
 
     public override void OnDestroy()
     {
         //throw new System.NotImplementedException();
+        //
+        if (audioOnDestroy != null)
+        {
+            //play
+            audioOnDestroy.Play();
+        }
     }
 
     public override void OnTriggerEnter(Collider other)
@@ -22,8 +34,9 @@ public class ArtemisSecondary : AbilityTemplate
         {
             if (at.parent == parent) return;
         }
+        if (other.CompareTag("Trap")) return;
 
-        if (other.tag == "Trap") return;
+        //Debug.Log(name + " collided with " + other.name + " parent is: " + parent.name);
 
         if (other.TryGetComponent<CharacterTemplate>(out CharacterTemplate ct))
         {

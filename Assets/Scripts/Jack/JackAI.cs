@@ -22,9 +22,9 @@ public class JackAI : JackTemplate
         characterController = GetComponent<CharacterController2D>();
 
         //make combat states
-        JackAggressive Aggressive =    new JackAggressive(this, typeof(JackAggressive).Name);
-        JackDefensive Defensive =      new JackDefensive(this, typeof(JackDefensive).Name);
-        JackPassive Passive =          new JackPassive(this, typeof(JackPassive).Name);
+        JackAggressive Aggressive =    new (this, typeof(JackAggressive).Name);
+        JackDefensive Defensive =      new (this, typeof(JackDefensive).Name);
+        JackPassive Passive =          new (this, typeof(JackPassive).Name);
         //make health states
         HighHealth = new JackHighHealth(this, typeof(JackHighHealth).Name, new State[] { Aggressive, Defensive, Passive });
         MedHealth = new  JackMediumHealth(this, typeof(JackMediumHealth).Name, new State[] { Aggressive, Defensive, Passive });
@@ -41,13 +41,13 @@ public class JackAI : JackTemplate
     private void Update()
     {
         Debug.Log("Current State: " + currentState.name + " Inner State: " + currentState.sMachine.currentState.name);
-        stateUpdates();
+        StateUpdates();
         CharacterRequiredUpdates();
 
         //check for stun
         foreach (Effect effect in effects)
         {
-            if (effect.isStunned())
+            if (effect.IsStunned())
             {
                 characterController.Move(0, false, false);
                 return;
@@ -65,7 +65,7 @@ public class JackAI : JackTemplate
         if (attack)
         {
             //check for ability
-            useAbility();
+            UseAbility();
         }
         else
         {
@@ -115,7 +115,12 @@ public class JackAI : JackTemplate
     private void AIMovement()
     {
         float movement = currentState.StateMovement() * speed * currentSpeedMultiplier;
-        bool shouldJump = currentState.shouldJump();
+        bool shouldJump = false;
+        if (characterController.m_Grounded)
+        {
+            shouldJump = currentState.shouldJump();
+        }
+
         animator.SetFloat("Speed", Mathf.Abs(movement));
         characterController.Move(movement, false, shouldJump);
     }
@@ -123,7 +128,7 @@ public class JackAI : JackTemplate
     /// <summary>
     /// Updates the state and checks if it needs to change
     /// </summary>
-    private void stateUpdates()
+    private void StateUpdates()
     {
         healthPercent = (health.GetCurrent() / health.GetMax()) * 100;
         //to high health
@@ -156,7 +161,7 @@ public class JackAI : JackTemplate
     /// <summary>
     /// Checks if you need to use an ability, then calls the respective functions
     /// </summary>
-    private void useAbility()
+    private void UseAbility()
     {
         int ability = currentState.UseAbility();
         switch (ability)

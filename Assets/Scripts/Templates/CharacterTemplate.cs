@@ -40,7 +40,7 @@ public abstract class CharacterTemplate : MonoBehaviour
 
     [HideInInspector] public CharacterController2D characterController;
 
-    [HideInInspector] public List<Effect> effects = new List<Effect>();
+    [HideInInspector] public List<Effect> effects = new();
     [HideInInspector] public float currentBasicAttackCooldown = 0;
     [HideInInspector] public float currentAbilityOneCooldown = 0;
     [HideInInspector] public float currentAbilityTwoCooldown = 0;
@@ -89,14 +89,14 @@ public abstract class CharacterTemplate : MonoBehaviour
         currentDamageMultiplier = 1;
         currentSpeedMultiplier = 1;
 
-        List<Effect> eRemove = new List<Effect>();
+        List<Effect> eRemove = new();
         foreach(Effect e in effects)
         {
-            e.updateTrigger(health, energy);
-            if (e.getRemainingDuration() > 0)
+            e.UpdateTrigger(health, energy);
+            if (e.GetRemainingDuration() > 0)
             {
-                currentDamageMultiplier = (currentDamageMultiplier + e.getDamageMultipler() > 0) ? currentDamageMultiplier += e.getDamageMultipler() : .01f;
-                currentSpeedMultiplier = (currentSpeedMultiplier + e.getSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.getSpeedMultiplier() : .01f;
+                currentDamageMultiplier = (currentDamageMultiplier + e.GetDamageMultipler() > 0) ? currentDamageMultiplier += e.GetDamageMultipler() : .01f;
+                currentSpeedMultiplier = (currentSpeedMultiplier + e.GetSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.GetSpeedMultiplier() : .01f;
             }
             else
             {
@@ -110,7 +110,7 @@ public abstract class CharacterTemplate : MonoBehaviour
         }
     }
 
-    public void setDisplay(TMPro.TMP_Text healthDisplay, TMPro.TMP_Text energyDisplay)
+    public void SetDisplay(TMPro.TMP_Text healthDisplay, TMPro.TMP_Text energyDisplay)
     {
         HealthDisplay = healthDisplay;
         EnergyDisplay = energyDisplay;

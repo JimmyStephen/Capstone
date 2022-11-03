@@ -18,7 +18,7 @@ public class JackPlayer : JackTemplate
 
         foreach (Effect effect in effects)
         {
-            if (effect.isStunned())
+            if (effect.IsStunned())
             {
                 characterController.Move(0, false, false);
                 return;

@@ -10,8 +10,8 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject playerOne = null;
     public GameObject playerTwo = null;
-    private bool characterOnePlayer = true;
-    private bool characterTwoPlayer = false;
+    //private bool characterOnePlayer = true;
+    //private bool characterTwoPlayer = false;
 
     [SerializeField] Transform playerOneSpawn;
     [SerializeField] Transform playerTwoSpawn;
@@ -26,58 +26,58 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject gpCursor;
     [SerializeField] GameObject destroyOnPlay;
 
-    public string selectCharacter(int characterSelect, int player)
+    public string SelectCharacter(int characterSelect, int player)
     {
         if(player == 1)
         {
             playerOne = playerCharacters[characterSelect];
-            characterOnePlayer = true;
+            //characterOnePlayer = true;
         }
         else
         {
             playerTwo = playerCharacters[characterSelect];
-            characterTwoPlayer = true;
+            //characterTwoPlayer = true;
         }
         return playerCharacters[characterSelect].name.ToString();
     }
 
-    public string selectAI(int characterSelect, int player)
+    public string SelectAI(int characterSelect, int player)
     {
         if (player == 1)
         {
             playerOne = aiCharacters[characterSelect];
-            characterOnePlayer = false;
+            //characterOnePlayer = false;
         }
         else
         {
             playerTwo = aiCharacters[characterSelect];
-            characterTwoPlayer = false;
+            //characterTwoPlayer = false;
         }
         return aiCharacters[characterSelect].name.ToString();
     }
 
-    public void startGame()
+    public void StartGame()
     {
         //if nothing selected choose random
         if(playerOne == null)
         {
             playerOne = aiCharacters[Random.Range(0, aiCharacters.Length)];
-            characterOnePlayer = false;
+            //characterOnePlayer = false;
         }
         if(playerTwo == null)
         {
             playerTwo = aiCharacters[Random.Range(0, aiCharacters.Length)];
-            characterTwoPlayer = false;
+            //characterTwoPlayer = false;
         }
 
         cursor.SetActive(false);
         Destroy(destroyOnPlay, 0.05f);
         Destroy(gpCursor, 0.05f);
-        SceneLoader.Instance.LoadScene(2);
-        StartCoroutine(placeCharacters());
+        SceneLoader.Instance.LoadScene(3);
+        StartCoroutine(PlaceCharacters());
     }
 
-    IEnumerator placeCharacters()
+    IEnumerator PlaceCharacters()
     {
         yield return new WaitForSeconds(4);
 
@@ -85,10 +85,10 @@ public class GameManager : Singleton<GameManager>
         var p1 = Instantiate(playerOne, playerOneSpawn.position, playerOneSpawn.rotation);
         var p2 = Instantiate(playerTwo, playerTwoSpawn.position, playerTwoSpawn.rotation);
 
-        p1.GetComponent<CharacterTemplate>().setDisplay(PlayerOneHealthDisplay, PlayerOneEnergyDisplay);
+        p1.GetComponent<CharacterTemplate>().SetDisplay(PlayerOneHealthDisplay, PlayerOneEnergyDisplay);
         p1.GetComponent<CharacterTemplate>().opponent = p2;
 
-        p2.GetComponent<CharacterTemplate>().setDisplay(PlayerTwoHealthDisplay, PlayerTwoEnergyDisplay);
+        p2.GetComponent<CharacterTemplate>().SetDisplay(PlayerTwoHealthDisplay, PlayerTwoEnergyDisplay);
         p2.GetComponent<CharacterTemplate>().opponent = p1;
     }
 }

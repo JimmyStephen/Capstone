@@ -10,8 +10,8 @@ public class JackLowHealth : HealthStateTemplate
     public FloatRef trapsOffCD;
     public FloatRef timer;
 
-    private float closeMaxDuration = 2;
-    private float closeDistance = 3;
+    private const float closeMaxDuration = 2;
+    private const float closeDistance = 3;
 
     public override void OnCreate()
     {
@@ -37,7 +37,7 @@ public class JackLowHealth : HealthStateTemplate
     public override void OnEnter()
     {
         timer.value = 0;
-        trapsOffCD.value = getTrapsOffCD();
+        trapsOffCD.value = GetTrapsOffCD();
     }
     public override void OnExit()
     {
@@ -57,7 +57,7 @@ public class JackLowHealth : HealthStateTemplate
         }
 
         //ability update
-        trapsOffCD.value = getTrapsOffCD();
+        trapsOffCD.value = GetTrapsOffCD();
 
         sMachine.Update();
     }
@@ -92,7 +92,7 @@ public class JackLowHealth : HealthStateTemplate
         return sMachine.currentState.useAbilityThree();
     }
 
-    private int getTrapsOffCD()
+    private int GetTrapsOffCD()
     {
         int retVal = 0;
         if (owner.currentAbilityOneCooldown <= 0) retVal++;

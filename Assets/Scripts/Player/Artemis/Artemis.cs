@@ -19,7 +19,7 @@ public class Artemis : CharacterTemplate
 
         foreach(Effect effect in effects)
         {
-            if (effect.isStunned())
+            if (effect.IsStunned())
             {
                 characterController.Move(0, false, false);
                 return;
@@ -56,12 +56,12 @@ public class Artemis : CharacterTemplate
         Debug.Log("Basic Attack Activated");
 
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
-        if (!at.canUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
+        if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
         {
             Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentBasicAttackCooldown = at.useAbility(health, energy);
+        currentBasicAttackCooldown = at.UseAbility(health, energy);
         animator.SetTrigger("Basic");
         animationTimer = basicAttackDuration;
         StartCoroutine(SpawnAfterDelayParent(this.gameObject, BasicAttackPosition, BasicAttackObject, basicAttackDelay));
@@ -72,11 +72,11 @@ public class Artemis : CharacterTemplate
         Debug.Log("Ability 1 Activated");
 
         AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
-        if(!at.canUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0){
+        if(!at.CanUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0){
             Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentAbilityOneCooldown = at.useAbility(health, energy);
+        currentAbilityOneCooldown = at.UseAbility(health, energy);
 
         animator.SetTrigger("Ability1");
         animationTimer = animationOneDuration;
@@ -88,12 +88,12 @@ public class Artemis : CharacterTemplate
         Debug.Log("Ability 2 Activated");
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
 
-        if (!at.canUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
+        if (!at.CanUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
         {
             Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentAbilityTwoCooldown = at.useAbility(health, energy);
+        currentAbilityTwoCooldown = at.UseAbility(health, energy);
 
         animator.SetTrigger("Ability2");
         animationTimer = animationTwoDuration;
@@ -106,12 +106,12 @@ public class Artemis : CharacterTemplate
 
         AbilityTemplate at = abilityThreeProjectile.GetComponent<AbilityTemplate>();
 
-        if (!at.canUse(health, energy, currentAbilityThreeCooldown))
+        if (!at.CanUse(health, energy, currentAbilityThreeCooldown))
         {
             Debug.Log("Not enough resources or it is on CD");
             return;
         }
-        currentAbilityThreeCooldown = at.useAbility(health, energy);
+        currentAbilityThreeCooldown = at.UseAbility(health, energy);
 
         animationTimer = animationThreeDuration;
         animator.SetTrigger("Ability3");

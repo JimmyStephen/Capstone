@@ -12,12 +12,12 @@ public abstract class JackTemplate : CharacterTemplate
     {
         Debug.Log("Stabby stab");
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
-        if (!at.canUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
+        if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
         {
             Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentBasicAttackCooldown = at.useAbility(health, energy);
+        currentBasicAttackCooldown = at.UseAbility(health, energy);
         animator.SetTrigger("Stab");
         animationTimer = basicAttackDuration;
         StartCoroutine(SpawnAfterDelayParent(this.gameObject, BasicAttackPosition, BasicAttackObject, basicAttackDelay));
@@ -27,12 +27,12 @@ public abstract class JackTemplate : CharacterTemplate
         Debug.Log("Place Trap");
 
         AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
-        if (!at.canUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
+        if (!at.CanUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
         {
             Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentAbilityOneCooldown = at.useAbility(health, energy);
+        currentAbilityOneCooldown = at.UseAbility(health, energy);
 
         animator.SetTrigger("PlaceTrap");
         animationTimer = animationOneDuration;
@@ -44,12 +44,12 @@ public abstract class JackTemplate : CharacterTemplate
         Debug.Log("Place Trap");
 
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
-        if (!at.canUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
+        if (!at.CanUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
         {
             Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentAbilityTwoCooldown = at.useAbility(health, energy);
+        currentAbilityTwoCooldown = at.UseAbility(health, energy);
 
         animator.SetTrigger("PlaceTrap");
         animationTimer = animationTwoDuration;
@@ -63,12 +63,12 @@ public abstract class JackTemplate : CharacterTemplate
 
         AbilityTemplate at = abilityThreeProjectile.GetComponent<AbilityTemplate>();
 
-        if (!at.canUse(health, energy, currentAbilityThreeCooldown))
+        if (!at.CanUse(health, energy, currentAbilityThreeCooldown))
         {
             Debug.Log("Not enough resources or it is on CD");
             return;
         }
-        currentAbilityThreeCooldown = at.useAbility(health, energy);
+        currentAbilityThreeCooldown = at.UseAbility(health, energy);
 
         animationTimer = animationThreeDuration;
         animator.SetTrigger("Ult");

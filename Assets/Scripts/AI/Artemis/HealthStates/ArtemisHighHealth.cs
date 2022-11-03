@@ -8,7 +8,7 @@ public class ArtemisHighHealth : HealthStateTemplate
 
     public FloatRef distance;
     public BoolRef abilityOnCD;
-    private float distanceForAggression = 5;
+    private const float distanceForAggression = 5;
 
     public override void OnCreate()
     {

@@ -21,10 +21,10 @@ public class ArtemisAI : CharacterTemplate
         characterController = GetComponent<CharacterController2D>();
 
         //make combat states
-        ArtemisAggressive aAggressive   = new ArtemisAggressive(this, typeof(ArtemisAggressive).Name);
-        ArtemisDefensive aDefensive     = new ArtemisDefensive(this, typeof(ArtemisDefensive).Name);
-        ArtemisPassive aPassive         = new ArtemisPassive(this, typeof(ArtemisPassive).Name);
-        ArtemisScared aScared           = new ArtemisScared(this, typeof(ArtemisScared).Name);
+        ArtemisAggressive aAggressive   = new (this, typeof(ArtemisAggressive).Name);
+        ArtemisDefensive aDefensive     = new (this, typeof(ArtemisDefensive).Name);
+        ArtemisPassive aPassive         = new (this, typeof(ArtemisPassive).Name);
+        ArtemisScared aScared           = new (this, typeof(ArtemisScared).Name);
         //make health states
         aHighHealth = new ArtemisHighHealth(this, typeof(ArtemisHighHealth).Name, new State[] {aAggressive, aDefensive, aPassive, aScared});
         aMedHealth = new ArtemisMediumHealth(this, typeof(ArtemisMediumHealth).Name, new State[] { aAggressive, aDefensive, aPassive, aScared });
@@ -43,13 +43,13 @@ public class ArtemisAI : CharacterTemplate
     void Update()
     {
         Debug.Log("Current State: " + currentState.name + " Inner State: " + currentState.sMachine.currentState.name);  
-        stateUpdates();
+        StateUpdates();
         CharacterRequiredUpdates();
 
         //check for stun
         foreach (Effect effect in effects)
         {
-            if (effect.isStunned())
+            if (effect.IsStunned())
             {
                 characterController.Move(0, false, false);
                 return;
@@ -67,7 +67,7 @@ public class ArtemisAI : CharacterTemplate
         if (attack)
         {
             //check for ability
-            useAbility();
+            UseAbility();
         }
         else
         {
@@ -84,7 +84,11 @@ public class ArtemisAI : CharacterTemplate
     private void AIMovement()
     {
         float movement = currentState.StateMovement() * speed * currentSpeedMultiplier;
-        bool shouldJump = currentState.shouldJump();
+        bool shouldJump = false;
+        if (characterController.m_Grounded)
+        {
+            shouldJump = currentState.shouldJump();
+        }
         animator.SetFloat("Speed", Mathf.Abs(movement));
         characterController.Move(movement, false, shouldJump);
     }
@@ -92,12 +96,12 @@ public class ArtemisAI : CharacterTemplate
     public override void BasicAttack()
     {
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
-        if (!at.canUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
+        if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
         {
             //Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentBasicAttackCooldown = at.useAbility(health, energy);
+        currentBasicAttackCooldown = at.UseAbility(health, energy);
         animator.SetTrigger("Basic");
         animationTimer = basicAttackDuration;
         StartCoroutine(SpawnAfterDelayParent(this.gameObject, BasicAttackPosition, BasicAttackObject, basicAttackDelay));
@@ -108,12 +112,12 @@ public class ArtemisAI : CharacterTemplate
         //Debug.Log("Ability 1 Activated");
 
         AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
-        if (!at.canUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
+        if (!at.CanUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
         {
             //Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentAbilityOneCooldown = at.useAbility(health, energy);
+        currentAbilityOneCooldown = at.UseAbility(health, energy);
 
         animator.SetTrigger("Ability1");
         animationTimer = animationOneDuration;
@@ -124,12 +128,12 @@ public class ArtemisAI : CharacterTemplate
         //Debug.Log("Ability 2 Activated");
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
 
-        if (!at.canUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
+        if (!at.CanUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
         {
             //Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentAbilityTwoCooldown = at.useAbility(health, energy);
+        currentAbilityTwoCooldown = at.UseAbility(health, energy);
 
         animator.SetTrigger("Ability2");
         animationTimer = animationTwoDuration;
@@ -142,12 +146,12 @@ public class ArtemisAI : CharacterTemplate
 
         AbilityTemplate at = abilityThreeProjectile.GetComponent<AbilityTemplate>();
 
-        if (!at.canUse(health, energy, currentAbilityThreeCooldown))
+        if (!at.CanUse(health, energy, currentAbilityThreeCooldown))
         {
             //Debug.Log("Not enough resources or it is on CD");
             return;
         }
-        currentAbilityThreeCooldown = at.useAbility(health, energy);
+        currentAbilityThreeCooldown = at.UseAbility(health, energy);
 
         animationTimer = animationThreeDuration;
         animator.SetTrigger("Ability3");
@@ -197,7 +201,7 @@ public class ArtemisAI : CharacterTemplate
     /// <summary>
     /// Updates the state and checks if it needs to change
     /// </summary>
-    private void stateUpdates()
+    private void StateUpdates()
     {
         healthPercent = (health.GetCurrent() / health.GetMax()) * 100;
         //to high health
@@ -227,7 +231,7 @@ public class ArtemisAI : CharacterTemplate
     /// <summary>
     /// Checks if you need to use an ability, then calls the respective functions
     /// </summary>
-    private void useAbility()
+    private void UseAbility()
     {
         int ability = currentState.UseAbility();
         switch (ability)

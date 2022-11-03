@@ -27,7 +27,7 @@ public class JackTrap : MonoBehaviour
     //who the owner of the trap is
     [HideInInspector] public GameObject owner;
 
-    private List<Effect> effectsToApply = new List<Effect>();
+    private readonly List<Effect> effectsToApply = new();
 
     private void Start()
     {

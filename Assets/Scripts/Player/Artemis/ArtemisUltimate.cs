@@ -11,12 +11,24 @@ public class ArtemisUltimate : AbilityTemplate
     public override void OnCreation()
     {
         //do nothing
+        //
+        if (audioOnCreate != null)
+        {
+            //play
+            audioOnCreate.Play();
+        }
     }
 
     public override void OnDestroy()
     {
         var temp = Instantiate(onHitEffect, this.transform.position, this.transform.rotation);
         temp.GetComponent<ArtemisLightning>().owner = parent;
+        //
+        if (audioOnDestroy != null)
+        {
+            //play
+            audioOnDestroy.Play();
+        }
     }
 
     public override void OnTriggerEnter(Collider other)
@@ -28,7 +40,9 @@ public class ArtemisUltimate : AbilityTemplate
             if (at.parent == parent) return;
         }
 
-        if (other.tag == "Trap") return;
+        if (other.CompareTag("Trap")) return;
+
+        //Debug.Log(name + " collided with " + other.name + " parent is: " + parent.name);
 
         if (other.TryGetComponent<CharacterTemplate>(out CharacterTemplate ct))
         {

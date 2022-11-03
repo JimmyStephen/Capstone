@@ -56,7 +56,7 @@ MonoBehaviour:
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}
-  rollDistance: 50
+  rollDistance: 25
 --- !u!54 &2640547390621056007
 Rigidbody:
   m_ObjectHideFlags: 0
