@@ -2104,14 +2104,14 @@ MonoBehaviour:
   abilityOneProjectilePosition: {fileID: 6072715451768363558}
   abilityTwoProjectilePosition: {fileID: 6072715451768363558}
   abilityThreeProjectilePosition: {fileID: 6072715451768363558}
-  basicAttackDuration: 0
-  animationOneDuration: 0
-  animationTwoDuration: 0
-  animationThreeDuration: 0
-  basicAttackDelay: 0
-  abilityOneDelay: 0
-  abilityTwoDelay: 0
-  abilityThreeDelay: 0
+  basicAttackDuration: 1.3
+  animationOneDuration: 1.2
+  animationTwoDuration: 1.2
+  animationThreeDuration: 1.2
+  basicAttackDelay: 0.25
+  abilityOneDelay: 0.01
+  abilityTwoDelay: 0.01
+  abilityThreeDelay: 0.01
   characterController: {fileID: 0}
   currentBasicAttackCooldown: 0
   currentAbilityOneCooldown: 0

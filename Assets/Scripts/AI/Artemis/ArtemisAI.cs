@@ -83,7 +83,7 @@ public class ArtemisAI : CharacterTemplate
     /// </summary>
     private void AIMovement()
     {
-        float movement = currentState.StateMovement() * currentSpeedMultiplier;
+        float movement = currentState.StateMovement() * speed * currentSpeedMultiplier;
         bool shouldJump = currentState.shouldJump();
         animator.SetFloat("Speed", Mathf.Abs(movement));
         characterController.Move(movement, false, shouldJump);

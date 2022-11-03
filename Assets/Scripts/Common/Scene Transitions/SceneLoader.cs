@@ -17,13 +17,6 @@ public class SceneLoader : Singleton<SceneLoader>
         }    
     }
 
-    void Update()
-    {
-/*        if (Input.GetMouseButton(0))
-        {
-            LoadNextLevel();
-        }*/
-    }
 
     public void LoadNextLevel()
     {

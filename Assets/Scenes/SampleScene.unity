@@ -651,6 +651,76 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 7ed743c670d009147a3742ec76c24e61, type: 3}
+--- !u!1001 &1216940163
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 411667189141808194, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: opponent
+      value: 
+      objectReference: {fileID: 1787695719}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183724, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_Name
+      value: Jack The Ripper AI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183724, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+--- !u!1 &1216940164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7028627818576183724, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+  m_PrefabInstance: {fileID: 1216940163}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1477711160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6207856941976579700, guid: a995d49e3ba6082408df5cdcb656791d, type: 3}
@@ -689,6 +759,76 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 7ed743c670d009147a3742ec76c24e61, type: 3}
+--- !u!1001 &1787695718
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 411667189141808194, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: opponent
+      value: 
+      objectReference: {fileID: 1216940164}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183705, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183724, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_Name
+      value: Jack The Ripper AI (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028627818576183724, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+--- !u!1 &1787695719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7028627818576183724, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
+  m_PrefabInstance: {fileID: 1787695718}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1799668474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6206804940200117468, guid: a995d49e3ba6082408df5cdcb656791d, type: 3}

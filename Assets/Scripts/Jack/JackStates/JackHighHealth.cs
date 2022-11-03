@@ -20,8 +20,8 @@ public class JackHighHealth : HealthStateTemplate
         timer = new FloatRef();
 
         //to aggressive - Both Traps off cd
-        sMachine.AddTransition(sMachine.StateFromName(typeof(JackPassive).Name), new Transition(new Condition[] { new FloatCondition(trapsOffCD, Condition.Predicate.EQUAL, 2) }), sMachine.StateFromName(typeof(JackAggressive).Name));
-        sMachine.AddTransition(sMachine.StateFromName(typeof(JackDefensive).Name), new Transition(new Condition[] { new FloatCondition(trapsOffCD, Condition.Predicate.EQUAL, 2) }), sMachine.StateFromName(typeof(JackAggressive).Name));
+        sMachine.AddTransition(sMachine.StateFromName(typeof(JackPassive).Name), new Transition(new Condition[] { new FloatCondition(trapsOffCD, Condition.Predicate.GREATER, 0) }), sMachine.StateFromName(typeof(JackAggressive).Name));
+        sMachine.AddTransition(sMachine.StateFromName(typeof(JackDefensive).Name), new Transition(new Condition[] { new FloatCondition(trapsOffCD, Condition.Predicate.GREATER, 0) }), sMachine.StateFromName(typeof(JackAggressive).Name));
 
         //to passive - Both traps on cd
         sMachine.AddTransition(sMachine.StateFromName(typeof(JackAggressive).Name), new Transition(new Condition[] { new FloatCondition(trapsOffCD, Condition.Predicate.EQUAL, 0) }), sMachine.StateFromName(typeof(JackPassive).Name));
@@ -47,7 +47,7 @@ public class JackHighHealth : HealthStateTemplate
     {
         //distance update
         distance.value = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
-        if (distance.value > closeDistance)
+        if (distance.value < closeDistance)
         {
             timer.value += Time.deltaTime;
         }
@@ -58,7 +58,7 @@ public class JackHighHealth : HealthStateTemplate
 
         //ability update
         trapsOffCD.value = getTrapsOffCD();
-
+        Debug.Log("Distance: " + distance.value);
         sMachine.Update();
     }
 

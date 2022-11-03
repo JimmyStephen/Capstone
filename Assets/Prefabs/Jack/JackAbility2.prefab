@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthCost: 0
   EnergyCost: 15
-  Cooldown: 3
+  Cooldown: 5
   HealthDamage: 0
   EnergyDamage: 0
   Speed: 0

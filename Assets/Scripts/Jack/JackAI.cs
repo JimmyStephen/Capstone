@@ -15,7 +15,7 @@ public class JackAI : JackTemplate
 
     private float healthPercent;
     bool attack = true;
-
+    float attackTimer = 0;
 
     private void Start()
     {
@@ -73,7 +73,18 @@ public class JackAI : JackTemplate
             AIMovement();
         }
 
-        attack = !attack;
+        if (attackTimer < 0)
+        {
+            if (attack)
+            {
+                attackTimer = 2;
+            }
+            else
+            {
+                attackTimer = .5f;
+            }
+            attack = !attack;
+        }
     }
 
     public override void CharacterRequiredUpdates()
@@ -85,6 +96,7 @@ public class JackAI : JackTemplate
         currentAbilityTwoCooldown -= Time.deltaTime;
         currentAbilityThreeCooldown -= Time.deltaTime;
         animationTimer -= Time.deltaTime;
+        attackTimer -= Time.deltaTime;
 
         TriggerEffects();
 
@@ -102,7 +114,7 @@ public class JackAI : JackTemplate
     /// </summary>
     private void AIMovement()
     {
-        float movement = currentState.StateMovement() * currentSpeedMultiplier;
+        float movement = currentState.StateMovement() * speed * currentSpeedMultiplier;
         bool shouldJump = currentState.shouldJump();
         animator.SetFloat("Speed", Mathf.Abs(movement));
         characterController.Move(movement, false, shouldJump);
