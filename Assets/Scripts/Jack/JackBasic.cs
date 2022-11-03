@@ -18,7 +18,7 @@ public class JackBasic : AbilityTemplate
 
     public override void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided With: " + other.gameObject.name + "Owner: " + parent.name);
+        //Debug.Log("Collided With: " + other.gameObject.name + "Owner: " + parent.name);
         if (other.gameObject == parent) return;
         //knockback the target
         if (other.TryGetComponent<CharacterTemplate>(out CharacterTemplate ct))
@@ -36,7 +36,7 @@ public class JackBasic : AbilityTemplate
             ct.health.Damage(damageDealt * damageMultiplier);
 
             //weak poison (5dmg)
-            ct.effects.Add(new Effect(5, 1, 0, 0, 0, 0, 0, false));
+            ct.effects.Add(new Effect(true, 5, 1, 0, 0, 0, 0, 0, false));
             Destroy(this.gameObject, .05f);
         }
     }

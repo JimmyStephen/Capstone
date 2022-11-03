@@ -58,7 +58,7 @@ public class JackHighHealth : HealthStateTemplate
 
         //ability update
         trapsOffCD.value = getTrapsOffCD();
-        Debug.Log("Distance: " + distance.value);
+        //Debug.Log("Distance: " + distance.value);
         sMachine.Update();
     }
 

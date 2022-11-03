@@ -36,17 +36,17 @@ public class JackTrap : MonoBehaviour
         //dot (if needed)
         if (applyDot)
         {
-            effectsToApply.Add(new Effect(dotDuration, dotDamage, 0, 0, 0, 0, 0, false));
+            effectsToApply.Add(new Effect(true, dotDuration, dotDamage, 0, 0, 0, 0, 0, false));
         }
         //slow (if needed)
         if (applySlow)
         {
-            effectsToApply.Add(new Effect(slowDuration, 0, 0, 0, 0, 0, slowPercent, false));
+            effectsToApply.Add(new Effect(true, slowDuration, 0, 0, 0, 0, 0, slowPercent, false));
         }
         //stun (if needed)
         if (applyStun)
         {
-            effectsToApply.Add(new Effect(stunDuration, 0, 0, 0, 0, 0, 0, true));
+            effectsToApply.Add(new Effect(true, stunDuration, 0, 0, 0, 0, 0, 0, true));
         }
 
         if (destroyAfterDuration) Destroy(this.gameObject, trapDuration);
@@ -57,7 +57,7 @@ public class JackTrap : MonoBehaviour
         if (setupDuration > 0)
         {
             setupDuration -= Time.deltaTime;
-            if (setupDuration <= 0) Debug.Log("Trap <" + this.gameObject.name + "> Has been set");
+//            if (setupDuration <= 0) Debug.Log("Trap <" + this.gameObject.name + "> Has been set");
         }
         else
         {
@@ -65,7 +65,7 @@ public class JackTrap : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         //make sure its a valid target
         //apply the effects

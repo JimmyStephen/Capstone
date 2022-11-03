@@ -16,6 +16,7 @@ public class Effect
     private float speedMultiplier = 1;
     //bonus effects
     private bool stun = false;
+    private bool IsDebuff = false;
 
     /// <summary>
     /// What this effect does
@@ -28,8 +29,9 @@ public class Effect
     /// <param name="damageMultiplier">damage multiplier</param>
     /// <param name="speedMultiplier">speed multiplier</param>
     /// <param name="stun">if this effect stuns</param>
-    public Effect(float duration, float healthDamagePerSec, float healthHealingPerSec, float energyDamagePerSec, float energyHealingPerSec, float damageMultiplier, float speedMultiplier, bool stun)
+    public Effect(bool IsDebuff, float duration, float healthDamagePerSec, float healthHealingPerSec, float energyDamagePerSec, float energyHealingPerSec, float damageMultiplier, float speedMultiplier, bool stun)
     {
+        this.IsDebuff = IsDebuff;
         this.duration = duration;
         this.healthDamagePerSec = healthDamagePerSec;
         this.healthHealingPerSec = healthHealingPerSec;
@@ -74,5 +76,9 @@ public class Effect
     public bool isStunned()
     {
         return stun;
+    }
+    public bool checkIsDebuff()
+    {
+        return IsDebuff;
     }
 }
