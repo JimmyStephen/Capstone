@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setupDuration: 2
-  destroyAfterDuration: 0
+  destroyAfterDuration: 1
   trapDuration: 8
   applyDot: 0
   applySlow: 1
@@ -121,4 +121,6 @@ MonoBehaviour:
   stunDuration: 1
   dotDamage: 0
   slowPercent: -0.5
+  createOnTrigger: {fileID: 95544548186499656, guid: 14c7f64c4f29da84b8db3e2b176dee89, type: 3}
+  audioOnTrigger: {fileID: 0}
   owner: {fileID: 0}

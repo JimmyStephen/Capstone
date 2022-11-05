@@ -66,7 +66,7 @@ public class StateMachine
     {
         foreach (var state in stateTransitions)
         {
-            if (string.Equals(state.Key.name, name, System.StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(state.Key.Name, name, System.StringComparison.OrdinalIgnoreCase))
             {
                 return state.Key;
             }
@@ -76,6 +76,6 @@ public class StateMachine
 
     public string GetStateName()
     {
-        return (currentState == null) ? null : currentState.name;
+        return (currentState == null) ? null : currentState.Name;
     }
 }

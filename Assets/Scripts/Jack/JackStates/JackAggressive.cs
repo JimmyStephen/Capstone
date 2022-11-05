@@ -38,7 +38,7 @@ public class JackAggressive : State
         abilityTimer -= Time.deltaTime;
     }
 
-    public override bool shouldJump()
+    public override bool ShouldJump()
     {
         if (jumpTimer < 0)
         {
@@ -54,7 +54,7 @@ public class JackAggressive : State
     public override float StateMovement()
     {
         //throw new System.NotImplementedException();
-        float distance = owner.transform.position.x - owner.opponent.transform.position.x;
+        float distance = Owner.transform.position.x - Owner.opponent.transform.position.x;
         
         //check distance, if to close then swap to run away
         if (distance < minDistance && secondTimer < 0)
@@ -108,7 +108,7 @@ public class JackAggressive : State
         //3 ult
         //4 none
         int[] abilityOptions = new int[] { 0, 1, 2, 4 };
-        abilityOptions = shuffle(abilityOptions);
+        abilityOptions = Shuffle(abilityOptions);
 
         int retVal = 4;
 
@@ -117,45 +117,45 @@ public class JackAggressive : State
             switch (abilityOptions[i])
             {
                 case 0:
-                    if (useBasicAbility()) retVal = 0;
+                    if (UseBasicAbility()) retVal = 0;
                     break;
                 case 1:
-                    if (useAbilityOne()) retVal = 1;
+                    if (UseAbilityOne()) retVal = 1;
                     break;
                 case 2:
-                    if (useAbilityTwo()) retVal = 2;
+                    if (UseAbilityTwo()) retVal = 2;
                     break;
                 default:
                     retVal = 4;
                     break;
             }
         }
-        if (retVal != 4) checkDirection();
+        if (retVal != 4) CheckDirection();
         return retVal;
     }
 
-    public override bool useBasicAbility()
+    public override bool UseBasicAbility()
     {
         //conditions to use
         //enemy close
-        return (owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) < 2);
+        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 2);
     }
-    public override bool useAbilityOne()
+    public override bool UseAbilityOne()
     {
         //conditions to use
         //off cd
-        return (owner.currentAbilityOneCooldown <= 0);
+        return (Owner.currentAbilityOneCooldown <= 0);
     }
-    public override bool useAbilityTwo()
+    public override bool UseAbilityTwo()
     {
         //conditions to use
         //off cd
-        return (owner.currentAbilityTwoCooldown <= 0);
+        return (Owner.currentAbilityTwoCooldown <= 0);
     }
-    public override bool useAbilityThree()
+    public override bool UseAbilityThree()
     {
         //conditions to use
         //enemy close
-        return (owner.currentAbilityThreeCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) < 3);
+        return (Owner.currentAbilityThreeCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 3);
     }
 }

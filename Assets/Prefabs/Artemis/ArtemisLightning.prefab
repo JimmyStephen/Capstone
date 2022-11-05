@@ -102,6 +102,7 @@ MonoBehaviour:
   energyDamage: 20
   stunDuration: 2
   owner: {fileID: 0}
+  audioOnCreate: {fileID: 0}
 --- !u!65 &7120535172619456177
 BoxCollider:
   m_ObjectHideFlags: 0

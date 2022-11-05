@@ -4,24 +4,21 @@ using UnityEngine;
 
 public abstract class State
 {
-    public CharacterTemplate owner { get; private set; }
-    public string name { get; private set; }
+    public CharacterTemplate Owner { get; private set; }
+    public string Name { get; private set; }
 
     public State(CharacterTemplate owner, string name)
     {
-        this.owner = owner;
-        this.name = name;
+        this.Owner = owner;
+        this.Name = name;
     }
 
-    public int[] shuffle(int[] toShuffle)
+    public int[] Shuffle(int[] toShuffle)
     {
-        int temp = 0;
-        for(int i = 0; i < toShuffle.Length; i++)
+        for (int i = 0; i < toShuffle.Length; i++)
         {
             int rnd = Random.Range(0, toShuffle.Length);
-            temp = toShuffle[rnd];
-            toShuffle[rnd] = toShuffle[i];
-            toShuffle[i] = temp;
+            (toShuffle[i], toShuffle[rnd]) = (toShuffle[rnd], toShuffle[i]);
         }
         return toShuffle;
     }
@@ -29,13 +26,13 @@ public abstract class State
     /// <summary>
     /// Makes sure your facing the right direction
     /// </summary>
-    public void checkDirection()
+    public void CheckDirection()
     {
         //get direction
-        float direction = Mathf.Sign(owner.transform.position.x - owner.opponent.transform.position.x);
-        if((direction > 0 && owner.characterController.GetDirection()) || (direction < 0 && !owner.characterController.GetDirection()))
+        float direction = Mathf.Sign(Owner.transform.position.x - Owner.opponent.transform.position.x);
+        if((direction > 0 && Owner.characterController.GetDirection()) || (direction < 0 && !Owner.characterController.GetDirection()))
         {
-            owner.characterController.Flip();
+            Owner.characterController.Flip();
         }
     }
 
@@ -44,10 +41,10 @@ public abstract class State
     public abstract void OnExit();
 
     public abstract float StateMovement();
-    public abstract bool shouldJump();
-    public abstract bool useBasicAbility();
-    public abstract bool useAbilityOne();
-    public abstract bool useAbilityTwo();
-    public abstract bool useAbilityThree();
+    public abstract bool ShouldJump();
+    public abstract bool UseBasicAbility();
+    public abstract bool UseAbilityOne();
+    public abstract bool UseAbilityTwo();
+    public abstract bool UseAbilityThree();
     public abstract int UseAbility();
 }

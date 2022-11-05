@@ -42,24 +42,22 @@ public class ArtemisAI : CharacterTemplate
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Current State: " + currentState.name + " Inner State: " + currentState.sMachine.currentState.name);  
+        //Debug.Log("Current State: " + currentState.name + " Inner State: " + currentState.sMachine.currentState.name);  
         StateUpdates();
         CharacterRequiredUpdates();
 
         //check for stun
-        foreach (Effect effect in effects)
+        if (CheckForStun())
         {
-            if (effect.IsStunned())
-            {
-                characterController.Move(0, false, false);
-                return;
-            }
+            characterController.Move(0, false, false);
+            animator.SetFloat("Speed", 0);
+            return;
         }
 
         //check for animation
         if (animationTimer >= 0)
         {
-            //Debug.Log("Timer Active");
+            characterController.Move(0, false, false);
             animator.SetFloat("Speed", 0);
             return;
         }
@@ -87,7 +85,7 @@ public class ArtemisAI : CharacterTemplate
         bool shouldJump = false;
         if (characterController.m_Grounded)
         {
-            shouldJump = currentState.shouldJump();
+            shouldJump = currentState.ShouldJump();
         }
         animator.SetFloat("Speed", Mathf.Abs(movement));
         characterController.Move(movement, false, shouldJump);
@@ -95,6 +93,10 @@ public class ArtemisAI : CharacterTemplate
 
     public override void BasicAttack()
     {
+        if (CheckForStun())
+        {
+            return;
+        }
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
         {
@@ -108,6 +110,10 @@ public class ArtemisAI : CharacterTemplate
     }
     public override void AbilityOne()
     {
+        if (CheckForStun())
+        {
+            return;
+        }
         //dodge roll
         //Debug.Log("Ability 1 Activated");
 
@@ -125,6 +131,10 @@ public class ArtemisAI : CharacterTemplate
     }
     public override void AbilityTwo()
     {
+        if (CheckForStun())
+        {
+            return;
+        }
         //Debug.Log("Ability 2 Activated");
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
 
@@ -143,7 +153,10 @@ public class ArtemisAI : CharacterTemplate
     public override void AbilityThree()
     {
         //Debug.Log("Ultimate Ability Activated");
-
+        if (CheckForStun())
+        {
+            return;
+        }
         AbilityTemplate at = abilityThreeProjectile.GetComponent<AbilityTemplate>();
 
         if (!at.CanUse(health, energy, currentAbilityThreeCooldown))
@@ -178,18 +191,19 @@ public class ArtemisAI : CharacterTemplate
         {
             HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
         }
-        else
-        {
-            Debug.Log("No Health Display");
-        }
         if (EnergyDisplay != null)
         {
             EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
         }
-        else
+        if(HealthSlider != null)
         {
-            Debug.Log("No Energy Display");
+            HealthSlider.size = health.GetCurrent() / health.GetMax();
         }
+        if(EnergySlider != null)
+        {
+            EnergySlider.size = energy.GetCurrent() / energy.GetMax();
+        }
+
 
         //check dead
         if (health.GetCurrent() <= 0)
@@ -264,6 +278,8 @@ public class ArtemisAI : CharacterTemplate
         Debug.Log("YOU DIED!!!!");
         //set the winner to your opponent
         ///
+        GameManager.Instance.SetWinner(opponent.GetComponent<CharacterTemplate>());
+        GameManager.Instance.EndGame();
         //destroy this object
         Destroy(gameObject);
     }

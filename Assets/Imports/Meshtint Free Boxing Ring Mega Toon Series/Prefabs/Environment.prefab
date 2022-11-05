@@ -355,7 +355,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452762640}
-  m_Material: {fileID: 13400000, guid: 948f09dc3b8d7ed468262c972308d705, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 3269544864750593980}
   LandingLocation: {fileID: 7909783906368252480}
-  cooldown: 0.5
+  cooldown: 1.5
 --- !u!1 &1125969657
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +582,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102303674}
-  m_Material: {fileID: 13400000, guid: 948f09dc3b8d7ed468262c972308d705, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
@@ -602,7 +602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7106228288263628759}
   LandingLocation: {fileID: 2460456455638202532}
-  cooldown: 0.5
+  cooldown: 1.5
 --- !u!1 &2460456455638202532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,7 +1584,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d011b5adb7962194f9160728c500d917, type: 3}
 --- !u!4 &6209427730644657895 stripped

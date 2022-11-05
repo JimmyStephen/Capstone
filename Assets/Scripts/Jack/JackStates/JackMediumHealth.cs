@@ -46,7 +46,7 @@ public class JackMediumHealth : HealthStateTemplate
     public override void OnUpdate()
     {
         //distance update
-        distance.value = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
+        distance.value = Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x);
         if (distance.value < closeDistance)
         {
             timer.value += Time.deltaTime;
@@ -62,9 +62,9 @@ public class JackMediumHealth : HealthStateTemplate
         sMachine.Update();
     }
 
-    public override bool shouldJump()
+    public override bool ShouldJump()
     {
-        return sMachine.currentState.shouldJump();
+        return sMachine.currentState.ShouldJump();
     }
     public override float StateMovement()
     {
@@ -75,28 +75,28 @@ public class JackMediumHealth : HealthStateTemplate
     {
         return sMachine.currentState.UseAbility();
     }
-    public override bool useBasicAbility()
+    public override bool UseBasicAbility()
     {
-        return sMachine.currentState.useBasicAbility();
+        return sMachine.currentState.UseBasicAbility();
     }
-    public override bool useAbilityOne()
+    public override bool UseAbilityOne()
     {
-        return sMachine.currentState.useAbilityOne();
+        return sMachine.currentState.UseAbilityOne();
     }
-    public override bool useAbilityTwo()
+    public override bool UseAbilityTwo()
     {
-        return sMachine.currentState.useAbilityTwo();
+        return sMachine.currentState.UseAbilityTwo();
     }
-    public override bool useAbilityThree()
+    public override bool UseAbilityThree()
     {
-        return sMachine.currentState.useAbilityThree();
+        return sMachine.currentState.UseAbilityThree();
     }
 
     private int getTrapsOffCD()
     {
         int retVal = 0;
-        if (owner.currentAbilityOneCooldown <= 0) retVal++;
-        if (owner.currentAbilityTwoCooldown <= 0) retVal++;
+        if (Owner.currentAbilityOneCooldown <= 0) retVal++;
+        if (Owner.currentAbilityTwoCooldown <= 0) retVal++;
         return retVal;
     }
 }

@@ -48,38 +48,38 @@ public class ArtemisHighHealth : HealthStateTemplate
     public override void OnUpdate()
     {
         //distance update
-        distance.value = Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x);
+        distance.value = Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x);
         //ability update
-        bool basicOnCD = owner.basicAttackDuration > 0;
-        bool abilityOneCD = owner.currentAbilityOneCooldown > 0;
-        bool abilityTwoCD = owner.currentAbilityTwoCooldown > 0;
-        bool ultCD = owner.currentAbilityThreeCooldown > 0;
+        bool basicOnCD = Owner.basicAttackDuration > 0;
+        bool abilityOneCD = Owner.currentAbilityOneCooldown > 0;
+        bool abilityTwoCD = Owner.currentAbilityTwoCooldown > 0;
+        bool ultCD = Owner.currentAbilityThreeCooldown > 0;
         abilityOnCD.value = basicOnCD && abilityOneCD && abilityTwoCD && ultCD;
 
         sMachine.Update();
     }
 
-    public override bool shouldJump()
+    public override bool ShouldJump()
     {
-        return sMachine.currentState.shouldJump();
+        return sMachine.currentState.ShouldJump();
     }
     public override float StateMovement()
     {
         return sMachine.currentState.StateMovement();
     }
-    public override bool useBasicAbility()
+    public override bool UseBasicAbility()
     {
         throw new System.Exception("You shouldn't call this method this way");
     }
-    public override bool useAbilityOne()
+    public override bool UseAbilityOne()
     {
         throw new System.Exception("You shouldn't call this method this way");
     }
-    public override bool useAbilityTwo()
+    public override bool UseAbilityTwo()
     {
         throw new System.Exception("You shouldn't call this method this way");
     }
-    public override bool useAbilityThree()
+    public override bool UseAbilityThree()
     {
         throw new System.Exception("You shouldn't call this method this way");
     }

@@ -23,9 +23,9 @@ public class ArtemisAggressive : State
     }
 
     float justJumped = 0;
-    public override bool shouldJump()
+    public override bool ShouldJump()
     {
-        float distanceHeight = owner.opponent.transform.position.y - owner.transform.position.y;
+        float distanceHeight = Owner.opponent.transform.position.y - Owner.transform.position.y;
         //condition to jump
         if ((distanceHeight > 3 && justJumped <= 0))
         {
@@ -37,7 +37,7 @@ public class ArtemisAggressive : State
 
     public override float StateMovement()
     {
-        float distance = owner.transform.position.x - owner.opponent.transform.position.x;
+        float distance = Owner.transform.position.x - Owner.opponent.transform.position.x;
 
         if (Mathf.Abs(distance) > 5)
         {
@@ -55,7 +55,7 @@ public class ArtemisAggressive : State
         //3 ult
         //4 none
         int[] abilityOptions = new int[] { 0, 1, 2, 3, 4 };
-        abilityOptions = shuffle(abilityOptions);
+        abilityOptions = Shuffle(abilityOptions);
 
         int retVal = 4;
 
@@ -64,49 +64,49 @@ public class ArtemisAggressive : State
             switch(abilityOptions[i])
             {
                 case 0:
-                    if (useBasicAbility()) retVal = 0;
+                    if (UseBasicAbility()) retVal = 0;
                     break;
                 case 1:
-                    if (useAbilityOne()) retVal = 1;
+                    if (UseAbilityOne()) retVal = 1;
                     break;
                 case 2:
-                    if (useAbilityTwo()) retVal = 2;
+                    if (UseAbilityTwo()) retVal = 2;
                     break;
                 case 3:
-                    if (useAbilityThree()) retVal = 3;
+                    if (UseAbilityThree()) retVal = 3;
                     break;
                 default:
                     retVal = 4;
                     break;
             }
         }
-        if (retVal != 4) checkDirection();
+        if (retVal != 4) CheckDirection();
         return retVal;
     }
 
     //also check for cd
-    public override bool useBasicAbility()
+    public override bool UseBasicAbility()
     {
         //conditions to use
         //enemy close
-        return (owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) < 2);
+        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 2);
     }
-    public override bool useAbilityOne()
+    public override bool UseAbilityOne()
     {
         //conditions to use
         //enemy very close
-        return (owner.currentAbilityOneCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) < 1);
+        return (Owner.currentAbilityOneCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 1);
     }
-    public override bool useAbilityTwo()
+    public override bool UseAbilityTwo()
     {
         //conditions to use
         //enemy far
-        return (owner.currentAbilityTwoCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) > 3);
+        return (Owner.currentAbilityTwoCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) > 3);
     }
-    public override bool useAbilityThree()
+    public override bool UseAbilityThree()
     {
         //conditions to use
         //enemy far
-        return (owner.currentAbilityThreeCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) > 3);
+        return (Owner.currentAbilityThreeCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) > 3);
     }
 }

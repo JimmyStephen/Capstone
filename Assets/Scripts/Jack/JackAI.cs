@@ -40,19 +40,9 @@ public class JackAI : JackTemplate
 
     private void Update()
     {
-        Debug.Log("Current State: " + currentState.name + " Inner State: " + currentState.sMachine.currentState.name);
+        //Debug.Log("Current State: " + currentState.Name + " Inner State: " + currentState.sMachine.currentState.Name);
         StateUpdates();
         CharacterRequiredUpdates();
-
-        //check for stun
-        foreach (Effect effect in effects)
-        {
-            if (effect.IsStunned())
-            {
-                characterController.Move(0, false, false);
-                return;
-            }
-        }
 
         //check for animation
         if (animationTimer >= 0)
@@ -69,6 +59,13 @@ public class JackAI : JackTemplate
         }
         else
         {
+            //check for stun
+            if (CheckForStun())
+            {
+                characterController.Move(0, false, false);
+                animator.SetFloat("Speed", 0);
+                return;
+            }
             //check for movement
             AIMovement();
         }
@@ -100,8 +97,23 @@ public class JackAI : JackTemplate
 
         TriggerEffects();
 
-        if (HealthDisplay != null) HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
-        if (EnergyDisplay != null) EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        if (HealthDisplay != null)
+        {
+            HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
+        }
+        if (EnergyDisplay != null)
+        {
+            EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        }
+        if (HealthSlider != null)
+        {
+            HealthSlider.size = health.GetCurrent() / health.GetMax();
+        }
+        if (EnergySlider != null)
+        {
+            EnergySlider.size = energy.GetCurrent() / energy.GetMax();
+        }
+
 
         if (health.GetCurrent() <= 0)
         {
@@ -118,7 +130,7 @@ public class JackAI : JackTemplate
         bool shouldJump = false;
         if (characterController.m_Grounded)
         {
-            shouldJump = currentState.shouldJump();
+            shouldJump = currentState.ShouldJump();
         }
 
         animator.SetFloat("Speed", Mathf.Abs(movement));

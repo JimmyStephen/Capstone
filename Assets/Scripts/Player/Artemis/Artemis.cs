@@ -15,21 +15,20 @@ public class Artemis : CharacterTemplate
     }
     void Update()
     {
-        CharacterRequiredUpdates();        
+        CharacterRequiredUpdates();
 
-        foreach(Effect effect in effects)
+        if (CheckForStun())
         {
-            if (effect.IsStunned())
-            {
-                characterController.Move(0, false, false);
-                return;
-            }
+            characterController.Move(0, false, false);
+            animator.SetFloat("Speed", 0);
+            return;
         }
-        
-        if(animationTimer >= 0)
+
+        if (animationTimer >= 0)
         {
             //in animation don't move
             characterController.Move(0, false, false);
+            animator.SetFloat("Speed", 0);
             return;
         }
 
@@ -46,6 +45,8 @@ public class Artemis : CharacterTemplate
         Debug.Log("YOU DIED!!!!");
         //set the winner to your opponent
         ///
+        GameManager.Instance.SetWinner(opponent.GetComponent<CharacterTemplate>());
+        GameManager.Instance.EndGame();
         //destroy this object
         Destroy(gameObject);
     }
@@ -53,7 +54,11 @@ public class Artemis : CharacterTemplate
     //Abilities
     public override void BasicAttack()
     {
-        Debug.Log("Basic Attack Activated");
+        //Debug.Log("Basic Attack Activated");
+        if (CheckForStun())
+        {
+            return;
+        }
 
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
@@ -68,6 +73,10 @@ public class Artemis : CharacterTemplate
     }
     public override void AbilityOne()
     {
+        if (CheckForStun())
+        {
+            return;
+        }
         //dodge roll
         Debug.Log("Ability 1 Activated");
 
@@ -85,6 +94,10 @@ public class Artemis : CharacterTemplate
     }
     public override void AbilityTwo()
     {
+        if (CheckForStun())
+        {
+            return;
+        }
         Debug.Log("Ability 2 Activated");
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
 
@@ -102,7 +115,10 @@ public class Artemis : CharacterTemplate
     }
     public override void AbilityThree()
     {
-        Debug.Log("Ultimate Ability Activated");
+        if (CheckForStun())
+        {
+            return;
+        }
 
         AbilityTemplate at = abilityThreeProjectile.GetComponent<AbilityTemplate>();
 
@@ -121,9 +137,8 @@ public class Artemis : CharacterTemplate
     //Input System
     public void OnJump()
     {
-        if (!energy.CheckEnoughResource(jumpCost))
+        if (CheckForStun())
         {
-            Debug.Log("Not enough energy");
             return;
         }
         if (currentJumpCD > 0)
@@ -131,7 +146,6 @@ public class Artemis : CharacterTemplate
             Debug.Log("Jump is on CD");
             return;
         }
-        energy.Damage(jumpCost);
         currentJumpCD = jumpCD;
         jump = true;
     }
@@ -152,8 +166,22 @@ public class Artemis : CharacterTemplate
 
         TriggerEffects();
 
-        if (HealthDisplay != null) HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
-        if (EnergyDisplay != null) EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        if (HealthDisplay != null)
+        {
+            HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
+        }
+        if (EnergyDisplay != null)
+        {
+            EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        }
+        if (HealthSlider != null)
+        {
+            HealthSlider.size = health.GetCurrent() / health.GetMax();
+        }
+        if (EnergySlider != null)
+        {
+            EnergySlider.size = energy.GetCurrent() / energy.GetMax();
+        }
 
         if (health.GetCurrent() <= 0)
         {

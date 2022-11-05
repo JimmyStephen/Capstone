@@ -49,7 +49,7 @@ public class CharacterController2D : MonoBehaviour
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
 //		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
 		Collider[] colliders = Physics.OverlapSphere(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-		Debug.Log(this.name + ": IsGrounded Checks: " + colliders.Length);
+		//Debug.Log(this.name + ": IsGrounded Checks: " + colliders.Length);
 		for (int i = 0; i < colliders.Length; i++)
 		{
 			if (colliders[i].gameObject != gameObject)
@@ -59,7 +59,7 @@ public class CharacterController2D : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
-		Debug.Log(this.name + ": IsGrounded: " + m_Grounded);
+		//Debug.Log(this.name + ": IsGrounded: " + m_Grounded);
 	}
 
 	public void Dash(float move)

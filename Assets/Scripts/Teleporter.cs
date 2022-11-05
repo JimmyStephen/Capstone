@@ -22,6 +22,7 @@ public class Teleporter : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (currentCD > 0) return;
+        if (!other.TryGetComponent<CharacterTemplate>(out _)) return;
         target.OnTeleport();
         other.gameObject.transform.position = target.LandingLocation.transform.position;
     }

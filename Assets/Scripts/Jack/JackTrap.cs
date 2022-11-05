@@ -24,6 +24,10 @@ public class JackTrap : MonoBehaviour
     [SerializeField] float dotDamage = 0;
     [SerializeField] float slowPercent = 0;
 
+    [Header("What to do when the trap triggers")]
+    [SerializeField] GameObject createOnTrigger;
+    [SerializeField] AudioSource audioOnTrigger;
+
     //who the owner of the trap is
     [HideInInspector] public GameObject owner;
 
@@ -85,6 +89,9 @@ public class JackTrap : MonoBehaviour
                     }
                 }
             }
+            if (createOnTrigger != null) Instantiate(createOnTrigger, transform.position, transform.rotation);
+            if (audioOnTrigger != null) audioOnTrigger.Play();
+
             Destroy(this.gameObject, .25f);
         }
     }

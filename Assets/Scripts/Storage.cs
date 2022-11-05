@@ -10,13 +10,13 @@ public class Storage : MonoBehaviour
     public void SelectCharacter(int character)
     {
         string ret = GameManager.Instance.SelectCharacter(character, 1);
-        if (player1Select != null) player1Select.SetText(ret);
+        player1Select.SetText(ret);
     }
 
     public void SelectAI(int character)
     {
         string ret = GameManager.Instance.SelectAI(character, 2);
-        if(player2Select != null) player2Select.SetText(ret);
+        player2Select.SetText(ret);
     }
 
     public void ChangeScene(int sceneNum)
@@ -27,5 +27,10 @@ public class Storage : MonoBehaviour
     public void StartGame()
     {
         GameManager.Instance.StartGame();
+    }
+
+    public void ResetGame()
+    {
+        GameManager.Instance.ResetGame();
     }
 }

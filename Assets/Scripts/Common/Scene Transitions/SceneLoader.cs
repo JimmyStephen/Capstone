@@ -28,13 +28,19 @@ public class SceneLoader : Singleton<SceneLoader>
         StartCoroutine(LoadLevel(sceneNum));
     }
 
+    bool loading = false;
     IEnumerator LoadLevel(int levelIndex)
     {
-        //play animation
-        transition.SetTrigger("Start");
-        //wait for animation to end
-        yield return new WaitForSeconds(transitionTime);
-        //load scene
-        SceneManager.LoadScene(levelIndex);
+        if (!loading)
+        {
+            loading = true;
+            //play animation
+            transition.SetTrigger("Start");
+            //wait for animation to end
+            yield return new WaitForSeconds(transitionTime);
+            //load scene
+            SceneManager.LoadScene(levelIndex);
+            loading = false;
+        }
     }
 }

@@ -23,7 +23,7 @@ public class ArtemisScared : State
     }
 
     float justJumped = 0;
-    public override bool shouldJump()
+    public override bool ShouldJump()
     {
         if (justJumped >= 0) return false;
         if(Random.Range(0, 1.0f) > .5f)
@@ -36,31 +36,31 @@ public class ArtemisScared : State
 
     public override float StateMovement()
     {
-        float distance = owner.transform.position.x - owner.opponent.transform.position.x;
+        float distance = Owner.transform.position.x - Owner.opponent.transform.position.x;
         return Mathf.Sign(distance);
     }
 
     public override int UseAbility()
     {
-        int retVal = useAbilityOne() ? 1 : 4;
-        if (retVal != 4) checkDirection();
+        int retVal = UseAbilityOne() ? 1 : 4;
+        if (retVal != 4) CheckDirection();
         return retVal;
     }
 
-    public override bool useBasicAbility()
+    public override bool UseBasicAbility()
     {
-        return (owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) < 2);
+        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 2);
     }
-    public override bool useAbilityOne()
+    public override bool UseAbilityOne()
     {
         //conditions to use
-        return (owner.currentAbilityOneCooldown <= 0);
+        return (Owner.currentAbilityOneCooldown <= 0);
     }
-    public override bool useAbilityTwo()
+    public override bool UseAbilityTwo()
     {
         return false;
     }
-    public override bool useAbilityThree()
+    public override bool UseAbilityThree()
     {
         return false;
     }

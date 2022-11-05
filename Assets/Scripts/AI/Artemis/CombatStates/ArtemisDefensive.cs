@@ -26,9 +26,9 @@ public class ArtemisDefensive : State
     }
 
     float justJumped = 0;
-    public override bool shouldJump()
+    public override bool ShouldJump()
     {
-        float distanceHeight = owner.opponent.transform.position.y - owner.transform.position.y;
+        float distanceHeight = Owner.opponent.transform.position.y - Owner.transform.position.y;
         //condition to jump
         if ((distanceHeight > 3 && justJumped <= 0) || jumpTimer <= 0)
         {
@@ -41,7 +41,7 @@ public class ArtemisDefensive : State
 
     public override float StateMovement()
     {
-        float distance = owner.transform.position.x - owner.opponent.transform.position.x;
+        float distance = Owner.transform.position.x - Owner.opponent.transform.position.x;
 
         if (Mathf.Abs(distance) > 5)
         {
@@ -59,7 +59,7 @@ public class ArtemisDefensive : State
         //3 ult
         //4 none
         int[] abilityOptions = new int[] { 0, 1, 4 };
-        abilityOptions = shuffle(abilityOptions);
+        abilityOptions = Shuffle(abilityOptions);
 
         int retVal = 4;
 
@@ -68,39 +68,39 @@ public class ArtemisDefensive : State
             switch (abilityOptions[i])
             {
                 case 0:
-                    if (useBasicAbility()) retVal = 0;
+                    if (UseBasicAbility()) retVal = 0;
                     break;
                 case 1:
-                    if (useAbilityOne()) retVal = 1;
+                    if (UseAbilityOne()) retVal = 1;
                     break;
                 default:
                     retVal = 4;
                     break;
             }
         }
-        if (retVal != 4) checkDirection();
+        if (retVal != 4) CheckDirection();
         return retVal;
         //throw new System.NotImplementedException();
     }
 
-    public override bool useBasicAbility()
+    public override bool UseBasicAbility()
     {
         //if enemy close enough
 
         //conditions to use
-        return (owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(owner.transform.position.x - owner.opponent.transform.position.x) < 2);
+        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 2);
     }
-    public override bool useAbilityOne()
+    public override bool UseAbilityOne()
     {
         //if not on cd
         //conditions to use
-        return (owner.currentAbilityOneCooldown <= 0);
+        return (Owner.currentAbilityOneCooldown <= 0);
     }
-    public override bool useAbilityTwo()
+    public override bool UseAbilityTwo()
     {
         return false;
     }
-    public override bool useAbilityThree()
+    public override bool UseAbilityThree()
     {
         return false;
     }

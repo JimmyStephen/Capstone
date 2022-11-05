@@ -16,18 +16,17 @@ public class JackPlayer : JackTemplate
     {
         CharacterRequiredUpdates();
 
-        foreach (Effect effect in effects)
-        {
-            if (effect.IsStunned())
-            {
-                characterController.Move(0, false, false);
-                return;
-            }
+        if (CheckForStun()) {
+            characterController.Move(0, false, false);
+            animator.SetFloat("Speed", 0);
+            return;
         }
+    
         if (animationTimer >= 0)
         {
             //in animation don't move
             characterController.Move(0, false, false);
+            animator.SetFloat("Speed", 0);
             return;
         }
 
@@ -40,17 +39,12 @@ public class JackPlayer : JackTemplate
     //Input System
     public void OnJump()
     {
-        if (!energy.CheckEnoughResource(jumpCost))
-        {
-            Debug.Log("Not enough energy");
-            return;
-        }
+        if(CheckForStun()) { return; }
         if (currentJumpCD > 0)
         {
             Debug.Log("Jump is on CD");
             return;
         }
-        energy.Damage(jumpCost);
         currentJumpCD = jumpCD;
         jump = true;
     }
@@ -71,8 +65,22 @@ public class JackPlayer : JackTemplate
 
         TriggerEffects();
 
-        if (HealthDisplay != null) HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
-        if (EnergyDisplay != null) EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        if (HealthDisplay != null)
+        {
+            HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
+        }
+        if (EnergyDisplay != null)
+        {
+            EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
+        }
+        if (HealthSlider != null)
+        {
+            HealthSlider.size = health.GetCurrent() / health.GetMax();
+        }
+        if (EnergySlider != null)
+        {
+            EnergySlider.size = energy.GetCurrent() / energy.GetMax();
+        }
 
         if (health.GetCurrent() <= 0)
         {

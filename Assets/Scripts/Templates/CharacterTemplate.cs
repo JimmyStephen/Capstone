@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public abstract class CharacterTemplate : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public abstract class CharacterTemplate : MonoBehaviour
     [Header("Movement")]
     public float speed = 1;
     public float jumpCD = 1;
-    public float jumpCost = 1;
     [Header("Resources")]
     public Resource health;
     public Resource energy;
@@ -54,11 +54,14 @@ public abstract class CharacterTemplate : MonoBehaviour
     [HideInInspector] public bool CCImmune = false;
     [HideInInspector] public bool effectImmune = false;
 
-    /*[HideInInspector]*/ public TMPro.TMP_Text HealthDisplay;
-    /*[HideInInspector]*/ public TMPro.TMP_Text EnergyDisplay;
+    [HideInInspector] public TMPro.TMP_Text HealthDisplay;
+    [HideInInspector] public TMPro.TMP_Text EnergyDisplay;
+    
+    [HideInInspector] public Scrollbar HealthSlider;
+    [HideInInspector] public Scrollbar EnergySlider;
 
     //used by AI to find the opponent
-    /*[HideInInspector]*/ public GameObject opponent;
+    [HideInInspector] public GameObject opponent;
 
 
     public IEnumerator SpawnAfterDelay(GameObject owner, GameObject location, GameObject spawnObject, float delay)
@@ -73,7 +76,6 @@ public abstract class CharacterTemplate : MonoBehaviour
         temp.GetComponent<AbilityTemplate>().parentTag = owner.transform.tag;
         temp.GetComponent<AbilityTemplate>().parent = owner;
     }
-
     public IEnumerator SpawnAfterDelayParent(GameObject owner, GameObject location, GameObject spawnObject, float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -109,11 +111,35 @@ public abstract class CharacterTemplate : MonoBehaviour
             effects.Remove(e);
         }
     }
+    public bool CheckForStun()
+    {
+        foreach (Effect effect in effects)
+        {
+            if (effect.IsStunned())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool CheckForDebuff()
+    {
+        foreach (Effect effect in effects)
+        {
+            if (effect.CheckIsDebuff())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    public void SetDisplay(TMPro.TMP_Text healthDisplay, TMPro.TMP_Text energyDisplay)
+    public void SetDisplay(TMPro.TMP_Text healthDisplay, TMPro.TMP_Text energyDisplay, Scrollbar healthSlider, Scrollbar energySlider)
     {
         HealthDisplay = healthDisplay;
         EnergyDisplay = energyDisplay;
+        HealthSlider = healthSlider;
+        EnergySlider = energySlider;
     }
     //Abstract
 
