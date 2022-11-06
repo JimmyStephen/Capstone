@@ -962,6 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOne: 0
+  characterName: Artemis
   animator: {fileID: 1469409976743138459}
   speed: 0.75
   jumpCD: 1

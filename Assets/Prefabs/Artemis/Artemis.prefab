@@ -1423,6 +1423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOne: 0
+  characterName: Artemis
   animator: {fileID: 2526530914234690329}
   speed: 0.5
   jumpCD: 1

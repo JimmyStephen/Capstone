@@ -87,8 +87,8 @@ public class GameManager : Singleton<GameManager>
         SceneLoader.Instance.LoadScene(5);
         ResetFields();
         ToggleCursor();
-        WinnerNameDisplay.SetText("WINNER!!!\n" + currentWinner.name);
-        WinnerHealthDisplay.SetText("Remaining Health " + currentWinner.health.GetCurrent());
+        WinnerNameDisplay.SetText("WINNER!!!\nPlayer " + ((currentWinner.playerOne) ? "One\n" : "Two\n") + currentWinner.characterName);
+        WinnerHealthDisplay.SetText("Remaining Health " + currentWinner.health.GetCurrent().ToString("F0"));
         Destroy(currentWinner.gameObject);
     }
     public void ResetGame()
@@ -138,9 +138,11 @@ public class GameManager : Singleton<GameManager>
         var p2 = Instantiate(playerTwo, playerTwoSpawn.position, playerTwoSpawn.rotation);
 
         p1.GetComponent<CharacterTemplate>().SetDisplay(PlayerOneHealthDisplay, PlayerOneEnergyDisplay, PlayerOneHealthSlider, PlayerOneEnergySlider);
+        p1.GetComponent<CharacterTemplate>().playerOne = true;
         p1.GetComponent<CharacterTemplate>().opponent = p2;
 
         p2.GetComponent<CharacterTemplate>().SetDisplay(PlayerTwoHealthDisplay, PlayerTwoEnergyDisplay, PlayerTwoHealthSlider, PlayerTwoEnergySlider);
+        p2.GetComponent<CharacterTemplate>().playerOne = false;
         p2.GetComponent<CharacterTemplate>().opponent = p1;
     }
 }

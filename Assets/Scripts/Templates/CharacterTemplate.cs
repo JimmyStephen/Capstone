@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public abstract class CharacterTemplate : MonoBehaviour
 {
     [HideInInspector] public bool playerOne = false;
+    [Header("Character Name")]
+    public string characterName = "";
     [Header("Animator")]
     public Animator animator;
     [Header("Movement")]
@@ -37,6 +39,11 @@ public abstract class CharacterTemplate : MonoBehaviour
     public float abilityOneDelay = 0;
     public float abilityTwoDelay = 0;
     public float abilityThreeDelay = 0;
+
+    [HideInInspector] public string BasicAbilityDesc = "";
+    [HideInInspector] public string AbilityOneDesc = "";
+    [HideInInspector] public string AbilityTwoDesc = "";
+    [HideInInspector] public string UltimateAbilityDesc = "";
 
     [HideInInspector] public CharacterController2D characterController;
 
@@ -141,6 +148,28 @@ public abstract class CharacterTemplate : MonoBehaviour
         HealthSlider = healthSlider;
         EnergySlider = energySlider;
     }
+
+    public string GetCharacterName()
+    {
+        return characterName;
+    }
+    public string GetBasicAbilityDesc()
+    {
+        return BasicAbilityDesc;
+    }
+    public string GetAbilityOneDesc()
+    {
+        return AbilityOneDesc;
+    }
+    public string GetAbilityTwoDesc()
+    {
+        return AbilityTwoDesc;
+    }
+    public string GetUltimateAbilityDesc()
+    {
+        return UltimateAbilityDesc;
+    }
+
     //Abstract
 
     /// <summary>

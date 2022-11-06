@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3190403400378060571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3190403400378060571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -135,6 +135,8 @@ MonoBehaviour:
   Speed: 0
   destroyAfterDuration: 1
   destroyAfterSeconds: 1
+  audioOnCreate: {fileID: 0}
+  audioOnDestroy: {fileID: 0}
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}
