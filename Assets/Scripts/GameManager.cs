@@ -34,6 +34,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject[] enableForGame;
 
     private CharacterTemplate currentWinner = null;
+    [HideInInspector] public GameObject currentSelectedInfo;
 
     public string SelectCharacter(int characterSelect, int player)
     {
@@ -49,7 +50,6 @@ public class GameManager : Singleton<GameManager>
         }
         return playerCharacters[characterSelect].name.ToString();
     }
-
     public string SelectAI(int characterSelect, int player)
     {
         if (player == 1)
@@ -98,6 +98,11 @@ public class GameManager : Singleton<GameManager>
         playerTwo = null;
         currentWinner = null;
         ResetFields();
+    }
+    public void ToCharacterInfoScene(int index)
+    {
+        currentSelectedInfo = playerCharacters[index];
+        SceneLoader.Instance.LoadScene(7);
     }
     public void SetWinner(CharacterTemplate winner)
     {

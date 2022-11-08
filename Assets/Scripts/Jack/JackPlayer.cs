@@ -11,12 +11,6 @@ public class JackPlayer : JackTemplate
     void Start()
     {
         characterController = GetComponent<CharacterController2D>();
-        //set descriptions
-        BasicAbilityDesc = "Stab your knife forward for a small amount of damage followed by a small damage over time effect";
-        AbilityOneDesc = "Place an invisable trap that does a large amount of poison damage over a short duration when triggered";
-        AbilityTwoDesc = "Place an invisable trap that stuns and slows the opponent for a short duration when triggered";
-        UltimateAbilityDesc = "Shake off all debuffs including poisons, stuns, slows, exc.";
-
     }
     void Update()
     {

@@ -20,12 +20,6 @@ public class ArtemisAI : CharacterTemplate
     {
         characterController = GetComponent<CharacterController2D>();
 
-        //set descriptions
-        BasicAbilityDesc = "Kick forward dealing damage and knocking the opponent back a short distance";
-        AbilityOneDesc = "Roll away from the direction your facing becoming immune to damage for the duration of the roll";
-        AbilityTwoDesc = "Shoot an arrow that deals a small amount of damage";
-        UltimateAbilityDesc = "Shoot an arrow that does a medium amount of damage that turns into a tornado that stuns and does more damage when it collides with anything";
-
         //make combat states
         ArtemisAggressive aAggressive   = new (this, typeof(ArtemisAggressive).Name);
         ArtemisDefensive aDefensive     = new (this, typeof(ArtemisDefensive).Name);

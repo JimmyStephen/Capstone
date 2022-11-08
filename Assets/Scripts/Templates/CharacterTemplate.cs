@@ -9,6 +9,10 @@ public abstract class CharacterTemplate : MonoBehaviour
     [HideInInspector] public bool playerOne = false;
     [Header("Character Name")]
     public string characterName = "";
+    public string BasicAbilityDesc = "";
+    public string AbilityOneDesc = "";
+    public string AbilityTwoDesc = "";
+    public string UltimateAbilityDesc = "";
     [Header("Animator")]
     public Animator animator;
     [Header("Movement")]
@@ -39,11 +43,6 @@ public abstract class CharacterTemplate : MonoBehaviour
     public float abilityOneDelay = 0;
     public float abilityTwoDelay = 0;
     public float abilityThreeDelay = 0;
-
-    [HideInInspector] public string BasicAbilityDesc = "";
-    [HideInInspector] public string AbilityOneDesc = "";
-    [HideInInspector] public string AbilityTwoDesc = "";
-    [HideInInspector] public string UltimateAbilityDesc = "";
 
     [HideInInspector] public CharacterController2D characterController;
 

@@ -33,4 +33,9 @@ public class Storage : MonoBehaviour
     {
         GameManager.Instance.ResetGame();
     }
+
+    public void ToCharacterInfo(int index)
+    {
+        GameManager.Instance.ToCharacterInfoScene(index);
+    }
 }
