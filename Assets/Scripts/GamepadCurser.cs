@@ -10,6 +10,7 @@ public class GamepadCurser : MonoBehaviour
     [SerializeField] RectTransform cursorTransform;
     [SerializeField] float speed = 1000f;
     [SerializeField] RectTransform canvasTransform;
+    [SerializeField] float padding = 35f;
 
     private Mouse virtualMouse;
     private bool prevMouseState = false;
@@ -48,12 +49,12 @@ public class GamepadCurser : MonoBehaviour
         if (virtualMouse == null || Gamepad.current == null) return;
 
         Vector2 deltaValue = Gamepad.current.leftStick.ReadValue();
-        deltaValue *= speed * Time.deltaTime;
+        deltaValue *= speed * Time.deltaTime * (Gamepad.current.leftTrigger.IsPressed() ? 2 : 1);
         Vector2 currentPosition = virtualMouse.position.ReadValue();
         Vector2 newPosition = currentPosition + deltaValue;
 
-        newPosition.x = Mathf.Clamp(newPosition.x, 0, Screen.width);
-        newPosition.y = Mathf.Clamp(newPosition.y, 0, Screen.height);
+        newPosition.x = Mathf.Clamp(newPosition.x, padding, Screen.width - padding);
+        newPosition.y = Mathf.Clamp(newPosition.y, padding, Screen.height - padding);
 
         InputState.Change(virtualMouse.position, newPosition);
         InputState.Change(virtualMouse.delta, deltaValue);
@@ -72,8 +73,7 @@ public class GamepadCurser : MonoBehaviour
 
     private void AnchorPosition(Vector2 position)
     {
-        Vector2 anchoredPosition;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasTransform, position, null, out anchoredPosition);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasTransform, position, null, out Vector2 anchoredPosition);
         cursorTransform.anchoredPosition = anchoredPosition;
     }
 }

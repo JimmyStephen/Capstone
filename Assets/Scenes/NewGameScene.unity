@@ -424,6 +424,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 865450842}
     m_Modifications:
+    - target: {fileID: 1012728625, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fcfc1faeda629cf45a96edc0f2a18b17, type: 3}
+    - target: {fileID: 1012728626, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1183297390546125631, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711700373427025814, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821523654140773145, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4624004079049852905, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
       propertyPath: dontDestroy.Array.data[0]
       value: 
@@ -476,6 +496,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4719700848353146189, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6291526533954928918, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
 --- !u!224 &757001918 stripped
@@ -497,28 +525,6 @@ MonoBehaviour:
 --- !u!114 &757001920 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4476516961283472655, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
-  m_PrefabInstance: {fileID: 757001917}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &757001921 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1262285662104590015, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
-  m_PrefabInstance: {fileID: 757001917}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &757001922 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3779524250171815330, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
   m_PrefabInstance: {fileID: 757001917}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -886,6 +892,7 @@ MonoBehaviour:
   cursorTransform: {fileID: 757001923}
   speed: 500
   canvasTransform: {fileID: 757001918}
+  padding: 15
 --- !u!1 &1765076030 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7674941776646547469, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
@@ -1098,8 +1105,6 @@ MonoBehaviour:
   playerTwo: {fileID: 0}
   playerOneSpawn: {fileID: 587652473}
   playerTwoSpawn: {fileID: 1029175033}
-  PlayerOneHealthDisplay: {fileID: 757001922}
-  PlayerOneEnergyDisplay: {fileID: 757001921}
   PlayerOneHealthSlider: {fileID: 1765076037}
   PlayerOneEnergySlider: {fileID: 1765076035}
   PlayerTwoHealthDisplay: {fileID: 757001920}
@@ -1118,3 +1123,4 @@ MonoBehaviour:
   - {fileID: 1765076034}
   - {fileID: 1765076032}
   - {fileID: 1765076030}
+  currentSelectedInfo: {fileID: 0}

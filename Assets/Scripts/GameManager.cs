@@ -9,16 +9,16 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject[] playerCharacters;
     [SerializeField] GameObject[] aiCharacters;
 
-    public GameObject playerOne = null;
-    public GameObject playerTwo = null;
+    [HideInInspector] public GameObject playerOne = null;
+    [HideInInspector] public GameObject playerTwo = null;
     //private bool characterOnePlayer = true;
     //private bool characterTwoPlayer = false;
 
     [SerializeField] Transform playerOneSpawn;
     [SerializeField] Transform playerTwoSpawn;
 
-    [SerializeField] TMPro.TMP_Text PlayerOneHealthDisplay;
-    [SerializeField] TMPro.TMP_Text PlayerOneEnergyDisplay;
+    //[SerializeField] TMPro.TMP_Text PlayerOneHealthDisplay;
+    //[SerializeField] TMPro.TMP_Text PlayerOneEnergyDisplay;
     [SerializeField] Scrollbar PlayerOneHealthSlider;
     [SerializeField] Scrollbar PlayerOneEnergySlider;
 
@@ -42,13 +42,14 @@ public class GameManager : Singleton<GameManager>
         {
             playerOne = playerCharacters[characterSelect];
             //characterOnePlayer = true;
+            return playerOne.name.ToString();
         }
         else
         {
             playerTwo = playerCharacters[characterSelect];
             //characterTwoPlayer = true;
+            return playerTwo.name.ToString();
         }
-        return playerCharacters[characterSelect].name.ToString();
     }
     public string SelectAI(int characterSelect, int player)
     {
@@ -56,13 +57,14 @@ public class GameManager : Singleton<GameManager>
         {
             playerOne = aiCharacters[characterSelect];
             //characterOnePlayer = false;
+            return playerOne.name.ToString();
         }
         else
         {
             playerTwo = aiCharacters[characterSelect];
             //characterTwoPlayer = false;
+            return playerTwo.name.ToString();
         }
-        return aiCharacters[characterSelect].name.ToString();
     }
 
     public void StartGame()
@@ -111,14 +113,14 @@ public class GameManager : Singleton<GameManager>
 
     private void ResetFields()
     {
-        PlayerOneHealthDisplay.SetText("");
-        PlayerOneEnergyDisplay.SetText("");
+        //PlayerOneHealthDisplay.SetText("");
+        //PlayerOneEnergyDisplay.SetText("");
         PlayerTwoHealthDisplay.SetText("");
         PlayerTwoEnergyDisplay.SetText("");
         WinnerNameDisplay.SetText("");
         WinnerHealthDisplay.SetText("");
-        PlayerOneHealthSlider.size = 1;
-        PlayerOneEnergySlider.size = 1;
+        //PlayerOneHealthSlider.size = 1;
+        //PlayerOneEnergySlider.size = 1;
         PlayerTwoHealthSlider.size = 1;
         PlayerTwoEnergySlider.size = 1;
     }
@@ -142,11 +144,11 @@ public class GameManager : Singleton<GameManager>
         var p1 = Instantiate(playerOne, playerOneSpawn.position, playerOneSpawn.rotation);
         var p2 = Instantiate(playerTwo, playerTwoSpawn.position, playerTwoSpawn.rotation);
 
-        p1.GetComponent<CharacterTemplate>().SetDisplay(PlayerOneHealthDisplay, PlayerOneEnergyDisplay, PlayerOneHealthSlider, PlayerOneEnergySlider);
+        p1.GetComponent<CharacterTemplate>().SetDisplay(PlayerOneHealthSlider, PlayerOneEnergySlider);
         p1.GetComponent<CharacterTemplate>().playerOne = true;
         p1.GetComponent<CharacterTemplate>().opponent = p2;
 
-        p2.GetComponent<CharacterTemplate>().SetDisplay(PlayerTwoHealthDisplay, PlayerTwoEnergyDisplay, PlayerTwoHealthSlider, PlayerTwoEnergySlider);
+        p2.GetComponent<CharacterTemplate>().SetDisplay(PlayerTwoHealthSlider, PlayerTwoEnergySlider);
         p2.GetComponent<CharacterTemplate>().playerOne = false;
         p2.GetComponent<CharacterTemplate>().opponent = p1;
     }

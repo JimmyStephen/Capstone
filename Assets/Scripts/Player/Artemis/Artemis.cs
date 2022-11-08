@@ -166,14 +166,6 @@ public class Artemis : CharacterTemplate
 
         TriggerEffects();
 
-        if (HealthDisplay != null)
-        {
-            HealthDisplay.SetText("Health: " + health.GetCurrent().ToString("F0"));
-        }
-        if (EnergyDisplay != null)
-        {
-            EnergyDisplay.SetText("Energy: " + energy.GetCurrent().ToString("F0"));
-        }
         if (HealthSlider != null)
         {
             HealthSlider.size = health.GetCurrent() / health.GetMax();

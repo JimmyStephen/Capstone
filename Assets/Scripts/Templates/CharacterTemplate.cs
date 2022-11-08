@@ -59,9 +59,6 @@ public abstract class CharacterTemplate : MonoBehaviour
     [HideInInspector] public bool isImmune = false;
     [HideInInspector] public bool CCImmune = false;
     [HideInInspector] public bool effectImmune = false;
-
-    [HideInInspector] public TMPro.TMP_Text HealthDisplay;
-    [HideInInspector] public TMPro.TMP_Text EnergyDisplay;
     
     [HideInInspector] public Scrollbar HealthSlider;
     [HideInInspector] public Scrollbar EnergySlider;
@@ -140,10 +137,8 @@ public abstract class CharacterTemplate : MonoBehaviour
         return false;
     }
 
-    public void SetDisplay(TMPro.TMP_Text healthDisplay, TMPro.TMP_Text energyDisplay, Scrollbar healthSlider, Scrollbar energySlider)
+    public void SetDisplay(Scrollbar healthSlider, Scrollbar energySlider)
     {
-        HealthDisplay = healthDisplay;
-        EnergyDisplay = energyDisplay;
         HealthSlider = healthSlider;
         EnergySlider = energySlider;
     }

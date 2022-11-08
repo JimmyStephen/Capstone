@@ -12,7 +12,6 @@ public class Storage : MonoBehaviour
         string ret = GameManager.Instance.SelectCharacter(character, 1);
         player1Select.SetText(ret);
     }
-
     public void SelectAI(int character)
     {
         string ret = GameManager.Instance.SelectAI(character, 2);

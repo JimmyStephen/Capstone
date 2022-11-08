@@ -1591,7 +1591,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6072715451768363558}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2138,8 +2138,6 @@ MonoBehaviour:
   isImmune: 0
   CCImmune: 0
   effectImmune: 0
-  HealthDisplay: {fileID: 0}
-  EnergyDisplay: {fileID: 0}
   HealthSlider: {fileID: 0}
   EnergySlider: {fileID: 0}
   opponent: {fileID: 0}
