@@ -424,6 +424,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 865450842}
     m_Modifications:
+    - target: {fileID: 1012728623, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1012728625, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -538,11 +542,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1012728624, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
   m_PrefabInstance: {fileID: 757001917}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &757001924 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1012728623, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
-  m_PrefabInstance: {fileID: 757001917}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &757001925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4719700847878602958, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
@@ -625,6 +624,84 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &815459095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815459096}
+  - component: {fileID: 815459098}
+  - component: {fileID: 815459097}
+  m_Layer: 0
+  m_Name: GamepadCursor(Mine)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815459096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815459095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 865450842}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &815459097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815459095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 063d468649bd56d45907ed01f725a421, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 763237630}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Gamepad
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &815459098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815459095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0e825087ca0c343a01168b16d8953e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 815459097}
+  speed: 500
+  padding: 15
 --- !u!1 &865450841
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +735,7 @@ Transform:
   - {fileID: 1734772656}
   - {fileID: 763237629}
   - {fileID: 462400299}
+  - {fileID: 815459096}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -830,7 +908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1734772656
 Transform:
   m_ObjectHideFlags: 0
@@ -1114,8 +1192,7 @@ MonoBehaviour:
   WinnerNameDisplay: {fileID: 1017418641}
   WinnerHealthDisplay: {fileID: 437642399}
   enableForCursor:
-  - {fileID: 757001924}
-  - {fileID: 1734772655}
+  - {fileID: 815459095}
   - {fileID: 763237628}
   enableForGame:
   - {fileID: 462400298}

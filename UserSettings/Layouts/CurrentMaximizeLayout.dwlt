@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 4879
+  controlID: 1989
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 4880
+  controlID: 1990
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 4881
+  controlID: 1991
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,10 +223,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
+      scrollPos: {x: 0, y: 44.399994}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 66e7fcff6ae7fcffb80dfdff7424feff7624fefffef4ffff00fbfffff4ffffffe45f000092740000c0960000
+      m_ExpandedIDs: defaffff00fbffff02fbffff6c5f0000865f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -503,9 +503,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 355.80017, y: 207.21495, z: 12.08963}
+    m_Target: {x: 1.5014765, y: 6.055956, z: 0.14968729}
     speed: 2
-    m_Value: {x: 355.80017, y: 207.21495, z: 12.08963}
+    m_Value: {x: 1.5014765, y: 6.055956, z: 0.14968729}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -552,13 +552,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.07823221, y: -0.0038898757, z: 0.00031567411, w: -0.9969512}
+    m_Target: {x: -0.33522418, y: -0.062113304, z: 0.022191828, w: -0.9398584}
     speed: 2
-    m_Value: {x: -0.07823036, y: -0.003889784, z: 0.00031566666, w: -0.9969277}
+    m_Value: {x: -0.33521423, y: -0.06211146, z: 0.022191169, w: -0.9398305}
   m_Size:
-    m_Target: 229.93161
+    m_Target: 3.9792562
     speed: 2
-    m_Value: 229.93161
+    m_Value: 3.9792562
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -683,8 +683,8 @@ MonoBehaviour:
     y: 429.6
     width: 1134.4
     height: 301.19998
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
@@ -734,22 +734,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Jack
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Jack
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\jstephen\Desktop\School\Capstone\CapstoneProject
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 95}
-    m_SelectedIDs: a6610000
-    m_LastClickedID: 24998
-    m_ExpandedIDs: 0000000070610000726100007461000076610000786100007a6100007c6100007e61000080610000826100008461000000ca9a3b
+    m_SelectedIDs: 22690000
+    m_LastClickedID: 26914
+    m_ExpandedIDs: 00000000ea680000ec680000ee680000f0680000f2680000f4680000f6680000f8680000fa680000fc680000fe68000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -777,7 +777,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000070610000726100007461000076610000786100007a6100007c6100007e61000080610000826100008461000000ca9a3b
+    m_ExpandedIDs: 00000000ea680000ec680000ee680000f0680000f2680000f4680000f6680000f8680000fa680000fc680000fe68000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
