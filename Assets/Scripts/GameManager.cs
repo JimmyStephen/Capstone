@@ -67,8 +67,16 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private void Update()
+    {
+        timer -= Time.deltaTime;
+    }
+
+    float timer = 0;
     public void StartGame()
     {
+        if (timer > 0) return;
+        timer = 5;
         //if nothing selected choose random
         if(playerOne == null)
         {

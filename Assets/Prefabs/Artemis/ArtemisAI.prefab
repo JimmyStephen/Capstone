@@ -1004,8 +1004,6 @@ MonoBehaviour:
   isImmune: 0
   CCImmune: 0
   effectImmune: 0
-  HealthDisplay: {fileID: 0}
-  EnergyDisplay: {fileID: 0}
   HealthSlider: {fileID: 0}
   EnergySlider: {fileID: 0}
   opponent: {fileID: 0}
