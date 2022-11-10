@@ -6,14 +6,10 @@ public class JackDefensive : State
 {
     public JackDefensive(CharacterTemplate owner, string name) : base(owner, name) { }
 
-    float jumpTimer = 0;
-    float minJumpTime = 3;
-    float maxJumpTime = 8;
-
+    
     public override void OnEnter()
     {
         //throw new System.NotImplementedException();
-        jumpTimer = Random.Range(minJumpTime, maxJumpTime);
     }
 
     public override void OnExit()
@@ -28,18 +24,12 @@ public class JackDefensive : State
         //2 secondary ability
         //3 ult
         //4 none
-        jumpTimer -= Time.deltaTime;
         abilityTimer -= Time.deltaTime;
     }
 
     public override bool ShouldJump()
     {
-        if (jumpTimer < 0)
-        {
-            jumpTimer = Random.Range(minJumpTime, maxJumpTime);
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public override float StateMovement()
@@ -55,6 +45,11 @@ public class JackDefensive : State
     float abilityTimer = 0;
     public override int UseAbility()
     {
+        if (Owner.CheckForDebuff())
+        {
+            return 3;
+        }
+
         int[] abilityOptions = new int[] { 1, 2, 3, 4 };
         abilityOptions = Shuffle(abilityOptions);
 

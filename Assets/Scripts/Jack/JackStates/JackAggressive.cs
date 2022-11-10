@@ -12,16 +12,12 @@ public class JackAggressive : State
     float minDistance = 2;
     bool runningAt = false;
     //
-    float jumpTimer = 0;
-    float minJumpTime = 3;
-    float maxJumpTime = 8;
 
     public override void OnEnter()
     {
         //throw new System.NotImplementedException();
         timer = Random.Range(minTime, maxTime);
         runningAt = (Random.Range(0.0f, 1.0f) > .5);
-        jumpTimer = Random.Range(minJumpTime, maxJumpTime);
     }
 
     public override void OnExit()
@@ -33,19 +29,13 @@ public class JackAggressive : State
     {
         //throw new System.NotImplementedException();
         timer -= Time.deltaTime;
-        jumpTimer -= Time.deltaTime;
         secondTimer -= Time.deltaTime;
         abilityTimer -= Time.deltaTime;
     }
 
     public override bool ShouldJump()
     {
-        if (jumpTimer < 0)
-        {
-            jumpTimer = Random.Range(minJumpTime, maxJumpTime);
-            return true;
-        }
-        return false;
+        return true;
     }
 
     float secondTimer = 0;
@@ -97,6 +87,11 @@ public class JackAggressive : State
     float abilityTimer = 0;
     public override int UseAbility()
     {
+        if (Owner.CheckForDebuff())
+        {
+            return 3;
+        }
+
         if (abilityTimer < 0)
         {
             abilityTimer = .5f;

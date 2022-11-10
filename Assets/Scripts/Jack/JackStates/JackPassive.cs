@@ -7,14 +7,10 @@ public class JackPassive : State
     public JackPassive(CharacterTemplate owner, string name) : base(owner, name) { }
 
     float startDistance = 0;
-    float jumpTimer = 0;
-    float minJumpTime = 3;
-    float maxJumpTime = 8;
 
     public override void OnEnter()
     {
         startDistance = Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x);
-        jumpTimer = Random.Range(minJumpTime, maxJumpTime);
     }
 
     public override void OnExit()
@@ -25,19 +21,13 @@ public class JackPassive : State
     public override void OnUpdate()
     {
         //throw new System.NotImplementedException();
-        jumpTimer -= Time.deltaTime;
+
         abilityTimer -= Time.deltaTime;
     }
 
     public override bool ShouldJump()
     {
-        //        throw new System.NotImplementedException();
-        if(jumpTimer < 0)
-        {
-            jumpTimer = Random.Range(minJumpTime, maxJumpTime);
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public override float StateMovement()
@@ -53,6 +43,11 @@ public class JackPassive : State
     float abilityTimer = 0;
     public override int UseAbility()
     {
+        if (Owner.CheckForDebuff())
+        {
+            return 3;
+        }
+
         if (abilityTimer < 0)
         {
             abilityTimer = 1.5f;

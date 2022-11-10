@@ -6,6 +6,9 @@ public class ArtemisAggressive : State
 {
     public ArtemisAggressive(CharacterTemplate owner, string name) : base(owner, name) { }
 
+    float basicArrowTimer = 1;
+    float jumpTimer = 3;
+
     public override void OnEnter()
     {
         //throw new System.NotImplementedException();
@@ -19,6 +22,8 @@ public class ArtemisAggressive : State
     public override void OnUpdate()
     {
         justJumped -= Time.deltaTime;
+        basicArrowTimer -= Time.deltaTime;
+        jumpTimer -= Time.deltaTime;
         //throw new System.NotImplementedException();
     }
 
@@ -27,9 +32,10 @@ public class ArtemisAggressive : State
     {
         float distanceHeight = Owner.opponent.transform.position.y - Owner.transform.position.y;
         //condition to jump
-        if ((distanceHeight > 3 && justJumped <= 0))
+        if ((distanceHeight > 3 && justJumped <= 0) || jumpTimer <= 0)
         {
             justJumped = 1;
+            jumpTimer = Random.Range(2, 4);
             return true;
         }
         return false;
@@ -79,6 +85,11 @@ public class ArtemisAggressive : State
                     retVal = 4;
                     break;
             }
+        }
+        if (retVal == 2 && basicArrowTimer > 0)
+        {
+            retVal = 4;
+            basicArrowTimer = 1;
         }
         if (retVal != 4) CheckDirection();
         return retVal;

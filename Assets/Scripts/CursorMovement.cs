@@ -29,7 +29,7 @@ public class CursorMovement : MonoBehaviour
 
     void Update()
     {
-        if (Gamepad.current.leftShoulder.isPressed)
+        if (Gamepad.current.leftShoulder.isPressed || Mouse.current.rightButton.isPressed)
         {
             return;
         }

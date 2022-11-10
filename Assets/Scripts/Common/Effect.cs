@@ -56,7 +56,7 @@ public class Effect
         health.Damage(healthDamagePerSec * Time.deltaTime);
         energy.Heal(energyHealingPerSec * Time.deltaTime);
         energy.Damage(energyDamagePerSec * Time.deltaTime);
-        Debug.Log("Remaining Duration: " + duration);
+        //Debug.Log("Remaining Duration: " + duration);
     }
 
 

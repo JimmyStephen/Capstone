@@ -13,11 +13,16 @@ public class JackMediumHealth : HealthStateTemplate
     private float closeMaxDuration = 4;
     private float closeDistance = 3;
 
+    float jumpTimer = 0;
+    float minJumpTime = 3;
+    float maxJumpTime = 8;
+
     public override void OnCreate()
     {
         distance = new FloatRef();
         trapsOffCD = new FloatRef();
         timer = new FloatRef();
+        jumpTimer = Random.Range(minJumpTime, maxJumpTime);
 
         //to aggressive - Both Traps off cd
         sMachine.AddTransition(sMachine.StateFromName(typeof(JackPassive).Name), new Transition(new Condition[] { new FloatCondition(trapsOffCD, Condition.Predicate.GREATER, 0) }), sMachine.StateFromName(typeof(JackAggressive).Name));
@@ -58,13 +63,20 @@ public class JackMediumHealth : HealthStateTemplate
 
         //ability update
         trapsOffCD.value = getTrapsOffCD();
-
+        jumpTimer -= Time.deltaTime;
         sMachine.Update();
     }
 
     public override bool ShouldJump()
     {
-        return sMachine.currentState.ShouldJump();
+        //        throw new System.NotImplementedException();
+        if (jumpTimer < 0)
+        {
+            jumpTimer = Random.Range(minJumpTime, maxJumpTime);
+            Debug.Log("Jump Time! Is Grounded: " + Owner.characterController.m_Grounded);
+            return true;
+        }
+        return false;
     }
     public override float StateMovement()
     {

@@ -40,7 +40,7 @@ public class JackAI : JackTemplate
 
     private void Update()
     {
-        //Debug.Log("Current State: " + currentState.Name + " Inner State: " + currentState.sMachine.currentState.Name);
+        Debug.Log("Current State: " + currentState.Name + " Inner State: " + currentState.sMachine.currentState.Name);
         StateUpdates();
         CharacterRequiredUpdates();
 
@@ -62,6 +62,7 @@ public class JackAI : JackTemplate
             //check for stun
             if (CheckForStun())
             {
+                AbilityThree();
                 characterController.Move(0, false, false);
                 animator.SetFloat("Speed", 0);
                 return;

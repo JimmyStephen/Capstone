@@ -164,6 +164,30 @@ public abstract class CharacterTemplate : MonoBehaviour
         return UltimateAbilityDesc;
     }
 
+    private void OnGUI()
+    {
+        Vector2 screen = Camera.main.WorldToScreenPoint(transform.position);
+
+        Rect position = new Rect(screen.x - 20, Screen.height - screen.y - 80, 50, 20);
+       
+        if (playerOne)
+        {
+            GUI.color = Color.white;
+            GUI.backgroundColor = Color.white;
+            GUI.Box(position, "");
+            GUI.color = Color.black;
+            GUI.Label(position, "Player One");
+        }
+        else
+        {
+            GUI.color = Color.white;
+            GUI.backgroundColor = Color.white;
+            GUI.Box(position, "");
+            GUI.color = Color.black;
+            GUI.Label(position, "Player Two");
+        }
+    }
+
     //Abstract
 
     /// <summary>

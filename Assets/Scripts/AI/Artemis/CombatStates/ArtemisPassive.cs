@@ -7,8 +7,8 @@ public class ArtemisPassive : State
     public ArtemisPassive(CharacterTemplate owner, string name) : base(owner, name) { }
 
     float attackTimer = 2;
+    float jumpTimer = 3;
     float startingDistance = 0;
-    float jumpTimer = 5;
 
     public override void OnEnter()
     {
@@ -26,6 +26,7 @@ public class ArtemisPassive : State
         //throw new System.NotImplementedException();
         attackTimer -= Time.deltaTime;
         justJumped -= Time.deltaTime;
+        jumpTimer -= Time.deltaTime;
     }
 
     float justJumped = 0;
@@ -36,7 +37,7 @@ public class ArtemisPassive : State
         if ((distanceHeight > 3 && justJumped <= 0) || jumpTimer <= 0)
         {
             justJumped = 1;
-            jumpTimer = Random.Range(1, 3);
+            jumpTimer = Random.Range(2, 4);
             return true;
         }
         return false;

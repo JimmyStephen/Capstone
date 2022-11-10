@@ -6,6 +6,7 @@ public class ArtemisScared : State
 {
     public ArtemisScared(CharacterTemplate owner, string name) : base(owner, name) { }
 
+
     public override void OnEnter()
     {
         //throw new System.NotImplementedException();
@@ -15,18 +16,19 @@ public class ArtemisScared : State
     {
         //throw new System.NotImplementedException();
     }
-
+    float jumpTimer = 3;
     public override void OnUpdate()
     {
         //throw new System.NotImplementedException();
         justJumped -= Time.deltaTime;
+        jumpTimer -= Time.deltaTime;
     }
 
     float justJumped = 0;
     public override bool ShouldJump()
     {
         if (justJumped >= 0) return false;
-        if(Random.Range(0, 1.0f) > .5f)
+        if (Random.Range(0, 1.0f) > .5f || jumpTimer <= 0)
         {
             justJumped = 3;
             return true;
