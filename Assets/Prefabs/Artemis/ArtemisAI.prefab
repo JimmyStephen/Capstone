@@ -971,7 +971,7 @@ MonoBehaviour:
   UltimateAbilityDesc: Shoot an arrow that does a medium amount of damage that turns
     into a tornado that stuns and does more damage when it collides with anything
   animator: {fileID: 1469409976743138459}
-  speed: 0.75
+  speed: 0.5
   jumpCD: 1
   health: {fileID: 3995940729525829731}
   energy: {fileID: 3995940729525829730}

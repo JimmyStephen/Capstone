@@ -7,15 +7,15 @@ public class SceneLoader : Singleton<SceneLoader>
 {
     [SerializeField] Animator transition;
     [SerializeField] float transitionTime;
-    [SerializeField] GameObject[] dontDestroy;
-
+    
+/*    [SerializeField] GameObject[] dontDestroy;
     private void Start()
     {
-        foreach(var v in dontDestroy)
+        foreach (var v in dontDestroy)
         {
             DontDestroyOnLoad(v);
-        }    
-    }
+        }
+    }*/
 
 
     public void LoadNextLevel()

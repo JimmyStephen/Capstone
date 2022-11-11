@@ -345,7 +345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357061048}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -7, y: 6.75, z: -2.5}
+  m_LocalPosition: {x: -8, y: 6.75, z: -2.5}
   m_LocalScale: {x: 2, y: 6, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -639,7 +639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112756102}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 7, y: 6.75, z: -2.5}
+  m_LocalPosition: {x: 8, y: 6.75, z: -2.5}
   m_LocalScale: {x: 2, y: 6, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1131,6 +1131,7 @@ Transform:
   - {fileID: 1112756103}
   - {fileID: 137423425}
   - {fileID: 357061049}
+  - {fileID: 8200843698806599743}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1437,15 +1438,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8203539816394476189}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 19.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8201228169755585049}
   - {fileID: 8200499889249372931}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 470967942672732649}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
 --- !u!4 &8201228169755585049
 Transform:
@@ -1472,7 +1473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8200843698806599743}
   m_Layer: 0
-  m_Name: TrainingStage_Background (1)
+  m_Name: TopOfArena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

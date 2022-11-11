@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] TMPro.TMP_Text WinnerNameDisplay;
     [SerializeField] TMPro.TMP_Text WinnerHealthDisplay;
 
-    [SerializeField] GameObject[] enableForCursor;
+    //[SerializeField] GameObject[] enableForCursor;
     [SerializeField] GameObject[] enableForGame;
 
     private CharacterTemplate currentWinner = null;
@@ -94,7 +94,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void EndGame()
     {
-        ToggleCursor();
+        ToggleGame();
         ResetFields();
         SceneLoader.Instance.LoadScene(5);
         WinnerNameDisplay.SetText("WINNER!!!\nPlayer " + ((currentWinner.playerOne) ? "One\n" : "Two\n") + currentWinner.characterName);
@@ -137,39 +137,18 @@ public class GameManager : Singleton<GameManager>
         PlayerTwoEnergySlider.size = 1;
     }
 
-    bool cursorActive = true;
-    private void ToggleCursor()
+    private void ToggleGame()
     {
-        if (cursorActive)
+        foreach (var v in enableForGame)
         {
-            foreach (var v in enableForCursor)
-            {
-                v.SetActive(!v.activeSelf);
-            }
-            foreach (var v in enableForGame)
-            {
-                v.SetActive(!v.activeSelf);
-            }
-            cursorActive = false;
-        }
-        else
-        {
-            foreach (var v in enableForGame)
-            {
-                v.SetActive(!v.activeSelf);
-            }
-            foreach (var v in enableForCursor)
-            {
-                v.SetActive(!v.activeSelf);
-            }
-            cursorActive = true;
+            v.SetActive(!v.activeSelf);
         }
     }
     IEnumerator PlaceCharacters()
     {
         yield return new WaitForSeconds(3);
 
-        ToggleCursor();
+        ToggleGame();
 
         var p1 = Instantiate(playerOne, playerOneSpawn.position, playerOneSpawn.rotation);
         var p2 = Instantiate(playerTwo, playerTwoSpawn.position, playerTwoSpawn.rotation);
