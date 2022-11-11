@@ -336,6 +336,10 @@ PrefabInstance:
       propertyPath: dontDestroy.Array.data[0]
       value: 
       objectReference: {fileID: 865450841}
+    - target: {fileID: 4719700847441761349, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4719700847878602957, guid: 8b636912ec8c19e4ebc5c0fb59e890fb, type: 3}
       propertyPath: m_Name
       value: SceneLoader
