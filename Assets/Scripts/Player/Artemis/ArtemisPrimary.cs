@@ -22,7 +22,7 @@ public class ArtemisPrimary : AbilityTemplate
         cc.Flip();
         //make immune
         parent.GetComponent<CharacterTemplate>().isImmune = true;
-        Debug.Log("Immune Start");
+        //Debug.Log("Immune Start");
         //
         if (audioOnCreate != null)
         {

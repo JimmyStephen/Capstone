@@ -37,4 +37,9 @@ public class Storage : MonoBehaviour
     {
         GameManager.Instance.ToCharacterInfoScene(index);
     }
+
+    public void CloseApp()
+    {
+        GameManager.Instance.CloseApp();
+    }
 }

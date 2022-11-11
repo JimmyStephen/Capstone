@@ -11,7 +11,7 @@ public abstract class JackTemplate : CharacterTemplate
     public override void BasicAttack()
     {
         if (CheckForStun()) { return; }
-        Debug.Log("Stabby stab");
+        //Debug.Log("Stabby stab");
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
         {
@@ -26,7 +26,7 @@ public abstract class JackTemplate : CharacterTemplate
     public override void AbilityOne()
     {
         if (CheckForStun()) { return; }
-        Debug.Log("Place Trap");
+        //Debug.Log("Place Trap");
 
         AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
@@ -44,7 +44,7 @@ public abstract class JackTemplate : CharacterTemplate
     public override void AbilityTwo()
     {
         if (CheckForStun()) { return; }
-        Debug.Log("Place Trap");
+        //Debug.Log("Place Trap");
 
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
@@ -78,7 +78,7 @@ public abstract class JackTemplate : CharacterTemplate
     public override void OnDeath()
     {
         //died
-        Debug.Log("YOU DIED!!!!");
+        //Debug.Log("YOU DIED!!!!");
         //set the winner to your opponent
         ///
         GameManager.Instance.SetWinner(opponent.GetComponent<CharacterTemplate>());

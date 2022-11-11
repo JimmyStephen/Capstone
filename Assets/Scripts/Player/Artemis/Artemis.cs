@@ -63,7 +63,7 @@ public class Artemis : CharacterTemplate
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
+            //Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentBasicAttackCooldown = at.UseAbility(health, energy);
@@ -78,11 +78,11 @@ public class Artemis : CharacterTemplate
             return;
         }
         //dodge roll
-        Debug.Log("Ability 1 Activated");
+//        Debug.Log("Ability 1 Activated");
 
         AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
         if(!at.CanUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0){
-            Debug.Log("Ability Cannot Be Used");
+            //Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentAbilityOneCooldown = at.UseAbility(health, energy);
@@ -98,12 +98,12 @@ public class Artemis : CharacterTemplate
         {
             return;
         }
-        Debug.Log("Ability 2 Activated");
+        //Debug.Log("Ability 2 Activated");
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
 
         if (!at.CanUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
+            //Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentAbilityTwoCooldown = at.UseAbility(health, energy);
@@ -124,7 +124,7 @@ public class Artemis : CharacterTemplate
 
         if (!at.CanUse(health, energy, currentAbilityThreeCooldown))
         {
-            Debug.Log("Not enough resources or it is on CD");
+            //Debug.Log("Not enough resources or it is on CD");
             return;
         }
         currentAbilityThreeCooldown = at.UseAbility(health, energy);
@@ -143,7 +143,7 @@ public class Artemis : CharacterTemplate
         }
         if (currentJumpCD > 0)
         {
-            Debug.Log("Jump is on CD");
+            //Debug.Log("Jump is on CD");
             return;
         }
         currentJumpCD = jumpCD;

@@ -117,10 +117,10 @@ MonoBehaviour:
   applyDot: 1
   applySlow: 0
   applyStun: 0
-  dotDuration: 10
+  dotDuration: 5
   slowDuration: 0
   stunDuration: 0
-  dotDamage: 2
+  dotTotalDamage: 20
   slowPercent: 0
   createOnTrigger: {fileID: 95544548186499656, guid: 2200e3513ddb24146981a18e5410c1f2, type: 3}
   audioOnTrigger: {fileID: -7233956235666097253}

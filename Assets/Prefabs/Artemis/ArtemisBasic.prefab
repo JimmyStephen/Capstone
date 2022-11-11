@@ -141,7 +141,7 @@ MonoBehaviour:
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}
-  knockbackForce: 0
+  knockbackForce: 1000
 --- !u!82 &6662299094972006539
 AudioSource:
   m_ObjectHideFlags: 0

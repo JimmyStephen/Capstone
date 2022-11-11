@@ -168,24 +168,39 @@ public abstract class CharacterTemplate : MonoBehaviour
     {
         Vector2 screen = Camera.main.WorldToScreenPoint(transform.position);
 
-        Rect position = new Rect(screen.x - 20, Screen.height - screen.y - 80, 50, 20);
+        Rect position = new(screen.x - 50, Screen.height - screen.y - 90, 110, 25);
+
+        //For text
+        GUIStyle style = new();
+        style.fontSize = 20;
+        style.fontStyle = FontStyle.Bold;
+        style.alignment = TextAnchor.MiddleCenter;
+        style.normal.textColor = Color.white;
+        style.normal.background = MakeTex(2, 2, new Color(0f, 0f, 0f, 1f));
+        
+
+        GUI.Box(position, "", style);
        
         if (playerOne)
         {
-            GUI.color = Color.white;
-            GUI.backgroundColor = Color.white;
-            GUI.Box(position, "");
-            GUI.color = Color.black;
-            GUI.Label(position, "Player One");
+            GUI.Label(position, "Player One", style);
         }
         else
         {
-            GUI.color = Color.white;
-            GUI.backgroundColor = Color.white;
-            GUI.Box(position, "");
-            GUI.color = Color.black;
-            GUI.Label(position, "Player Two");
+            GUI.Label(position, "Player Two", style);
         }
+    }
+    private Texture2D MakeTex(int width, int height, Color color)
+    {
+        Color[] pix = new Color[width * height];
+        for (int i = 0; i<pix.Length; ++i)
+        {
+            pix[i] = color;
+        }
+        Texture2D result = new(width, height);
+        result.SetPixels(pix);
+        result.Apply();
+        return result;
     }
 
     //Abstract

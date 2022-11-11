@@ -21,7 +21,7 @@ public class JackTrap : MonoBehaviour
     [SerializeField] float stunDuration = 0;
 
     [Header("How bad the effects are")]
-    [SerializeField] float dotDamage = 0;
+    [SerializeField] float dotTotalDamage = 0;
     [SerializeField] float slowPercent = 0;
 
     [Header("What to do when the trap triggers")]
@@ -40,7 +40,7 @@ public class JackTrap : MonoBehaviour
         //dot (if needed)
         if (applyDot)
         {
-            effectsToApply.Add(new Effect(true, dotDuration, dotDamage, 0, 0, 0, 0, 0, false));
+            effectsToApply.Add(new Effect(true, dotDuration, (dotTotalDamage / dotDuration), 0, 0, 0, 0, 0, false));
         }
         //slow (if needed)
         if (applySlow)

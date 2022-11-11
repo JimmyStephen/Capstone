@@ -18,34 +18,35 @@ public class CursorMovement : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("Enable");
         Cursor.visible = true;
         currentPosition = Vector2.zero;
     }
-
     private void OnDisable()
     {
+        Debug.Log("Disable");
         Cursor.visible = false;
     }
 
     void Update()
     {
-        if (Gamepad.current.leftShoulder.isPressed || Mouse.current.rightButton.isPressed)
-        {
-            return;
-        }
+        if ((Gamepad.current.leftShoulder.isPressed || Mouse.current.rightButton.isPressed)) return;
+
         //Get the position of the gamepad
         Vector2 deltaValue = Gamepad.current.leftStick.ReadValue();
         //multiply it by how fast it should be going
         deltaValue *= speed * Time.deltaTime * (Gamepad.current.leftTrigger.IsPressed() ? 2 : 1);
-
         //get the new position
         Vector2 newPosition = currentPosition + deltaValue;
 
-        //clamp the area the mouse can go
-        newPosition.x = Mathf.Clamp(newPosition.x, padding, Screen.width - padding);
-        newPosition.y = Mathf.Clamp(newPosition.y, padding, Screen.height - padding);
-
         //Set the mouse to the position of the gamepad
+        //check if the mouse needs to be trapped
+        if (!(Gamepad.current.leftShoulder.isPressed || Mouse.current.rightButton.isPressed))
+        {
+            //clamp the area the mouse can go
+            newPosition.x = Mathf.Clamp(newPosition.x, padding, Screen.width - padding);
+            newPosition.y = Mathf.Clamp(newPosition.y, padding, Screen.height - padding);
+        }
 
         Mouse.current.WarpCursorPosition(newPosition);
         currentPosition = newPosition;

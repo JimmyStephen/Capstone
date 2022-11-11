@@ -5,7 +5,8 @@ using UnityEngine;
 public class Effect
 {
     //How long it lasts
-    private float duration = 1;
+    private readonly float duration = 1;
+    private float currentDuration = 1;
     //How much to damage/heal per second (0 for none)
     private readonly float healthDamagePerSec = 0;
     private readonly float healthHealingPerSec = 0;
@@ -33,6 +34,7 @@ public class Effect
     {
         this.IsDebuff = IsDebuff;
         this.duration = duration;
+        currentDuration = duration;
         this.healthDamagePerSec = healthDamagePerSec;
         this.healthHealingPerSec = healthHealingPerSec;
         this.energyDamagePerSec = energyDamagePerSec;
@@ -42,7 +44,6 @@ public class Effect
         this.stun = stun;
     }
 
-
     /// <summary>
     /// Call during every update, will effect health/energy as needed
     /// </summary>
@@ -51,18 +52,16 @@ public class Effect
     public void UpdateTrigger(Resource health, Resource energy)
     {
         //reduce the duration
-        duration -= Time.deltaTime;
-        health.Heal(healthHealingPerSec * Time.deltaTime);
-        health.Damage(healthDamagePerSec * Time.deltaTime);
-        energy.Heal(energyHealingPerSec * Time.deltaTime);
-        energy.Damage(energyDamagePerSec * Time.deltaTime);
-        //Debug.Log("Remaining Duration: " + duration);
+        currentDuration -= Time.deltaTime;
+        health.Heal((healthHealingPerSec) * Time.deltaTime);
+        health.Damage((healthDamagePerSec) * Time.deltaTime);
+        energy.Heal((energyHealingPerSec) * Time.deltaTime);
+        energy.Damage((energyDamagePerSec) * Time.deltaTime);
     }
-
 
     public float GetRemainingDuration()
     {
-        return duration;
+        return currentDuration;
     }
     public float GetDamageMultipler()
     {
@@ -72,7 +71,6 @@ public class Effect
     {
         return speedMultiplier;
     }
-    
     
     public bool IsStunned()
     {

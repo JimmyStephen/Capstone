@@ -42,9 +42,9 @@ public class ArtemisBasic : AbilityTemplate
             damageDealt *= tempPercent;
             if (damageDealt < 0) damageDealt = 0;
             ct.health.Damage(damageDealt * damageMultiplier);
+
             //knockback
-            Debug.Log("knockback here... (help)");
-            //ct.characterController.Dash((ct.characterController.GetDirection() ? knockbackForce : -knockbackForce));
+            ct.characterController.ForcedMove(ct.characterController.GetDirection() ? -knockbackForce : knockbackForce);
             Destroy(this.gameObject, .05f);
         }
     }

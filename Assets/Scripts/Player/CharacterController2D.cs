@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -69,6 +70,14 @@ public class CharacterController2D : MonoBehaviour
 		// And then smoothing it out and applying it to the character
 		m_Rigidbody.velocity = Vector3.SmoothDamp(m_Rigidbody.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 	}
+	public void ForcedMove(float strength)
+    {
+		m_Rigidbody.AddForce(new Vector2(strength, 0.0f));
+	}
+	public void Knockup(float strength)
+    {
+		m_Rigidbody.AddForce(new Vector2(0f, strength));
+	}
 
 	public void Move(float move, bool crouch, bool jump)
 	{
@@ -139,6 +148,19 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody.AddForce(new Vector2(0f, m_JumpForce));
 		}
+	}
+
+	IEnumerable ForcedMovement(float move, float duration)
+    {
+		while (duration > 0)
+		{
+			// Move the character by finding the target velocity
+			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody.velocity.y);
+			// And then smoothing it out and applying it to the character
+			m_Rigidbody.velocity = Vector3.SmoothDamp(m_Rigidbody.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			duration -= Time.deltaTime;
+		}
+		yield return new WaitForSeconds(0);
 	}
 
 	/// <summary>
