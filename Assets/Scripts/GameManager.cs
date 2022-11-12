@@ -144,6 +144,9 @@ public class GameManager : Singleton<GameManager>
             v.SetActive(!v.activeSelf);
         }
     }
+
+    [HideInInspector] public GameObject playerOneObject;
+    [HideInInspector] public GameObject playerTwoObject;
     IEnumerator PlaceCharacters()
     {
         yield return new WaitForSeconds(3);
@@ -160,5 +163,8 @@ public class GameManager : Singleton<GameManager>
         p2.GetComponent<CharacterTemplate>().SetDisplay(PlayerTwoHealthSlider, PlayerTwoEnergySlider);
         p2.GetComponent<CharacterTemplate>().playerOne = false;
         p2.GetComponent<CharacterTemplate>().opponent = p1;
+
+        playerOneObject = p1;
+        playerTwoObject = p2;
     }
 }

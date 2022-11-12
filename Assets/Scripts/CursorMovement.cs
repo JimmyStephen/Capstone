@@ -18,13 +18,13 @@ public class CursorMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Enable");
+        //Debug.Log("Enable");
         Cursor.visible = true;
         currentPosition = Vector2.zero;
     }
     private void OnDisable()
     {
-        Debug.Log("Disable");
+        //Debug.Log("Disable");
         Cursor.visible = false;
     }
 

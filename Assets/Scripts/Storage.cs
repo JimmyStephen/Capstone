@@ -6,6 +6,15 @@ public class Storage : MonoBehaviour
 {
     [SerializeField] TMPro.TMP_Text player1Select;
     [SerializeField] TMPro.TMP_Text player2Select;
+    [SerializeField] FocusCamera fc;
+
+    private void Start()
+    {
+        if(fc != null)
+        {
+            StartCoroutine(fc.Init());
+        }
+    }
 
     public void SelectCharacter(int character)
     {
@@ -17,27 +26,22 @@ public class Storage : MonoBehaviour
         string ret = GameManager.Instance.SelectAI(character, 2);
         player2Select.SetText(ret);
     }
-
     public void ChangeScene(int sceneNum)
     {
         SceneLoader.Instance.LoadScene(sceneNum);
     }
-
     public void StartGame()
     {
         GameManager.Instance.StartGame();
     }
-
     public void ResetGame()
     {
         GameManager.Instance.ResetGame();
     }
-
     public void ToCharacterInfo(int index)
     {
         GameManager.Instance.ToCharacterInfoScene(index);
     }
-
     public void CloseApp()
     {
         GameManager.Instance.CloseApp();
