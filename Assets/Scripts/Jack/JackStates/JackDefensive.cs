@@ -88,7 +88,7 @@ public class JackDefensive : State
     {
         //conditions to use
         //enemy close
-        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 2);
+        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 3);
     }
     public override bool UseAbilityOne()
     {

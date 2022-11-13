@@ -100,8 +100,8 @@ public abstract class CharacterTemplate : MonoBehaviour
             e.UpdateTrigger(health, energy);
             if (e.GetRemainingDuration() > 0)
             {
-                currentDamageMultiplier = (currentDamageMultiplier + e.GetDamageMultipler() > 0) ? currentDamageMultiplier += e.GetDamageMultipler() : .01f;
-                currentSpeedMultiplier = (currentSpeedMultiplier + e.GetSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.GetSpeedMultiplier() : .01f;
+                currentDamageMultiplier = (currentDamageMultiplier + e.GetDamageMultipler() > 0) ? currentDamageMultiplier += e.GetDamageMultipler() : .001f;
+                currentSpeedMultiplier = (currentSpeedMultiplier + e.GetSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.GetSpeedMultiplier() : .001f;
             }
             else
             {

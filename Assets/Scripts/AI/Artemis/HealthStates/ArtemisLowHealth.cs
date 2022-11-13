@@ -48,7 +48,7 @@ public class ArtemisLowHealth : HealthStateTemplate
         //if you are far but abilities on cd
         sMachine.AddTransition(sMachine.StateFromName(typeof(ArtemisAggressive).Name), new Transition(new Condition[] { new FloatCondition(distance, Condition.Predicate.GREATER, 5), new BoolCondition(abilityOnCD, true) }), sMachine.StateFromName(typeof(ArtemisPassive).Name));
         sMachine.AddTransition(sMachine.StateFromName(typeof(ArtemisDefensive).Name), new Transition(new Condition[] { new FloatCondition(distance, Condition.Predicate.GREATER, 5), new BoolCondition(abilityOnCD, true) }), sMachine.StateFromName(typeof(ArtemisPassive).Name));
-        sMachine.AddTransition(sMachine.StateFromName(typeof(ArtemisScared).Name), new Transition(new Condition[] { new FloatCondition(scaredDuration, Condition.Predicate.LESS_EQUAL, 0), new BoolCondition(abilityOnCD, false) }), sMachine.StateFromName(typeof(ArtemisPassive).Name));
+        sMachine.AddTransition(sMachine.StateFromName(typeof(ArtemisScared).Name), new Transition(new Condition[] { new FloatCondition(scaredDuration, Condition.Predicate.LESS_EQUAL, 0) }), sMachine.StateFromName(typeof(ArtemisPassive).Name));
 
         //to scared
         sMachine.AddTransition(sMachine.StateFromName(typeof(ArtemisAggressive).Name), new Transition(new Condition[] { new FloatCondition(damageTaken, Condition.Predicate.GREATER, dmgForScared) }), sMachine.StateFromName(typeof(ArtemisScared).Name));
@@ -74,7 +74,7 @@ public class ArtemisLowHealth : HealthStateTemplate
         if (damageTaken.value < 0) damageTaken.value = 0;
         if (damageTaken.value > dmgForScared && scaredDuration.value <= 3)
         {
-            scaredDuration.value = 1;
+            scaredDuration.value = .5f;
         }
         else
         {

@@ -53,10 +53,10 @@ public class Effect
     {
         //reduce the duration
         currentDuration -= Time.deltaTime;
-        health.Heal((healthHealingPerSec) * Time.deltaTime);
-        health.Damage((healthDamagePerSec) * Time.deltaTime);
-        energy.Heal((energyHealingPerSec) * Time.deltaTime);
-        energy.Damage((energyDamagePerSec) * Time.deltaTime);
+        health.Heal(healthHealingPerSec * Time.deltaTime);
+        health.Damage(healthDamagePerSec * Time.deltaTime);
+        energy.Heal(energyHealingPerSec * Time.deltaTime);
+        energy.Damage(energyDamagePerSec * Time.deltaTime);
     }
 
     public float GetRemainingDuration()

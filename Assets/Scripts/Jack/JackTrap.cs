@@ -69,11 +69,13 @@ public class JackTrap : MonoBehaviour
         }
     }
 
+    bool triggered = false;
     private void OnTriggerStay(Collider other)
     {
         //make sure its a valid target
         //apply the effects
         //destroy the trap
+        if (triggered) return;
         if (other.gameObject == owner) return;
         if (setupDuration > 0) return;
 
@@ -91,8 +93,8 @@ public class JackTrap : MonoBehaviour
             }
             if (createOnTrigger != null) Instantiate(createOnTrigger, transform.position, transform.rotation);
             if (audioOnTrigger != null) audioOnTrigger.Play();
-
-            Destroy(this.gameObject, .25f);
+            triggered = true;
+            Destroy(this.gameObject, 1);
         }
     }
 }
