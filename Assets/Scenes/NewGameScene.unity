@@ -899,6 +899,7 @@ MonoBehaviour:
   playerCharacters:
   - {fileID: 2453095032847462029, guid: ed90114934049a14b8f3de115e705362, type: 3}
   - {fileID: 6904271833730457023, guid: a2da6de2dc40cbf4a9d70dc02e76b8a1, type: 3}
+  - {fileID: 7010953163596122851, guid: 8aac4615be0288647a2bc013352a9bf5, type: 3}
   aiCharacters:
   - {fileID: 1549038174206234895, guid: 0a8fe15e358258246a81c14f3121f110, type: 3}
   - {fileID: 7028627818576183724, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}

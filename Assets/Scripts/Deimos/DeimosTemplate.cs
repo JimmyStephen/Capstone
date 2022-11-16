@@ -2,17 +2,87 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeimosTemplate : MonoBehaviour
+public abstract class DeimosTemplate : CharacterTemplate
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void BasicAttack()
     {
-        
+        if (CheckForStun()) { return; }
+
+        AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
+        if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
+        {
+            Debug.Log("Ability Cannot Be Used");
+            return;
+        }
+        currentBasicAttackCooldown = at.UseAbility(health, energy);
+        animator.SetTrigger("Basic");
+        animationTimer = basicAttackDuration;
+        StartCoroutine(SpawnAfterDelayParent(this.gameObject, BasicAttackPosition, BasicAttackObject, basicAttackDelay));
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void AbilityOne()
     {
-        
+        if (CheckForStun()) { return; }
+
+        AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
+        if (!at.CanUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
+        {
+            Debug.Log("Ability Cannot Be Used");
+            return;
+        }
+        currentAbilityOneCooldown = at.UseAbility(health, energy);
+
+        animator.SetTrigger("Ability1");
+        animationTimer = animationOneDuration;
+
+        StartCoroutine(SpawnAfterDelay(this.gameObject, abilityOneProjectilePosition, abilityOneProjectile, abilityOneDelay));
+    }
+
+    public override void AbilityTwo()
+    {
+        if (CheckForStun()) { return; }
+
+        AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
+        if (!at.CanUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
+        {
+            Debug.Log("Ability Cannot Be Used");
+            return;
+        }
+        currentAbilityTwoCooldown = at.UseAbility(health, energy);
+
+        animator.SetTrigger("Ability2");
+        animationTimer = animationTwoDuration;
+
+        StartCoroutine(SpawnAfterDelayParent(this.gameObject, abilityTwoProjectilePosition, abilityTwoProjectile, abilityTwoDelay));
+    }
+
+    public override void AbilityThree()
+    {
+        if (CheckForStun()) { return; }
+
+        AbilityTemplate at = abilityThreeProjectile.GetComponent<AbilityTemplate>();
+
+        if (!at.CanUse(health, energy, currentAbilityThreeCooldown) || animationTimer >= 0)
+        {
+            Debug.Log("Not enough resources or it is on CD");
+            return;
+        }
+        currentAbilityThreeCooldown = at.UseAbility(health, energy);
+
+        animationTimer = animationThreeDuration;
+        animator.SetTrigger("Ability3");
+        StartCoroutine(SpawnAfterDelay(this.gameObject, abilityThreeProjectilePosition, abilityThreeProjectile, abilityThreeDelay));
+    }
+
+    public override void OnDeath()
+    {
+        //died
+        //Debug.Log("YOU DIED!!!!");
+        //set the winner to your opponent
+        ///
+        GameManager.Instance.SetWinner(opponent.GetComponent<CharacterTemplate>());
+        GameManager.Instance.EndGame();
+        //destroy this object
+        Destroy(gameObject);
     }
 }

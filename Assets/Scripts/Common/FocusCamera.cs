@@ -8,7 +8,8 @@ public class FocusCamera : MonoBehaviour
     [SerializeField] GameObject centerPoint;
     private GameObject playerOne;
     private GameObject playerTwo;
-    private const float ignoreDifference = 2f;
+    private const float ignoreDifferenceFov = 5f;
+    private const float ignoreDifferencePosition = 1f;
     private float currentFOV;
     private float distance = 0;
 
@@ -52,9 +53,11 @@ public class FocusCamera : MonoBehaviour
         Vector3 position = centerPoint.transform.position;
         position.y += 1;
         position.z = initalZ;
-
-        if (currentCorutineMovement != null) StopCoroutine(currentCorutineMovement);
-        currentCorutineMovement = StartCoroutine(UpdateCenter(position));
+        if (Vector3.Distance(position, centerPoint.transform.position) > ignoreDifferencePosition)
+        {
+            if (currentCorutineMovement != null) StopCoroutine(currentCorutineMovement);
+            currentCorutineMovement = StartCoroutine(UpdateCenter(position));
+        }
     }
 
     private void CalculateFOV()
@@ -65,7 +68,7 @@ public class FocusCamera : MonoBehaviour
         newFOV = Mathf.Clamp(newFOV, 45, 70);
         newFOV = Mathf.Round(newFOV * 100) / 100;
         //Check if the new FOV is to similar to the current FOV
-        if(Mathf.Abs(newFOV - currentFOV) > ignoreDifference)
+        if(Mathf.Abs(newFOV - currentFOV) > ignoreDifferenceFov)
         {
             if(currentCorutineFOV != null) StopCoroutine(currentCorutineFOV);
             currentCorutineFOV = StartCoroutine(UpdateFOV(newFOV));

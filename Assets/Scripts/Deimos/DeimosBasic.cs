@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeimosBasic : MonoBehaviour
+public class DeimosBasic : AbilityTemplate
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnCreation()
     {
-        
+        if (audioOnCreate != null)
+        {
+            //play
+            audioOnCreate.Play();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnDestroy()
     {
-        
+        if (audioOnDestroy != null)
+        {
+            //play
+            audioOnDestroy.Play();
+        }
+    }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        throw new System.NotImplementedException();
     }
 }

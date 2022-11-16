@@ -150,17 +150,16 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
-	IEnumerable ForcedMovement(float move, float duration)
+	public IEnumerator ForcedMovement(float move, float duration)
     {
+		Debug.Log("Forced Movement");
 		while (duration > 0)
 		{
-			// Move the character by finding the target velocity
-			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody.velocity.y);
-			// And then smoothing it out and applying it to the character
-			m_Rigidbody.velocity = Vector3.SmoothDamp(m_Rigidbody.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			gameObject.GetComponentInChildren<Animator>().SetFloat("Speed", Mathf.Abs(move));
+			Move(move, false, false);
 			duration -= Time.deltaTime;
+			yield return new WaitForSeconds(.01f);
 		}
-		yield return new WaitForSeconds(0);
 	}
 
 	/// <summary>
