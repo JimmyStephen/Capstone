@@ -72,7 +72,6 @@ public abstract class CharacterTemplate : MonoBehaviour
         yield return new WaitForSeconds(delay);
         bool right = owner.transform.rotation.y < 0;
         float angle = (right) ? 0 : 180;
-        //Debug.Log("Angle: " + angle);
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.up);
 
         GameObject temp = Instantiate(spawnObject, location.transform.position, rotation);

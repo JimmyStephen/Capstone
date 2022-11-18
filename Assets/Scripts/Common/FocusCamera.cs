@@ -17,13 +17,11 @@ public class FocusCamera : MonoBehaviour
     private Coroutine currentCorutineFOV;
     private Coroutine currentCorutineMovement;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentFOV = sceneCamera.fieldOfView;
         initalZ = sceneCamera.transform.position.z;
     }
-
     void Update()
     {
         if (playerOne == null) return;
@@ -34,7 +32,7 @@ public class FocusCamera : MonoBehaviour
 
     private void CalculateCenter()
     {
-        Debug.Log("Calculate Center");
+        //Debug.Log("Calculate Center");
         //get the middle point of the objects
         float xPosition = (playerOne.transform.position.x + playerTwo.transform.position.x) / 2;
         float yPosition = (playerOne.transform.position.y + playerTwo.transform.position.y) / 2;
@@ -59,10 +57,9 @@ public class FocusCamera : MonoBehaviour
             currentCorutineMovement = StartCoroutine(UpdateCenter(position));
         }
     }
-
     private void CalculateFOV()
     {
-        Debug.Log("Calculate FOV");
+        //Debug.Log("Calculate FOV");
         //find what the FOV should be
         float newFOV = distance * 10;
         newFOV = Mathf.Clamp(newFOV, 45, 70);
@@ -88,25 +85,25 @@ public class FocusCamera : MonoBehaviour
         CalculateCenter();
         CalculateFOV();
     }
-
     public IEnumerator UpdateFOV(float newFOV)
     {
+        float speed = .01f;
         float multiplier = 1;
         while (newFOV != currentFOV)
         {
-            currentFOV += ((newFOV > currentFOV) ? .01f : -.01f) * multiplier;
-            if(Mathf.Abs(currentFOV - newFOV) < .01f * multiplier) currentFOV = newFOV;
+            currentFOV += ((newFOV > currentFOV) ? speed : -speed) * multiplier;
+            if(Mathf.Abs(currentFOV - newFOV) < speed * multiplier) currentFOV = newFOV;
             sceneCamera.fieldOfView = currentFOV;
             multiplier += .5f;
             yield return new WaitForSeconds(.025f);
         }
         currentCorutineFOV = null;
     }
-
     public IEnumerator UpdateCenter(Vector3 newCenter)
     {
         bool doneMoving = false;
         float multiplier = 1;
+        float speed = .05f;
         while (!doneMoving)
         {
             doneMoving = true;
@@ -114,14 +111,14 @@ public class FocusCamera : MonoBehaviour
 
             if(currentPosition.x != newCenter.x)
             {
-                currentPosition.x += ((newCenter.x > currentPosition.x) ? .01f : -.01f) * multiplier;
-                if (Mathf.Abs(currentPosition.x - newCenter.x) < .01f * multiplier) currentPosition.x = newCenter.x;
+                currentPosition.x += ((newCenter.x > currentPosition.x) ? speed : -speed) * multiplier;
+                if (Mathf.Abs(currentPosition.x - newCenter.x) < speed * multiplier) currentPosition.x = newCenter.x;
             }
 
             if (currentPosition.y != newCenter.y)
             {
-                currentPosition.y += ((newCenter.y > currentPosition.y) ? .01f : -.01f) * multiplier;
-                if(Mathf.Abs(currentPosition.y - newCenter.y) < .01f * multiplier) currentPosition.y = newCenter.y;
+                currentPosition.y += ((newCenter.y > currentPosition.y) ? speed : -speed) * multiplier;
+                if(Mathf.Abs(currentPosition.y - newCenter.y) < speed * multiplier) currentPosition.y = newCenter.y;
             }
 
             multiplier += .5f;

@@ -37,8 +37,4 @@ public class DeimosAbilityTwo : AbilityTemplate
     {
 //        throw new System.NotImplementedException();
     }
-
-    private void Update()
-    {
-    }
 }

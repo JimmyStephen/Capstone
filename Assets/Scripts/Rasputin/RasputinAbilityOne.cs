@@ -37,7 +37,7 @@ public class RasputinAbilityOne : AbilityTemplate
                 Effect effect = new(true, effectDuration, 0, 0, 0, 0, reducedDamage, 0, false);
                 ct.effects.Add(effect);
             }
+            Destroy(this.gameObject, .05f);
         }
-        Destroy(this.gameObject, .05f);
     }
 }

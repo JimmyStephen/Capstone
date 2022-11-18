@@ -2105,7 +2105,7 @@ MonoBehaviour:
     short duration when triggered
   UltimateAbilityDesc: Shake off all debuffs including poisons, stuns, slows, exc.
   animator: {fileID: 6904271834518145271}
-  speed: 0.25
+  speed: 0.35
   jumpCD: 1
   health: {fileID: 6904271833730456965}
   energy: {fileID: 6904271833730456964}

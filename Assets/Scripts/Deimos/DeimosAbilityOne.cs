@@ -18,7 +18,8 @@ public class DeimosAbilityOne : AbilityTemplate
 
     public override void OnDestroy()
     {
-        var temp = Instantiate(createOnDestroy, this.transform.position, this.transform.rotation);
+        Vector3 position = new(transform.position.x, 0, 0);
+        var temp = Instantiate(createOnDestroy, position, this.transform.rotation);
         temp.GetComponent<DeimosExplosion>().owner = parent;
 
         if (audioOnDestroy != null)
@@ -31,6 +32,6 @@ public class DeimosAbilityOne : AbilityTemplate
 
     public override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }

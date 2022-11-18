@@ -5,8 +5,6 @@ using UnityEngine;
 public class RasputinAbilityTwo : AbilityTemplate
 {
     [SerializeField] float healAmount = 20;
-    [SerializeField] float healDuration = 1;
-
 
     public override void OnCreation()
     {
@@ -15,7 +13,8 @@ public class RasputinAbilityTwo : AbilityTemplate
             //play
             audioOnCreate.Play();
         }
-        parent.GetComponent<CharacterTemplate>().effects.Add(new(false, healDuration, 0, (healAmount / healDuration), 0, 0, 0, 0, false));
+        Debug.Log("Starting Health: " + parent.GetComponent<CharacterTemplate>().health.GetCurrent());
+        parent.GetComponent<CharacterTemplate>().effects.Add(new(false, destroyAfterSeconds, 0, (healAmount / destroyAfterSeconds), 0, 0, 0, 0, false));
     }
 
     public override void OnDestroy()
@@ -25,6 +24,7 @@ public class RasputinAbilityTwo : AbilityTemplate
             //play
             audioOnDestroy.Play();
         }
+        Debug.Log("Ending Health: " + parent.GetComponent<CharacterTemplate>().health.GetCurrent());
     }
 
     public override void OnTriggerEnter(Collider other)

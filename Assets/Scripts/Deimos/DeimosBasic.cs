@@ -24,6 +24,23 @@ public class DeimosBasic : AbilityTemplate
 
     public override void OnTriggerEnter(Collider other)
     {
-        throw new System.NotImplementedException();
+        if (other.gameObject == parent) return;
+
+        if (other.TryGetComponent<CharacterTemplate>(out CharacterTemplate ct))
+        {
+            if (ct.isImmune)
+            {
+                return;
+            }
+            //damage health
+            float damageDealt = HealthDamage -= ct.resistanceFlat;
+            //get the percent damage
+            float tempPercent = ct.resistanceFlat != 0 ? 100 / ct.resistanceFlat : 1;
+            damageDealt *= tempPercent;
+            if (damageDealt < 0) damageDealt = 0;
+            ct.health.Damage(damageDealt * damageMultiplier);
+
+            Destroy(this.gameObject, .05f);
+        }
     }
 }

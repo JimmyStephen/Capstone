@@ -42,13 +42,13 @@ public class GameManager : Singleton<GameManager>
         {
             playerOne = playerCharacters[characterSelect];
             //characterOnePlayer = true;
-            return playerOne.name.ToString();
+            return playerOne.GetComponent<CharacterTemplate>().characterName.ToString();
         }
         else
         {
             playerTwo = playerCharacters[characterSelect];
             //characterTwoPlayer = true;
-            return playerTwo.name.ToString();
+            return playerTwo.GetComponent<CharacterTemplate>().characterName.ToString();
         }
     }
     public string SelectAI(int characterSelect, int player)
@@ -57,13 +57,13 @@ public class GameManager : Singleton<GameManager>
         {
             playerOne = aiCharacters[characterSelect];
             //characterOnePlayer = false;
-            return playerOne.name.ToString();
+            return playerOne.GetComponent<CharacterTemplate>().characterName.ToString();
         }
         else
         {
             playerTwo = aiCharacters[characterSelect];
             //characterTwoPlayer = false;
-            return playerTwo.name.ToString();
+            return playerTwo.GetComponent<CharacterTemplate>().characterName.ToString();
         }
     }
 

@@ -21,29 +21,32 @@ public class RasputinUltimate : AbilityTemplate
 
         ct = parent.GetComponent<CharacterTemplate>();
 
-        if(firstTrigger && !secondTrigger)
-        {
-            secondTrigger = true;
-            //become immune
-            ct.isImmune = true;
-            ct.effectImmune = true;
-            //set max hp & current
-            ct.health.ChangeMax(firstReviveHealthValue);
-            ct.health.ChangeCurrent(firstReviveHealthValue);
-        }
-        else
+        if(!firstTrigger && !secondTrigger)
         {
             firstTrigger = true;
             //become immune
             ct.isImmune = true;
             ct.effectImmune = true;
             //set max hp & current
-            ct.health.ChangeMax(secondReviveHealthValue);
-            ct.health.ChangeCurrent(secondReviveHealthValue);
+            ct.health.ChangeMax(firstReviveHealthValue);
+            //ct.health.ChangeCurrent(firstReviveHealthValue);
+            ct.effects.Add(new(false, destroyAfterSeconds, 0, 7.5f, 0, 0, 1, 1, false));
+            CleanseDebuff();
+            Debug.Log("Max HP set to: " + firstReviveHealthValue);
         }
-        Quaternion rotation = parent.transform.rotation;
-        rotation.x = -90;
-        parent.transform.rotation = rotation;
+        else
+        {
+            secondTrigger = true;
+            //become immune
+            ct.isImmune = true;
+            ct.effectImmune = true;
+            //set max hp & current
+            ct.health.ChangeMax(secondReviveHealthValue);
+//            ct.health.ChangeCurrent(secondReviveHealthValue);
+            ct.effects.Add(new(false, destroyAfterSeconds, 0, 5f, 0, 0, 1, 1, false));
+            CleanseDebuff();
+            Debug.Log("Max HP set to: " + secondReviveHealthValue);
+        }
     }
 
     public override void OnDestroy()
@@ -58,10 +61,8 @@ public class RasputinUltimate : AbilityTemplate
         ct.isImmune = false;
         ct.effectImmune = false;
 
-        //reset rotation
-        Quaternion rotation = parent.transform.rotation;
-        rotation.x = 0;
-        parent.transform.rotation = rotation;
+        //reset animator
+        ct.animator.SetBool("Ability3", false);
     }
 
     public override void OnTriggerEnter(Collider other)
@@ -69,17 +70,25 @@ public class RasputinUltimate : AbilityTemplate
         //no on trigger event
     }
 
-    private void Update()
-    {
-        //rotate
-        Quaternion rotation = parent.transform.rotation;
-        rotation.x += (90 / destroyAfterSeconds) * Time.deltaTime;
-        parent.transform.rotation = rotation;
-    }
-
     public bool ActivateUlt()
     {
         if (secondTrigger && firstTrigger) return false;
         return true;
+    }
+
+    private void CleanseDebuff()
+    {
+        List<Effect> effects = new();
+        foreach (var e in ct.effects)
+        {
+            if (e.CheckIsDebuff())
+            {
+                effects.Add(e);
+            }
+        }
+        foreach (var e in effects)
+        {
+            ct.effects.Remove(e);
+        }
     }
 }

@@ -52,6 +52,11 @@ public class DeimosExplosion : MonoBehaviour
                 {
                     player.effects.Add(stunEffect);
                 }
+
+                if(knockupForce > 0)
+                {
+                    player.characterController.Knockup(knockupForce);
+                }
             }
             triggered = true;
         }

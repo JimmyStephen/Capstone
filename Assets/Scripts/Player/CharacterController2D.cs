@@ -152,7 +152,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public IEnumerator ForcedMovement(float move, float duration)
     {
-		Debug.Log("Forced Movement");
+		//Debug.Log("Forced Movement");
 		while (duration > 0)
 		{
 			gameObject.GetComponentInChildren<Animator>().SetFloat("Speed", Mathf.Abs(move));

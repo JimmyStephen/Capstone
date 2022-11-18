@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionDuration: 1
-  knockupForce: 300
+  knockupForce: 400
   stunDuration: 2
   damage: 10
   audioOnCreate: {fileID: 0}

@@ -25,7 +25,7 @@ public class RasputinBasic : AbilityTemplate
     public override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == parent) return;
-        //knockback the target
+
         if (other.TryGetComponent<CharacterTemplate>(out CharacterTemplate ct))
         {
             if (ct.isImmune)
