@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JackPlayer : JackTemplate
+public class RasputinPlayer : RasputinTemplate
 {
     Vector3 direction = Vector3.zero;
     bool jump = false;
@@ -15,12 +15,13 @@ public class JackPlayer : JackTemplate
     {
         CharacterRequiredUpdates();
 
-        if (CheckForStun()) {
+        if (CheckForStun())
+        {
             characterController.Move(0, false, false);
             animator.SetFloat("Speed", 0);
             return;
         }
-    
+
         if (animationTimer >= 0)
         {
             //in animation don't move
@@ -35,16 +36,15 @@ public class JackPlayer : JackTemplate
         jump = false;
     }
 
-    //Input System
     public void OnJump()
     {
-        if(CheckForStun()) { return; }
+        if (CheckForStun()) { return; }
         jump = true;
     }
     public void OnBasicAbility() { BasicAttack(); }
     public void OnAbilityOne() { AbilityOne(); }
     public void OnAbilityTwo() { AbilityTwo(); }
-    public void OnUltimateAbility() { AbilityThree(); }
+    public void OnUltimateAbility() { Debug.Log("Rasputin Ult is a Passive"); }
 
     public override void CharacterRequiredUpdates()
     {
@@ -52,7 +52,6 @@ public class JackPlayer : JackTemplate
         currentBasicAttackCooldown -= Time.deltaTime;
         currentAbilityOneCooldown -= Time.deltaTime;
         currentAbilityTwoCooldown -= Time.deltaTime;
-        currentAbilityThreeCooldown -= Time.deltaTime;
         animationTimer -= Time.deltaTime;
 
         TriggerEffects();

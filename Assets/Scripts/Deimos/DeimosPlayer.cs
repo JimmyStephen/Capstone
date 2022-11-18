@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeimosPlayer : DeimosTemplate
 {
-    private float currentJumpCD = 0;
     Vector3 direction = Vector3.zero;
     bool jump = false;
 
@@ -40,12 +39,6 @@ public class DeimosPlayer : DeimosTemplate
     public void OnJump()
     {
         if (CheckForStun()) { return; }
-        if (currentJumpCD > 0)
-        {
-            Debug.Log("Jump is on CD");
-            return;
-        }
-        currentJumpCD = jumpCD;
         jump = true;
     }
     public void OnBasicAbility() { BasicAttack(); }
@@ -56,7 +49,6 @@ public class DeimosPlayer : DeimosTemplate
     public override void CharacterRequiredUpdates()
     {
         //reduce CD
-        currentJumpCD -= Time.deltaTime;
         currentBasicAttackCooldown -= Time.deltaTime;
         currentAbilityOneCooldown -= Time.deltaTime;
         currentAbilityTwoCooldown -= Time.deltaTime;

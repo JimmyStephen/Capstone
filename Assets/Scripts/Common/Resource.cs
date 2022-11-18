@@ -89,4 +89,25 @@ public class Resource : MonoBehaviour
     {
         return currentValue <= 0;
     }
+
+    /// <summary>
+    /// Changes the max value of the resource
+    /// </summary>
+    /// <param name="newMax">The new max value</param>
+    public void ChangeMax(float newMax)
+    {
+        if (newMax < 0) return;
+        MaxValue = newMax;
+    }
+
+    /// <summary>
+    /// Set the new max current value of the resource
+    /// </summary>
+    /// <param name="newCurrent">The new value of the resource</param>
+    public void ChangeCurrent(float newCurrent)
+    {
+        if (newCurrent > MaxValue) { currentValue = MaxValue; }
+        else if (newCurrent < 0) { currentValue = 0; }
+        else { currentValue = newCurrent; }
+    }
 }

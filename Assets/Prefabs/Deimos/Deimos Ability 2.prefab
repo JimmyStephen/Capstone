@@ -127,11 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aada60624607461458d833532698ec2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HealthCost: 1
-  EnergyCost: 1
+  HealthCost: 0
+  EnergyCost: 10
   Cooldown: 4
-  HealthDamage: 1
-  EnergyDamage: 1
+  HealthDamage: 0
+  EnergyDamage: 0
   Speed: 0
   destroyAfterDuration: 1
   destroyAfterSeconds: 1.75
