@@ -65,7 +65,7 @@ public abstract class JackTemplate : CharacterTemplate
 
         if (!at.CanUse(health, energy, currentAbilityThreeCooldown))
         {
-            Debug.Log("Not enough resources or it is on CD");
+            //Debug.Log("Not enough resources or it is on CD");
             return;
         }
         currentAbilityThreeCooldown = at.UseAbility(health, energy);

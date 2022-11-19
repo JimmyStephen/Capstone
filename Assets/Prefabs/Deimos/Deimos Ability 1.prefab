@@ -128,13 +128,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthCost: 0
-  EnergyCost: 10
+  EnergyCost: 20
   Cooldown: 2
   HealthDamage: 0
   EnergyDamage: 0
   Speed: 0
   destroyAfterDuration: 1
-  destroyAfterSeconds: 0.5
+  destroyAfterSeconds: 0.3
   audioOnCreate: {fileID: 0}
   audioOnDestroy: {fileID: 0}
   damageMultiplier: 1

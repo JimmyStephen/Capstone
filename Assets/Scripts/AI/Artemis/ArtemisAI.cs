@@ -24,11 +24,11 @@ public class ArtemisAI : CharacterTemplate
         ArtemisAggressive aAggressive   = new (this, typeof(ArtemisAggressive).Name);
         ArtemisDefensive aDefensive     = new (this, typeof(ArtemisDefensive).Name);
         ArtemisPassive aPassive         = new (this, typeof(ArtemisPassive).Name);
-        ArtemisScared aScared           = new (this, typeof(ArtemisScared).Name);
+        //ArtemisScared aScared           = new (this, typeof(ArtemisScared).Name);
         //make health states
-        aHighHealth = new ArtemisHighHealth(this, typeof(ArtemisHighHealth).Name, new State[] {aAggressive, aDefensive, aPassive, aScared});
-        aMedHealth = new ArtemisMediumHealth(this, typeof(ArtemisMediumHealth).Name, new State[] { aAggressive, aDefensive, aPassive, aScared });
-        aLowHealth = new ArtemisLowHealth(this, typeof(ArtemisLowHealth).Name, new State[] { aAggressive, aDefensive, aPassive, aScared });
+        aHighHealth = new ArtemisHighHealth(this, typeof(ArtemisHighHealth).Name, new State[] {aAggressive, aDefensive, aPassive});
+        aMedHealth = new ArtemisMediumHealth(this, typeof(ArtemisMediumHealth).Name, new State[] { aAggressive, aDefensive, aPassive });
+        aLowHealth = new ArtemisLowHealth(this, typeof(ArtemisLowHealth).Name, new State[] { aAggressive, aDefensive, aPassive });
         //run the create methods
         aHighHealth.OnCreate();
         aMedHealth.OnCreate();
@@ -81,6 +81,7 @@ public class ArtemisAI : CharacterTemplate
     /// </summary>
     private void AIMovement()
     {
+        if (CheckForStun()) return;
         float movement = currentState.StateMovement() * speed * currentSpeedMultiplier;
         bool shouldJump = false;
         if (characterController.m_Grounded)
@@ -267,7 +268,7 @@ public class ArtemisAI : CharacterTemplate
     public override void OnDeath()
     {
         //died
-        Debug.Log("YOU DIED!!!!");
+//        Debug.Log("YOU DIED!!!!");
         //set the winner to your opponent
         ///
         GameManager.Instance.SetWinner(opponent.GetComponent<CharacterTemplate>());

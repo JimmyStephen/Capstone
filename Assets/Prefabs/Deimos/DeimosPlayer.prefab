@@ -2207,10 +2207,10 @@ MonoBehaviour:
   abilityThreeProjectilePosition: {fileID: 1259103764}
   basicAttackDuration: 1.2
   animationOneDuration: 1.2
-  animationTwoDuration: 3
+  animationTwoDuration: 2.75
   animationThreeDuration: 2
   basicAttackDelay: 0.1
-  abilityOneDelay: 0.6
+  abilityOneDelay: 0.4
   abilityTwoDelay: 0.5
   abilityThreeDelay: 0
   characterController: {fileID: 0}

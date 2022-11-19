@@ -19503,6 +19503,6 @@ MonoBehaviour:
   explosionDuration: 1.5
   knockupForce: 0
   stunDuration: 2
-  damage: 5
+  damage: 15
   audioOnCreate: {fileID: 0}
   owner: {fileID: 0}

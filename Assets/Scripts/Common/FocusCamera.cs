@@ -87,7 +87,7 @@ public class FocusCamera : MonoBehaviour
     }
     public IEnumerator UpdateFOV(float newFOV)
     {
-        float speed = .01f;
+        float speed = .03f;
         float multiplier = 1;
         while (newFOV != currentFOV)
         {

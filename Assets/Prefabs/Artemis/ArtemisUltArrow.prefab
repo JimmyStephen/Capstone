@@ -120,7 +120,7 @@ MonoBehaviour:
   Cooldown: 5
   HealthDamage: 10
   EnergyDamage: 0
-  Speed: 200
+  Speed: 300
   destroyAfterDuration: 1
   destroyAfterSeconds: 10
   audioOnCreate: {fileID: -5005115179415721731}

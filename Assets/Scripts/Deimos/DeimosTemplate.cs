@@ -11,7 +11,7 @@ public abstract class DeimosTemplate : CharacterTemplate
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
+            //Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentBasicAttackCooldown = at.UseAbility(health, energy);
@@ -27,7 +27,7 @@ public abstract class DeimosTemplate : CharacterTemplate
         AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
+            //Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentAbilityOneCooldown = at.UseAbility(health, energy);
@@ -45,7 +45,7 @@ public abstract class DeimosTemplate : CharacterTemplate
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
+            //Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentAbilityTwoCooldown = at.UseAbility(health, energy);
@@ -64,7 +64,7 @@ public abstract class DeimosTemplate : CharacterTemplate
 
         if (!at.CanUse(health, energy, currentAbilityThreeCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Not enough resources or it is on CD");
+            //Debug.Log("Not enough resources or it is on CD");
             return;
         }
         currentAbilityThreeCooldown = at.UseAbility(health, energy);

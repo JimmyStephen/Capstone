@@ -119,6 +119,7 @@ public class JackAI : JackTemplate
     /// </summary>
     private void AIMovement()
     {
+        if (CheckForStun()) return;
         float movement = currentState.StateMovement() * speed * currentSpeedMultiplier;
         bool shouldJump = false;
         if (characterController.m_Grounded)

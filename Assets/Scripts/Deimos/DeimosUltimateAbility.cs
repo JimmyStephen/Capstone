@@ -50,7 +50,7 @@ public class DeimosUltimateAbility : AbilityTemplate
                 //player.effects.Add(apply);
                 //get direction & speed
                 float speed = player.speed;
-                speed *= player.characterController.GetDirection() ? -1 : 1;
+                speed *= player.characterController.GetDirection() ? 1 : -1;
                 //force movement away
                 player.StartCoroutine(player.characterController.ForcedMovement(speed,2));
             }

@@ -96,6 +96,12 @@ public abstract class CharacterTemplate : MonoBehaviour
         List<Effect> eRemove = new();
         foreach(Effect e in effects)
         {
+            //Debug.Log("Health: " + health + " Energy: " + energy);
+            if(e == null)
+            {
+                eRemove.Add(e);
+            }
+
             e.UpdateTrigger(health, energy);
             if (e.GetRemainingDuration() > 0)
             {
