@@ -2487,7 +2487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7329565792578422879}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2692,6 +2692,7 @@ MonoBehaviour:
   UltimateAbilityDesc: (Passive) The first time you die instead set your health to
     66%, and the second time you die set your health to 33%. Only actually losing
     after your third death
+  CharacterImage: {fileID: 21300000, guid: ca1b5850334a6c0488b9e60e453dbea5, type: 3}
   animator: {fileID: 5386272393189247285}
   speed: 0.25
   jumpCD: 1

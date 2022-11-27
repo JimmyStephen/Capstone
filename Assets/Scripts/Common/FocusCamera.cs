@@ -6,6 +6,8 @@ public class FocusCamera : MonoBehaviour
 {
     [SerializeField] Camera sceneCamera;
     [SerializeField] GameObject centerPoint;
+    [SerializeField] float minFOV = 45;
+    [SerializeField] float maxFOV = 90;
     private GameObject playerOne;
     private GameObject playerTwo;
     private const float ignoreDifferenceFov = 5f;
@@ -62,7 +64,7 @@ public class FocusCamera : MonoBehaviour
         //Debug.Log("Calculate FOV");
         //find what the FOV should be
         float newFOV = distance * 10;
-        newFOV = Mathf.Clamp(newFOV, 45, 70);
+        newFOV = Mathf.Clamp(newFOV, minFOV, maxFOV);
         newFOV = Mathf.Round(newFOV * 100) / 100;
         //Check if the new FOV is to similar to the current FOV
         if(Mathf.Abs(newFOV - currentFOV) > ignoreDifferenceFov)
@@ -87,7 +89,7 @@ public class FocusCamera : MonoBehaviour
     }
     public IEnumerator UpdateFOV(float newFOV)
     {
-        float speed = .03f;
+        float speed = .5f;
         float multiplier = 1;
         while (newFOV != currentFOV)
         {

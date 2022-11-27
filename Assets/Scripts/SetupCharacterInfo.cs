@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SetupCharacterInfo : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SetupCharacterInfo : MonoBehaviour
     [SerializeField] TMPro.TMP_Text AbilityOne;
     [SerializeField] TMPro.TMP_Text AbilityTwo;
     [SerializeField] TMPro.TMP_Text UltimateAbility;
+    [SerializeField] Image imageToSet;
     void Start()
     {
         if (GameManager.Instance.currentSelectedInfo.TryGetComponent<CharacterTemplate>(out CharacterTemplate ct))
@@ -18,6 +20,7 @@ public class SetupCharacterInfo : MonoBehaviour
             AbilityOne.SetText("Ability One\n" + ct.AbilityOneDesc);
             AbilityTwo.SetText("Ability Two\n" + ct.AbilityTwoDesc);
             UltimateAbility.SetText("Ultimate Ability\n" + ct.UltimateAbilityDesc);
+            if(ct.CharacterImage != null) imageToSet.sprite = ct.CharacterImage;
             GameManager.Instance.currentSelectedInfo = null;
         }
         else

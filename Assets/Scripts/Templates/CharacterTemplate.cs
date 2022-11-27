@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public abstract class CharacterTemplate : MonoBehaviour
 {
     [HideInInspector] public bool playerOne = false;
-    [Header("Character Name")]
+    [Header("Character Info")]
     public string characterName = "";
     public string BasicAbilityDesc = "";
     public string AbilityOneDesc = "";
     public string AbilityTwoDesc = "";
     public string UltimateAbilityDesc = "";
+    public Sprite CharacterImage = null;
     [Header("Animator")]
     public Animator animator;
     [Header("Movement")]

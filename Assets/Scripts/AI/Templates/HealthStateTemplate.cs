@@ -14,5 +14,8 @@ public abstract class HealthStateTemplate : State
     }
     public StateMachine sMachine;
 
+    /// <summary>
+    /// What you need to do when this state is first created
+    /// </summary>
     public abstract void OnCreate();
 }

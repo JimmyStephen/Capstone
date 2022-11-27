@@ -22,7 +22,9 @@ public abstract class DeimosTemplate : CharacterTemplate
 
     public override void AbilityOne()
     {
+        //make sure you arent stuned & youre on the ground
         if (CheckForStun()) { return; }
+        if (!characterController.m_Grounded) return;
 
         AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
@@ -40,7 +42,9 @@ public abstract class DeimosTemplate : CharacterTemplate
 
     public override void AbilityTwo()
     {
+        //make sure you arent stuned & youre on the ground
         if (CheckForStun()) { return; }
+        if (!characterController.m_Grounded) return;
 
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)

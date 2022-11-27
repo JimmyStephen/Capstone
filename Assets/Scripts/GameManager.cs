@@ -6,73 +6,98 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
+    [Header("Playable Characters")]
     [SerializeField] GameObject[] playerCharacters;
     [SerializeField] GameObject[] aiCharacters;
-
-    [HideInInspector] public GameObject playerOne = null;
-    [HideInInspector] public GameObject playerTwo = null;
-    //private bool characterOnePlayer = true;
-    //private bool characterTwoPlayer = false;
-
+    [Header("Gameplay Scene")]
     [SerializeField] Transform playerOneSpawn;
     [SerializeField] Transform playerTwoSpawn;
-
-    //[SerializeField] TMPro.TMP_Text PlayerOneHealthDisplay;
-    //[SerializeField] TMPro.TMP_Text PlayerOneEnergyDisplay;
     [SerializeField] Scrollbar PlayerOneHealthSlider;
     [SerializeField] Scrollbar PlayerOneEnergySlider;
-
-    //[SerializeField] TMPro.TMP_Text PlayerTwoHealthDisplay;
-    //[SerializeField] TMPro.TMP_Text PlayerTwoEnergyDisplay;
     [SerializeField] Scrollbar PlayerTwoHealthSlider;
     [SerializeField] Scrollbar PlayerTwoEnergySlider;
-
+    [SerializeField] GameObject[] enableForGame;
+    [Header("End Game Scene")]
     [SerializeField] TMPro.TMP_Text WinnerNameDisplay;
     [SerializeField] TMPro.TMP_Text WinnerHealthDisplay;
 
-    //[SerializeField] GameObject[] enableForCursor;
-    [SerializeField] GameObject[] enableForGame;
+    //currently selected characters
+    [HideInInspector] public GameObject playerOne = null;
+    [HideInInspector] public GameObject playerTwo = null;
 
-    private CharacterTemplate currentWinner = null;
+    //Storage Object
     [HideInInspector] public GameObject currentSelectedInfo;
 
-    public string SelectCharacter(int characterSelect, int player)
-    {
-        if(player == 1)
-        {
-            playerOne = playerCharacters[characterSelect];
-            //characterOnePlayer = true;
-            return playerOne.GetComponent<CharacterTemplate>().characterName.ToString();
-        }
-        else
-        {
-            playerTwo = playerCharacters[characterSelect];
-            //characterTwoPlayer = true;
-            return playerTwo.GetComponent<CharacterTemplate>().characterName.ToString();
-        }
-    }
-    public string SelectAI(int characterSelect, int player)
+    //Who Won!!!
+    private CharacterTemplate currentWinner = null;
+
+    //-------
+    //Methods
+    int playerOneIndex = -1;
+    int playerTwoIndex = -1;
+    bool characterOnePlayer = true;
+    bool characterTwoPlayer = false;
+    public CharacterTemplate SelectCharacter(int characterSelect, int player)
     {
         if (player == 1)
         {
-            playerOne = aiCharacters[characterSelect];
-            //characterOnePlayer = false;
-            return playerOne.GetComponent<CharacterTemplate>().characterName.ToString();
+            while(characterSelect == -1)
+            {
+                int randSelect = Random.Range(0, playerCharacters.Length);
+                if (randSelect != playerOneIndex || !characterOnePlayer) characterSelect = randSelect;
+            }
+            playerOneIndex = characterSelect;
+            playerOne = playerCharacters[characterSelect];
+            characterOnePlayer = true;
+            return playerOne.GetComponent<CharacterTemplate>();
         }
         else
         {
+            while (characterSelect == -1)
+            {
+                int randSelect = Random.Range(0, playerCharacters.Length);
+                if (randSelect != playerTwoIndex || !characterTwoPlayer) characterSelect = randSelect;
+            }
+            playerTwoIndex = characterSelect;
+            playerTwo = playerCharacters[characterSelect];
+            characterTwoPlayer = true;
+            return playerTwo.GetComponent<CharacterTemplate>();
+        }
+    }
+    public CharacterTemplate SelectAI(int characterSelect, int player)
+    {
+        if (player == 1)
+        {
+            while (characterSelect == -1)
+            {
+                int randSelect = Random.Range(0, aiCharacters.Length);
+                if (randSelect != playerOneIndex || characterOnePlayer) characterSelect = randSelect;
+            }
+            playerOneIndex = characterSelect;
+            playerOne = aiCharacters[characterSelect];
+            characterOnePlayer = false;
+            return playerOne.GetComponent<CharacterTemplate>();
+        }
+        else
+        {
+            while (characterSelect == -1)
+            {
+                int randSelect = Random.Range(0, aiCharacters.Length);
+                if (randSelect != playerTwoIndex || characterTwoPlayer) characterSelect = randSelect;
+            }
+            playerTwoIndex = characterSelect;
             playerTwo = aiCharacters[characterSelect];
-            //characterTwoPlayer = false;
-            return playerTwo.GetComponent<CharacterTemplate>().characterName.ToString();
+            characterTwoPlayer = false;
+            return playerTwo.GetComponent<CharacterTemplate>();
         }
     }
 
+    float timer = 0;
     private void Update()
     {
         timer -= Time.deltaTime;
     }
 
-    float timer = 0;
     public void StartGame()
     {
         if (timer > 0) return;
@@ -123,6 +148,8 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
     }
 
+    //------
+    //Private Methods
     private void ResetFields()
     {
         //PlayerOneHealthDisplay.SetText("");
@@ -136,7 +163,6 @@ public class GameManager : Singleton<GameManager>
         PlayerTwoHealthSlider.size = 1;
         PlayerTwoEnergySlider.size = 1;
     }
-
     private void ToggleGame()
     {
         foreach (var v in enableForGame)
@@ -145,6 +171,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    //-----
+    //Enumerators
     [HideInInspector] public GameObject playerOneObject;
     [HideInInspector] public GameObject playerTwoObject;
     IEnumerator PlaceCharacters()

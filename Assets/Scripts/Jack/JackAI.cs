@@ -8,7 +8,6 @@ public class JackAI : JackTemplate
     [SerializeField] float mediumToLowPercent;
 
     private HealthStateTemplate currentState;
-
     private JackHighHealth HighHealth;
     private JackMediumHealth MedHealth;
     private JackLowHealth LowHealth;

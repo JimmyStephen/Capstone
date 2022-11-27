@@ -37,7 +37,7 @@ public class ArtemisPassive : State
         if ((distanceHeight > 3 && justJumped <= 0) || jumpTimer <= 0)
         {
             justJumped = 1;
-            jumpTimer = Random.Range(2, 4);
+            jumpTimer = Random.Range(3, 6);
             return true;
         }
         return false;
@@ -89,10 +89,13 @@ public class ArtemisPassive : State
                     break;
             }
         }
-        if(retVal != 4) CheckDirection();
-        attackTimer = 2;
+        if (attackTimer > 0) return 4;
+        if (retVal != 4)
+        {
+            CheckDirection();
+            attackTimer = 2;
+        }
         return retVal;
-        //throw new System.NotImplementedException();
     }
     public override bool UseBasicAbility()
     {

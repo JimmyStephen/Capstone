@@ -35,7 +35,7 @@ public class ArtemisDefensive : State
         if ((distanceHeight > 3 && justJumped <= 0) || jumpTimer <= 0)
         {
             justJumped = 1;
-            jumpTimer = Random.Range(2, 4);
+            jumpTimer = Random.Range(3, 6);
             return true;
         }
         return false;
@@ -45,11 +45,14 @@ public class ArtemisDefensive : State
     {
         float distance = Owner.transform.position.x - Owner.opponent.transform.position.x;
 
-        if (Mathf.Abs(distance) > 5)
+        if (Mathf.Abs(distance) > 5 && Mathf.Abs(distance) < 7)
         {
             return 0;
         }
-
+        else if (Mathf.Abs(distance) > 7)
+        {
+            return -Mathf.Sign(distance);
+        }
         return Mathf.Sign(distance);
     }
 
@@ -80,14 +83,13 @@ public class ArtemisDefensive : State
                     break;
             }
         }
-        if (retVal == 2 && attackTimer > 0)
+        if (attackTimer > 0) return 4;
+        if (retVal != 4)
         {
-            retVal = 4;
-            attackTimer = 1;
+            CheckDirection();
+            attackTimer = 2;
         }
-        if (retVal != 4) CheckDirection();
         return retVal;
-        //throw new System.NotImplementedException();
     }
 
     public override bool UseBasicAbility()

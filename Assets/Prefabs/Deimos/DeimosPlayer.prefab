@@ -2190,6 +2190,7 @@ MonoBehaviour:
     a aoe around you when you hit the ground
   UltimateAbilityDesc: Let out a roar that terrifies all who hear it, lowering armor,
     reducing speed, and forcing enemies to run away from you for a short duration
+  CharacterImage: {fileID: 21300000, guid: 6145598dc3334da49822f0a1af09c550, type: 3}
   animator: {fileID: 7731653233482127688}
   speed: 0.15
   jumpCD: 1
@@ -2205,7 +2206,7 @@ MonoBehaviour:
   abilityOneProjectilePosition: {fileID: 339131443865708317}
   abilityTwoProjectilePosition: {fileID: 301084898}
   abilityThreeProjectilePosition: {fileID: 1259103764}
-  basicAttackDuration: 1.2
+  basicAttackDuration: 1.4
   animationOneDuration: 1.2
   animationTwoDuration: 2.75
   animationThreeDuration: 2

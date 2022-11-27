@@ -904,21 +904,23 @@ MonoBehaviour:
   aiCharacters:
   - {fileID: 1549038174206234895, guid: 0a8fe15e358258246a81c14f3121f110, type: 3}
   - {fileID: 7028627818576183724, guid: d667339a2eb8c8b49a0cfcae2c8c981a, type: 3}
-  playerOne: {fileID: 0}
-  playerTwo: {fileID: 0}
+  - {fileID: 6573716135050914068, guid: 1a883124a6b9bba49be87cbb3b056d38, type: 3}
+  - {fileID: 6253516612496045669, guid: b13a44b6376024b43b247c9e0bd8675e, type: 3}
   playerOneSpawn: {fileID: 587652473}
   playerTwoSpawn: {fileID: 1029175033}
   PlayerOneHealthSlider: {fileID: 1765076037}
   PlayerOneEnergySlider: {fileID: 1765076035}
   PlayerTwoHealthSlider: {fileID: 1765076033}
   PlayerTwoEnergySlider: {fileID: 1765076031}
-  WinnerNameDisplay: {fileID: 1017418641}
-  WinnerHealthDisplay: {fileID: 437642399}
   enableForGame:
   - {fileID: 1765076036}
   - {fileID: 1765076034}
   - {fileID: 1765076032}
   - {fileID: 1765076030}
+  WinnerNameDisplay: {fileID: 1017418641}
+  WinnerHealthDisplay: {fileID: 437642399}
+  playerOne: {fileID: 0}
+  playerTwo: {fileID: 0}
   currentSelectedInfo: {fileID: 0}
   playerOneObject: {fileID: 0}
   playerTwoObject: {fileID: 0}
