@@ -18,7 +18,6 @@ public class ArtemisPinned : State
     public override void OnEnter()
     {
         closeWallPosition = GetCloserWall();
-        Debug.Log("Pinned State");
         //throw new System.NotImplementedException();
     }
     public override void OnExit()
@@ -120,7 +119,6 @@ public class ArtemisPinned : State
         float distanceLeft = Mathf.Abs(Owner.transform.position.x - Owner.leftWall.transform.position.x);
         float distanceRight = Mathf.Abs(Owner.transform.position.x - Owner.rightWall.transform.position.x);
         float retVal = (distanceLeft > distanceRight) ? Owner.rightWall.transform.position.x : Owner.leftWall.transform.position.x;
-        Debug.Log("Closer Wall: " + ((distanceLeft > distanceRight) ? Owner.rightWall.name : Owner.leftWall.name));
         return retVal;
     }
     public void CheckWallDirection()

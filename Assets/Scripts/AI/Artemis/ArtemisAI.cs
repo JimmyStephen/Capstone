@@ -24,7 +24,7 @@ public class ArtemisAI : CharacterTemplate
         ArtemisAggressive aAggressive   = new (this, typeof(ArtemisAggressive).Name);
         ArtemisDefensive aDefensive     = new (this, typeof(ArtemisDefensive).Name);
         ArtemisPassive aPassive         = new (this, typeof(ArtemisPassive).Name);
-        ArtemisPassive aPinned         = new (this, typeof(ArtemisPinned).Name);
+        ArtemisPinned aPinned         = new (this, typeof(ArtemisPinned).Name);
         //ArtemisScared aScared           = new (this, typeof(ArtemisScared).Name);
         //make health states
         aHighHealth = new ArtemisHighHealth(this, typeof(ArtemisHighHealth).Name, new State[] {aAggressive, aDefensive, aPassive, aPinned });
