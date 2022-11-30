@@ -15,16 +15,16 @@ public class DeimosPlayer : DeimosTemplate
     {
         CharacterRequiredUpdates();
 
-        if (CheckForStun())
+        if (animationTimer >= 0)
         {
-            characterController.Move(0, false, false);
+            //in animation don't move
+            //characterController.Move(0, false, false);
             animator.SetFloat("Speed", 0);
             return;
         }
 
-        if (animationTimer >= 0)
+        if (CheckForStun())
         {
-            //in animation don't move
             characterController.Move(0, false, false);
             animator.SetFloat("Speed", 0);
             return;

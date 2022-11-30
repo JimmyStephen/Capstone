@@ -93,6 +93,7 @@ public class DeimosHighHealth : HealthStateTemplate
         }
 
         jumpTimer -= Time.deltaTime;
+        sMachine.Update();
     }
 
     public override bool ShouldJump()

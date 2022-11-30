@@ -6,27 +6,59 @@ public class RasputinHighHealth : HealthStateTemplate
 {
     public RasputinHighHealth(CharacterTemplate owner, string name, State[] childStates) : base(owner, name, childStates) { }
 
+    readonly float closeRangeDistance = 4;
+    FloatRef currentDistance;
+
+    //Jump Time Stuff
+    float jumpTimer = 0;
+    readonly float minJumpTime = 4;
+    readonly float maxJumpTime = 8;
 
     public override void OnCreate()
     {
-        throw new System.NotImplementedException();
+        currentDistance = new FloatRef();
+
+        //States
+        //Aggressive - Closerange
+        //Passive - Midrange
+        //Defensive - None
+        
+        //to aggressive
+        sMachine.AddTransition(sMachine.StateFromName(typeof(RasputinPassive).Name), new Transition(new Condition[] { new FloatCondition(currentDistance, Condition.Predicate.LESS_EQUAL, closeRangeDistance) }), sMachine.StateFromName(typeof(RasputinAggressive).Name));
+        
+        //to defensive
+
+        //to passive
+        sMachine.AddTransition(sMachine.StateFromName(typeof(RasputinAggressive).Name), new Transition(new Condition[] { new FloatCondition(currentDistance, Condition.Predicate.GREATER, closeRangeDistance) }), sMachine.StateFromName(typeof(RasputinPassive).Name));
+
+        //set inital state (Passive)
+        sMachine.setState(sMachine.StateFromName(typeof(RasputinPassive).Name));
     }
     public override void OnEnter()
     {
-        throw new System.NotImplementedException();
+        //set variables
+        jumpTimer = 0;
+        currentDistance.value = Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x);
     }
     public override void OnExit()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
     public override void OnUpdate()
     {
-        throw new System.NotImplementedException();
+        currentDistance.value = Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x);
+        jumpTimer -= Time.deltaTime;
+        //throw new System.NotImplementedException();
     }
 
     public override bool ShouldJump()
     {
-        throw new System.NotImplementedException();
+        if (jumpTimer < 0)
+        {
+            jumpTimer = Random.Range(minJumpTime, maxJumpTime);
+            return true;
+        }
+        return false;
     }
     public override float StateMovement()
     {

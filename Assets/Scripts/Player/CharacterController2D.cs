@@ -70,9 +70,15 @@ public class CharacterController2D : MonoBehaviour
 		// And then smoothing it out and applying it to the character
 		m_Rigidbody.velocity = Vector3.SmoothDamp(m_Rigidbody.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 	}
-	public void ForcedMove(float strength)
+	/// <summary>
+	/// Forces the object to move
+	/// </summary>
+	/// <param name="xStrength">How to move across the X axis</param>
+	/// <param name="yStrength">How to move across the Y axis</param>
+	public void ForcedMove(float xStrength, float yStrength)
     {
-		m_Rigidbody.AddForce(new Vector2(strength, 0.0f));
+		//Debug.Log("Forced move");
+		m_Rigidbody.AddForce(new Vector2(xStrength, yStrength));
 	}
 	public void Knockup(float strength)
     {
@@ -153,8 +159,10 @@ public class CharacterController2D : MonoBehaviour
 	public IEnumerator ForcedMovement(float move, float duration)
     {
 		//Debug.Log("Forced Movement");
+//		m_Rigidbody.velocity = Vector3.zero;
 		while (duration > 0)
 		{
+			m_Rigidbody.velocity = Vector3.zero;
 			gameObject.GetComponentInChildren<Animator>().SetFloat("Speed", Mathf.Abs(move));
 			Move(move, false, false);
 			duration -= Time.deltaTime;

@@ -14,12 +14,11 @@ public abstract class DeimosTemplate : CharacterTemplate
             //Debug.Log("Ability Cannot Be Used");
             return;
         }
+        animationTimer = basicAttackDuration;
         currentBasicAttackCooldown = at.UseAbility(health, energy);
         animator.SetTrigger("Basic");
-        animationTimer = basicAttackDuration;
         StartCoroutine(SpawnAfterDelayParent(this.gameObject, BasicAttackPosition, BasicAttackObject, basicAttackDelay));
     }
-
     public override void AbilityOne()
     {
         //make sure you arent stuned & youre on the ground
@@ -32,14 +31,13 @@ public abstract class DeimosTemplate : CharacterTemplate
             //Debug.Log("Ability Cannot Be Used");
             return;
         }
+        animationTimer = animationOneDuration;
         currentAbilityOneCooldown = at.UseAbility(health, energy);
 
         animator.SetTrigger("Ability1");
-        animationTimer = animationOneDuration;
 
         StartCoroutine(SpawnAfterDelay(this.gameObject, abilityOneProjectilePosition, abilityOneProjectile, abilityOneDelay));
     }
-
     public override void AbilityTwo()
     {
         //make sure you arent stuned & youre on the ground
@@ -52,14 +50,11 @@ public abstract class DeimosTemplate : CharacterTemplate
             //Debug.Log("Ability Cannot Be Used");
             return;
         }
-        currentAbilityTwoCooldown = at.UseAbility(health, energy);
-
-        animator.SetTrigger("Ability2");
         animationTimer = animationTwoDuration;
-
+        currentAbilityTwoCooldown = at.UseAbility(health, energy);
+        animator.SetTrigger("Ability2");
         StartCoroutine(SpawnAfterDelayParent(this.gameObject, abilityTwoProjectilePosition, abilityTwoProjectile, abilityTwoDelay));
     }
-
     public override void AbilityThree()
     {
         if (CheckForStun()) { return; }
@@ -71,9 +66,9 @@ public abstract class DeimosTemplate : CharacterTemplate
             //Debug.Log("Not enough resources or it is on CD");
             return;
         }
+        animationTimer = animationThreeDuration;
         currentAbilityThreeCooldown = at.UseAbility(health, energy);
 
-        animationTimer = animationThreeDuration;
         animator.SetTrigger("Ability3");
         StartCoroutine(SpawnAfterDelay(this.gameObject, abilityThreeProjectilePosition, abilityThreeProjectile, abilityThreeDelay));
     }

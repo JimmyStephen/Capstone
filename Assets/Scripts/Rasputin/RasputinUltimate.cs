@@ -7,23 +7,16 @@ public class RasputinUltimate : AbilityTemplate
     [SerializeField] float firstReviveHealthValue = 50;
     [SerializeField] float secondReviveHealthValue = 25;
 
-    private bool firstTrigger = false;
-    private bool secondTrigger = false;
+    [SerializeField] AudioSource firstReviveAudio;
+
     private CharacterTemplate ct;
 
     public override void OnCreation()
     {
-        if (audioOnCreate != null)
-        {
-            //play
-            audioOnCreate.Play();
-        }
-
         ct = parent.GetComponent<CharacterTemplate>();
 
-        if(!firstTrigger && !secondTrigger)
+        if(ct.health.GetMax() == 75)
         {
-            firstTrigger = true;
             //become immune
             ct.isImmune = true;
             ct.effectImmune = true;
@@ -32,11 +25,15 @@ public class RasputinUltimate : AbilityTemplate
             //ct.health.ChangeCurrent(firstReviveHealthValue);
             ct.effects.Add(new(false, destroyAfterSeconds, 0, 7.5f, 0, 0, 1, 1, false));
             CleanseDebuff();
+            if (firstReviveAudio != null)
+            {
+                //play
+                firstReviveAudio.Play();
+            }
             Debug.Log("Max HP set to: " + firstReviveHealthValue);
         }
-        else
+        else if(ct.health.GetMax() == 50)
         {
-            secondTrigger = true;
             //become immune
             ct.isImmune = true;
             ct.effectImmune = true;
@@ -45,21 +42,23 @@ public class RasputinUltimate : AbilityTemplate
 //            ct.health.ChangeCurrent(secondReviveHealthValue);
             ct.effects.Add(new(false, destroyAfterSeconds, 0, 5f, 0, 0, 1, 1, false));
             CleanseDebuff();
+            //play audio
+            AudioManager.Instance.ChangeBackgroundAudio(3);
             Debug.Log("Max HP set to: " + secondReviveHealthValue);
+        }
+        else
+        {
+            Debug.Log("How???");
         }
     }
 
     public override void OnDestroy()
     {
-        if (audioOnDestroy != null)
-        {
-            //play
-            audioOnDestroy.Play();
-        }
-
         //remove immunity
         ct.isImmune = false;
         ct.effectImmune = false;
+
+        ct.health.ChangeCurrent(100);
 
         //reset animator
         ct.animator.SetBool("Ability3", false);
@@ -68,12 +67,6 @@ public class RasputinUltimate : AbilityTemplate
     public override void OnTriggerEnter(Collider other)
     {
         //no on trigger event
-    }
-
-    public bool ActivateUlt()
-    {
-        if (secondTrigger && firstTrigger) return false;
-        return true;
     }
 
     private void CleanseDebuff()

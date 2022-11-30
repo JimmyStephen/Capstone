@@ -16,6 +16,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Scrollbar PlayerOneEnergySlider;
     [SerializeField] Scrollbar PlayerTwoHealthSlider;
     [SerializeField] Scrollbar PlayerTwoEnergySlider;
+    [SerializeField] GameObject LeftWallLocation;
+    [SerializeField] GameObject RightWallLocation;
     [SerializeField] GameObject[] enableForGame;
     [Header("End Game Scene")]
     [SerializeField] TMPro.TMP_Text WinnerNameDisplay;
@@ -185,10 +187,12 @@ public class GameManager : Singleton<GameManager>
         var p2 = Instantiate(playerTwo, playerTwoSpawn.position, playerTwoSpawn.rotation);
 
         p1.GetComponent<CharacterTemplate>().SetDisplay(PlayerOneHealthSlider, PlayerOneEnergySlider);
+        p1.GetComponent<CharacterTemplate>().SetWalls(LeftWallLocation, RightWallLocation);
         p1.GetComponent<CharacterTemplate>().playerOne = true;
         p1.GetComponent<CharacterTemplate>().opponent = p2;
 
         p2.GetComponent<CharacterTemplate>().SetDisplay(PlayerTwoHealthSlider, PlayerTwoEnergySlider);
+        p2.GetComponent<CharacterTemplate>().SetWalls(LeftWallLocation, RightWallLocation);
         p2.GetComponent<CharacterTemplate>().playerOne = false;
         p2.GetComponent<CharacterTemplate>().opponent = p1;
 

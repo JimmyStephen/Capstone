@@ -56,8 +56,11 @@ public abstract class RasputinTemplate : CharacterTemplate
         StartCoroutine(SpawnAfterDelayParent(this.gameObject, abilityTwoProjectilePosition, abilityTwoProjectile, abilityTwoDelay));
     }
 
+    int timesDied = 1;
     public override void AbilityThree()
     {
+        Debug.Log(characterName + " Died " + timesDied++ + " times.");
+        health.ChangeCurrent(1);
         animationTimer = animationThreeDuration;
         animator.SetBool("Ability3", true);
         StartCoroutine(SpawnAfterDelayParent(this.gameObject, abilityThreeProjectilePosition, abilityThreeProjectile, abilityThreeDelay));
@@ -74,8 +77,6 @@ public abstract class RasputinTemplate : CharacterTemplate
         else
         {
             //if it isnt
-            //died
-            //Debug.Log("YOU DIED!!!!");
             //set the winner to your opponent
             ///
             GameManager.Instance.SetWinner(opponent.GetComponent<CharacterTemplate>());

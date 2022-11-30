@@ -24,11 +24,12 @@ public class ArtemisAI : CharacterTemplate
         ArtemisAggressive aAggressive   = new (this, typeof(ArtemisAggressive).Name);
         ArtemisDefensive aDefensive     = new (this, typeof(ArtemisDefensive).Name);
         ArtemisPassive aPassive         = new (this, typeof(ArtemisPassive).Name);
+        ArtemisPassive aPinned         = new (this, typeof(ArtemisPinned).Name);
         //ArtemisScared aScared           = new (this, typeof(ArtemisScared).Name);
         //make health states
-        aHighHealth = new ArtemisHighHealth(this, typeof(ArtemisHighHealth).Name, new State[] {aAggressive, aDefensive, aPassive});
-        aMedHealth = new ArtemisMediumHealth(this, typeof(ArtemisMediumHealth).Name, new State[] { aAggressive, aDefensive, aPassive });
-        aLowHealth = new ArtemisLowHealth(this, typeof(ArtemisLowHealth).Name, new State[] { aAggressive, aDefensive, aPassive });
+        aHighHealth = new ArtemisHighHealth(this, typeof(ArtemisHighHealth).Name, new State[] {aAggressive, aDefensive, aPassive, aPinned });
+        aMedHealth = new ArtemisMediumHealth(this, typeof(ArtemisMediumHealth).Name, new State[] { aAggressive, aDefensive, aPassive, aPinned });
+        aLowHealth = new ArtemisLowHealth(this, typeof(ArtemisLowHealth).Name, new State[] { aAggressive, aDefensive, aPassive, aPinned });
         //run the create methods
         aHighHealth.OnCreate();
         aMedHealth.OnCreate();

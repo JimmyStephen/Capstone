@@ -1967,8 +1967,8 @@ GameObject:
   - component: {fileID: 7010953163596122853}
   - component: {fileID: 7010953163596122854}
   - component: {fileID: 7010953163596122855}
-  - component: {fileID: 7010953163596122848}
   - component: {fileID: 7010953163596122849}
+  - component: {fileID: 7010953163596122848}
   - component: {fileID: 7010953163596122850}
   m_Layer: 0
   m_Name: DeimosPlayer
@@ -2123,22 +2123,6 @@ MonoBehaviour:
   MaxValue: 100
   StartValue: 50
   DefaultRegenerationRate: 5
---- !u!54 &7010953163596122848
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7010953163596122851}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 120
-  m_CollisionDetection: 0
 --- !u!114 &7010953163596122849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2169,6 +2153,22 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!54 &7010953163596122848
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7010953163596122851}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
 --- !u!114 &7010953163596122850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2210,7 +2210,7 @@ MonoBehaviour:
   animationOneDuration: 1.2
   animationTwoDuration: 2.75
   animationThreeDuration: 2
-  basicAttackDelay: 0.1
+  basicAttackDelay: 0.5
   abilityOneDelay: 0.4
   abilityTwoDelay: 0.5
   abilityThreeDelay: 0

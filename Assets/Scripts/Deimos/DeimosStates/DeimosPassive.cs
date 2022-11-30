@@ -98,28 +98,31 @@ public class DeimosPassive : State
     {
         //off cd
         //if the enemy is close
-        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 3);
+        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 2);
     }
     public override bool UseAbilityOne()
     {
         //make sure the enemy isnt above you & that your on the ground
-        if(Mathf.Abs(Owner.transform.position.y - Owner.opponent.transform.position.y) > 3 || (!Owner.characterController.m_Grounded))
+        if (Mathf.Abs(Owner.transform.position.y - Owner.opponent.transform.position.y) > 3 || (!Owner.characterController.m_Grounded))
         {
             return false;
         }
         //make sure the enemy is close & the ability is off cd
-        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 3);
+        bool ret = (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 2);
+        return ret;
     }
     public override bool UseAbilityTwo()
     {
-        //off cd
-        //if the enemy is far away
         //on the ground
         if (!Owner.characterController.m_Grounded) return false;
-        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) > 3);
+        //off cd
+        //if the enemy is far away
+        bool ret = (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) > 3);
+        return ret;
     }
     public override bool UseAbilityThree()
     {
-        return (Owner.currentAbilityThreeCooldown <= 0);
+        bool ret = (Owner.currentAbilityThreeCooldown <= 0);
+        return ret;
     }
 }

@@ -2699,7 +2699,7 @@ MonoBehaviour:
   health: {fileID: 7329565792578424130}
   energy: {fileID: 7329565792578424133}
   resistanceFlat: 0
-  resistancePercent: 1
+  resistancePercent: 10
   BasicAttackObject: {fileID: 5935929997866049893, guid: dcc06b4f671ad1148abe1df832e7ec43, type: 3}
   abilityOneProjectile: {fileID: 5705388200136791878, guid: f3d24bfe080df884390febfd9c616ee0, type: 3}
   abilityTwoProjectile: {fileID: 6804793410035248528, guid: 90f3a9b6f38380a42b4158cb144e9aee, type: 3}
@@ -2711,7 +2711,7 @@ MonoBehaviour:
   basicAttackDuration: 1.5
   animationOneDuration: 1.5
   animationTwoDuration: 3.5
-  animationThreeDuration: 4
+  animationThreeDuration: 5
   basicAttackDelay: 0
   abilityOneDelay: 1.75
   abilityTwoDelay: 0
@@ -2730,6 +2730,8 @@ MonoBehaviour:
   HealthSlider: {fileID: 0}
   EnergySlider: {fileID: 0}
   opponent: {fileID: 0}
+  leftWall: {fileID: 0}
+  rightWall: {fileID: 0}
 --- !u!1 &7378483569804775131
 GameObject:
   m_ObjectHideFlags: 0

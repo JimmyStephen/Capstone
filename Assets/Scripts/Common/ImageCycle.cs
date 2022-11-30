@@ -11,7 +11,8 @@ public class ImageCycle : MonoBehaviour
     //list of images (array[sprite])
     [SerializeField, Tooltip("The sprites that will be cycled through")] Sprite[] sprites;
     //time between changes (float)
-    [SerializeField, Tooltip("Time in seconds")] float timeBetweenChanges = 3;
+    [SerializeField, Tooltip("Time in seconds")] float timeBetweenChangesMin = 2.5f;
+    [SerializeField, Tooltip("Time in seconds")] float timeBetweenChangesMax = 3.5f;
 
     //private variables
     //current timer (float)
@@ -22,7 +23,7 @@ public class ImageCycle : MonoBehaviour
     void Start()
     {
         //Set the timer
-        currentTime = timeBetweenChanges;
+        currentTime = Random.Range(timeBetweenChangesMin, timeBetweenChangesMax);
         //choose the inital image   
         currentIndex = Random.Range(0, sprites.Length);
         //set the inital image
@@ -40,7 +41,7 @@ public class ImageCycle : MonoBehaviour
             //set the image
             imageBox.sprite = sprites[currentIndex];
             //reset the timer
-            currentTime = timeBetweenChanges;
+            currentTime = Random.Range(timeBetweenChangesMin, timeBetweenChangesMax);
         }
     }
 }

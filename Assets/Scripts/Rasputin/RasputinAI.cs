@@ -61,7 +61,7 @@ public class RasputinAI : RasputinTemplate
             //check for stun
             if (CheckForStun())
             {
-                AbilityThree();
+                //AbilityThree();
                 characterController.Move(0, false, false);
                 animator.SetFloat("Speed", 0);
                 return;
@@ -187,7 +187,8 @@ public class RasputinAI : RasputinTemplate
                 break;
             case 3:
                 //              Debug.Log("Use ability three");
-                AbilityThree();
+                Debug.Log("Somehow called ult, Doesnt exist");
+//                AbilityThree();
                 break;
             default:
                 //                Debug.Log("No Ability Used");

@@ -66,6 +66,9 @@ public abstract class CharacterTemplate : MonoBehaviour
 
     //used by AI to find the opponent
     [HideInInspector] public GameObject opponent;
+    //used by the AI to find the wall
+    [HideInInspector] public GameObject leftWall;
+    [HideInInspector] public GameObject rightWall;
 
 
     public IEnumerator SpawnAfterDelay(GameObject owner, GameObject location, GameObject spawnObject, float delay)
@@ -98,20 +101,22 @@ public abstract class CharacterTemplate : MonoBehaviour
         foreach(Effect e in effects)
         {
             //Debug.Log("Health: " + health + " Energy: " + energy);
-            if(e == null)
+            if (e == null)
             {
                 eRemove.Add(e);
-            }
-
-            e.UpdateTrigger(health, energy);
-            if (e.GetRemainingDuration() > 0)
-            {
-                currentDamageMultiplier = (currentDamageMultiplier + e.GetDamageMultipler() > 0) ? currentDamageMultiplier += e.GetDamageMultipler() : .001f;
-                currentSpeedMultiplier = (currentSpeedMultiplier + e.GetSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.GetSpeedMultiplier() : .001f;
             }
             else
             {
-                eRemove.Add(e);
+                e.UpdateTrigger(health, energy);
+                if (e.GetRemainingDuration() > 0)
+                {
+                    currentDamageMultiplier = (currentDamageMultiplier + e.GetDamageMultipler() > 0) ? currentDamageMultiplier += e.GetDamageMultipler() : .001f;
+                    currentSpeedMultiplier = (currentSpeedMultiplier + e.GetSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.GetSpeedMultiplier() : .001f;
+                }
+                else
+                {
+                    eRemove.Add(e);
+                }
             }
         }
 
@@ -147,6 +152,11 @@ public abstract class CharacterTemplate : MonoBehaviour
     {
         HealthSlider = healthSlider;
         EnergySlider = energySlider;
+    }
+    public void SetWalls(GameObject setLeftWall, GameObject setRightWall)
+    {
+        leftWall = setLeftWall;
+        rightWall = setRightWall;
     }
 
     public string GetCharacterName()

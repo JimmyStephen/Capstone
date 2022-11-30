@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class DeimosAbilityTwo : AbilityTemplate
 {
-
     [SerializeField] GameObject createOnDestroy;
-
+    [SerializeField] float jumpForce = 300;
+    [SerializeField] float dashForce = 300;
     public override void OnCreation()
     {
-        float move = (parent.GetComponent<CharacterTemplate>().characterController.GetDirection() ? 1.5f : -1.5f);
-        parent.GetComponent<CharacterTemplate>().StartCoroutine(parent.GetComponent<CharacterTemplate>().characterController.ForcedMovement(move, .5f));
-        parent.GetComponent<CharacterTemplate>().characterController.Knockup(300);
+        float move = (parent.GetComponent<CharacterTemplate>().characterController.GetDirection() ? dashForce : -dashForce);
+        parent.GetComponent<CharacterTemplate>().characterController.ForcedMove(move, jumpForce);
         if (audioOnCreate != null)
         {
             //play

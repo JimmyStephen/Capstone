@@ -1850,10 +1850,10 @@ MonoBehaviour:
   animator: {fileID: 8773240003722524431}
   speed: 0.25
   jumpCD: 1
-  health: {fileID: 0}
+  health: {fileID: 6253516612496044920}
   energy: {fileID: 6253516612496044927}
   resistanceFlat: 0
-  resistancePercent: 1
+  resistancePercent: 10
   BasicAttackObject: {fileID: 5935929997866049893, guid: dcc06b4f671ad1148abe1df832e7ec43, type: 3}
   abilityOneProjectile: {fileID: 5705388200136791878, guid: f3d24bfe080df884390febfd9c616ee0, type: 3}
   abilityTwoProjectile: {fileID: 6804793410035248528, guid: 90f3a9b6f38380a42b4158cb144e9aee, type: 3}
@@ -1862,12 +1862,12 @@ MonoBehaviour:
   abilityOneProjectilePosition: {fileID: 539598886758070105}
   abilityTwoProjectilePosition: {fileID: 539598886758070105}
   abilityThreeProjectilePosition: {fileID: 1731887514413005466}
-  basicAttackDuration: 0
-  animationOneDuration: 0
-  animationTwoDuration: 0
-  animationThreeDuration: 0
+  basicAttackDuration: 1.5
+  animationOneDuration: 1.5
+  animationTwoDuration: 3.5
+  animationThreeDuration: 5
   basicAttackDelay: 0
-  abilityOneDelay: 0
+  abilityOneDelay: 1.75
   abilityTwoDelay: 0
   abilityThreeDelay: 0
   characterController: {fileID: 0}
@@ -1884,8 +1884,10 @@ MonoBehaviour:
   HealthSlider: {fileID: 0}
   EnergySlider: {fileID: 0}
   opponent: {fileID: 0}
-  highToMediumPercent: 0
-  mediumToLowPercent: 0
+  leftWall: {fileID: 0}
+  rightWall: {fileID: 0}
+  highToMediumPercent: 60
+  mediumToLowPercent: 30
 --- !u!1 &6253516612496045670
 GameObject:
   m_ObjectHideFlags: 1

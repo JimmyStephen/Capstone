@@ -17,7 +17,7 @@ public class DeimosAI : DeimosTemplate
     float attackTimer = 0;
 
     void Start()
-    {
+    {        
         characterController = GetComponent<CharacterController2D>();
 
         //make combat states
@@ -26,8 +26,8 @@ public class DeimosAI : DeimosTemplate
         DeimosPassive Passive = new(this,       typeof(DeimosPassive).Name);
         //make health states
         HighHealth = new DeimosHighHealth(this,     typeof(DeimosHighHealth).Name, new State[] { Aggressive, Passive });
-        MedHealth = new  DeimosMediumHealth(this,   typeof(DeimosMediumHealth).Name, new State[] { Aggressive, Passive });
-        LowHealth = new  DeimosLowHealth(this,      typeof(DeimosLowHealth).Name, new State[] { Aggressive, Passive });
+        MedHealth  = new DeimosMediumHealth(this,   typeof(DeimosMediumHealth).Name, new State[] { Aggressive, Passive });
+        LowHealth  = new DeimosLowHealth(this,      typeof(DeimosLowHealth).Name, new State[] { Aggressive, Passive });
         //run the create methods
         HighHealth.OnCreate();
         MedHealth.OnCreate();
@@ -118,6 +118,8 @@ public class DeimosAI : DeimosTemplate
     private void AIMovement()
     {
         if (CheckForStun()) return;
+        if (animationTimer > 0) return;
+
         float movement = currentState.StateMovement() * speed * currentSpeedMultiplier;
         bool shouldJump = false;
         if (characterController.m_Grounded)
@@ -134,6 +136,7 @@ public class DeimosAI : DeimosTemplate
     /// </summary>
     private void StateUpdates()
     {
+        //Debug.Log("Current State: " + currentState.Name);
         healthPercent = (health.GetCurrent() / health.GetMax()) * 100;
         //to high health
         if (healthPercent > highToMediumPercent && currentState != HighHealth)
@@ -172,18 +175,22 @@ public class DeimosAI : DeimosTemplate
         {
             case 0:
                 //        Debug.Log("Use basic ability");
+                //animationTimer = .5f;
                 BasicAttack();
                 break;
             case 1:
                 //          Debug.Log("Use ability 1");
+                //animationTimer = .5f;
                 AbilityOne();
                 break;
             case 2:
                 //            Debug.Log("Use ability 2");
+                //animationTimer = .5f;
                 AbilityTwo();
                 break;
             case 3:
                 //              Debug.Log("Use ability three");
+                //animationTimer = .5f;
                 AbilityThree();
                 break;
             default:

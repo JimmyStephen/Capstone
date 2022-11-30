@@ -52,6 +52,8 @@ public class DeimosAggressive : State
         //throw new System.NotImplementedException();
         //run at the opponent
         float distance = Owner.transform.position.x - Owner.opponent.transform.position.x;
+        //maybe?
+        //if (distance < 1) return Mathf.Sign(distance);
         return -Mathf.Sign(distance);
     }
 
@@ -60,6 +62,8 @@ public class DeimosAggressive : State
     int setNext = -1;
     public override int UseAbility()
     {
+        //Debug.Log("Distance To Target: " + Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x));
+
         if(setNext != -1)
         {
             switch (setNext)
@@ -85,7 +89,7 @@ public class DeimosAggressive : State
                     timer = 0;
                     if (UseAbilityTwo())
                     {
-                        return 1;
+                        return 2;
                     }
                     break;
             }
@@ -128,7 +132,7 @@ public class DeimosAggressive : State
     {
         //off cd
         //if the enemy is close
-        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 3);
+        return (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 2);
     }
     public override bool UseAbilityOne()
     {
@@ -138,9 +142,9 @@ public class DeimosAggressive : State
             return false;
         }
         //make sure the enemy is close & the ability is off cd
-        bool ret = (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 3);
+        bool ret = (Owner.currentBasicAttackCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 2);
         //if you stomp, set the next ability to be punch
-        if (ret) setNext = 1;
+        if (ret) setNext = 0;
         return ret;
     }
     public override bool UseAbilityTwo()
