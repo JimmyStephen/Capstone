@@ -110,8 +110,8 @@ public abstract class CharacterTemplate : MonoBehaviour
                 e.UpdateTrigger(health, energy);
                 if (e.GetRemainingDuration() > 0)
                 {
-                    currentDamageMultiplier = (currentDamageMultiplier + e.GetDamageMultipler() > 0) ? currentDamageMultiplier += e.GetDamageMultipler() : .001f;
-                    currentSpeedMultiplier = (currentSpeedMultiplier + e.GetSpeedMultiplier() > 0) ? currentSpeedMultiplier += e.GetSpeedMultiplier() : .001f;
+                    currentDamageMultiplier *= e.GetDamageMultipler();
+                    currentSpeedMultiplier *= e.GetSpeedMultiplier();
                 }
                 else
                 {
@@ -178,6 +178,11 @@ public abstract class CharacterTemplate : MonoBehaviour
     public string GetUltimateAbilityDesc()
     {
         return UltimateAbilityDesc;
+    }
+
+    public float GetDamagePercentReduction()
+    {
+        return (100 - resistancePercent) / 100;
     }
 
     private void OnGUI()

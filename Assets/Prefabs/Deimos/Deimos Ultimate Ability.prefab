@@ -142,7 +142,7 @@ MonoBehaviour:
   parentTag: 
   parent: {fileID: 0}
   maxSize: 5
-  scaleSpeed: 2.5
+  scaleSpeed: 3
 --- !u!82 &2640642798740899100
 AudioSource:
   m_ObjectHideFlags: 0

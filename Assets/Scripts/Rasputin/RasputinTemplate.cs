@@ -11,7 +11,6 @@ public abstract class RasputinTemplate : CharacterTemplate
         AbilityTemplate at = BasicAttackObject.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentBasicAttackCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentBasicAttackCooldown = at.UseAbility(health, energy);
@@ -27,7 +26,6 @@ public abstract class RasputinTemplate : CharacterTemplate
         AbilityTemplate at = abilityOneProjectile.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentAbilityOneCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentAbilityOneCooldown = at.UseAbility(health, energy);
@@ -45,7 +43,6 @@ public abstract class RasputinTemplate : CharacterTemplate
         AbilityTemplate at = abilityTwoProjectile.GetComponent<AbilityTemplate>();
         if (!at.CanUse(health, energy, currentAbilityTwoCooldown) || animationTimer >= 0)
         {
-            Debug.Log("Ability Cannot Be Used");
             return;
         }
         currentAbilityTwoCooldown = at.UseAbility(health, energy);
@@ -56,10 +53,9 @@ public abstract class RasputinTemplate : CharacterTemplate
         StartCoroutine(SpawnAfterDelayParent(this.gameObject, abilityTwoProjectilePosition, abilityTwoProjectile, abilityTwoDelay));
     }
 
-    int timesDied = 1;
+//    int timesDied = 1;
     public override void AbilityThree()
     {
-        Debug.Log(characterName + " Died " + timesDied++ + " times.");
         health.ChangeCurrent(1);
         animationTimer = animationThreeDuration;
         animator.SetBool("Ability3", true);

@@ -23,14 +23,13 @@ public class RasputinUltimate : AbilityTemplate
             //set max hp & current
             ct.health.ChangeMax(firstReviveHealthValue);
             //ct.health.ChangeCurrent(firstReviveHealthValue);
-            ct.effects.Add(new(false, destroyAfterSeconds, 0, 7.5f, 0, 0, 1, 1, false));
+            ct.effects.Add(new(false, destroyAfterSeconds, 0, (firstReviveHealthValue / destroyAfterSeconds), 0, 0, 1, 1, false));
             CleanseDebuff();
             if (firstReviveAudio != null)
             {
                 //play
                 firstReviveAudio.Play();
             }
-            Debug.Log("Max HP set to: " + firstReviveHealthValue);
         }
         else if(ct.health.GetMax() == 50)
         {
@@ -40,11 +39,11 @@ public class RasputinUltimate : AbilityTemplate
             //set max hp & current
             ct.health.ChangeMax(secondReviveHealthValue);
 //            ct.health.ChangeCurrent(secondReviveHealthValue);
-            ct.effects.Add(new(false, destroyAfterSeconds, 0, 5f, 0, 0, 1, 1, false));
+            ct.effects.Add(new(false, destroyAfterSeconds, 0, (secondReviveHealthValue / destroyAfterSeconds), 0, 0, 1, 1, false));
+            ct.effects.Add(new(false, 1000, 0, 0, 0, 0, 2, 1, false));
             CleanseDebuff();
             //play audio
             AudioManager.Instance.ChangeBackgroundAudio(3);
-            Debug.Log("Max HP set to: " + secondReviveHealthValue);
         }
         else
         {

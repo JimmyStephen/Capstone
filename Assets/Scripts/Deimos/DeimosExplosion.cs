@@ -42,8 +42,10 @@ public class DeimosExplosion : MonoBehaviour
         {
             if (!player.isImmune)
             {
+                //damage health
                 float damageDealt = damage -= player.resistanceFlat;
-                float tempPercent = player.resistanceFlat != 0 ? 100 / player.resistanceFlat : 1;
+                //get the percent damage
+                float tempPercent = player.GetDamagePercentReduction();
                 damageDealt *= tempPercent;
                 if (damageDealt < 0) damageDealt = 0;
                 player.health.Damage(damageDealt);

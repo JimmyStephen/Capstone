@@ -49,9 +49,10 @@ public class ArtemisUltimate : AbilityTemplate
             //damage health
             if (!ct.isImmune)
             {
+                //damage health
                 float damageDealt = HealthDamage -= ct.resistanceFlat;
                 //get the percent damage
-                float tempPercent = ct.resistanceFlat != 0 ? 100 / ct.resistanceFlat : 1;
+                float tempPercent = ct.GetDamagePercentReduction();
                 damageDealt *= tempPercent;
                 if (damageDealt < 0) damageDealt = 0;
                 ct.health.Damage(damageDealt * damageMultiplier);
