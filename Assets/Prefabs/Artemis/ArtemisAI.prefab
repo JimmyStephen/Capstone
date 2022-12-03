@@ -1008,8 +1008,10 @@ MonoBehaviour:
   HealthSlider: {fileID: 0}
   EnergySlider: {fileID: 0}
   opponent: {fileID: 0}
+  leftWall: {fileID: 0}
+  rightWall: {fileID: 0}
   highToMediumPercent: 90
-  mediumToLowPercent: 30
+  mediumToLowPercent: 40
 --- !u!1 &1676230491284902544
 GameObject:
   m_ObjectHideFlags: 0

@@ -95,9 +95,19 @@ public class GameManager : Singleton<GameManager>
     }
 
     float timer = 0;
+    bool gameScene = false;
     private void Update()
     {
         timer -= Time.deltaTime;
+        if (gameScene)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneLoader.Instance.LoadScene(1);
+                ResetFields();
+                ToggleGame();
+            }
+        }
     }
 
     public void StartGame()
@@ -118,9 +128,11 @@ public class GameManager : Singleton<GameManager>
 
         SceneLoader.Instance.LoadScene(3);
         StartCoroutine(PlaceCharacters());
+        gameScene = true;
     }
     public void EndGame()
     {
+        gameScene = false;
         ToggleGame();
         ResetFields();
         SceneLoader.Instance.LoadScene(5);

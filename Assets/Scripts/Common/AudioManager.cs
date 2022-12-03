@@ -11,6 +11,7 @@ public class AudioManager : Singleton<AudioManager>
     public void ChangeBackgroundAudio(int newAudioIndex)
     {
         if (newAudioIndex > backgroundAudio.Length) return;
+        if (newAudioIndex == currentBackgroundIndex) return;
         if (currentBackgroundIndex == -1)
         {
             backgroundAudio[newAudioIndex].Play();

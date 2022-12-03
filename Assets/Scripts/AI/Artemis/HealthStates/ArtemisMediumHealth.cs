@@ -146,7 +146,7 @@ public class ArtemisMediumHealth : HealthStateTemplate
         float distanceToLeftWall = Mathf.Abs(Owner.transform.position.x - Owner.leftWall.transform.position.x);
         float distanceToRightWall = Mathf.Abs(Owner.transform.position.x - Owner.rightWall.transform.position.x);
         retVal = (distanceToLeftWall > distanceToRightWall) ? distanceToRightWall : distanceToLeftWall;
-        Debug.Log("Distance to closer wall: " + retVal + " | Left: " + distanceToLeftWall + " Right: " + distanceToRightWall);
+//        Debug.Log("Distance to closer wall: " + retVal + " | Left: " + distanceToLeftWall + " Right: " + distanceToRightWall);
         return retVal;
     }
 }

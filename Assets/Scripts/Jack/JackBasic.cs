@@ -19,12 +19,6 @@ public class JackBasic : AbilityTemplate
 
     public override void OnDestroy()
     {
-        //        throw new System.NotImplementedException();
-        if (audioOnDestroy != null)
-        {
-            //play
-            audioOnDestroy.Play();
-        }
     }
 
     public override void OnTriggerEnter(Collider other)

@@ -2188,8 +2188,8 @@ MonoBehaviour:
     dealing damage, stunning, and knocking opponent(s) hit into the air
   AbilityTwoDesc: Jump in the air and slam down onto the ground dealing damage in
     a aoe around you when you hit the ground
-  UltimateAbilityDesc: Let out a roar that terrifies all who hear it, lowering armor,
-    reducing speed, and forcing enemies to run away from you for a short duration
+  UltimateAbilityDesc: 'Let out a roar that terrifies all who hear it, lowering damage,
+    and reducing speed for a short duration '
   CharacterImage: {fileID: 21300000, guid: 6145598dc3334da49822f0a1af09c550, type: 3}
   animator: {fileID: 7731653233482127688}
   speed: 0.15
@@ -2228,6 +2228,8 @@ MonoBehaviour:
   HealthSlider: {fileID: 0}
   EnergySlider: {fileID: 0}
   opponent: {fileID: 0}
+  leftWall: {fileID: 0}
+  rightWall: {fileID: 0}
 --- !u!1 &7010953163999537928
 GameObject:
   m_ObjectHideFlags: 0

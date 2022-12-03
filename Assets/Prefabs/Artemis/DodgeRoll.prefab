@@ -53,10 +53,11 @@ MonoBehaviour:
   Speed: 0
   destroyAfterDuration: 1
   destroyAfterSeconds: 1
+  audioOnCreate: {fileID: 0}
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}
-  rollDistance: 25
+  rollDistance: 35
 --- !u!54 &2640547390621056007
 Rigidbody:
   m_ObjectHideFlags: 0

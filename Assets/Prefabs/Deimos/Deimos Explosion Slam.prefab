@@ -19504,7 +19504,7 @@ MonoBehaviour:
   explosionDuration: 1.5
   knockupForce: 0
   stunDuration: 1
-  damage: 15
+  damage: 10
   audioOnCreate: {fileID: 8871130411796307915}
   owner: {fileID: 0}
 --- !u!82 &8871130411796307915

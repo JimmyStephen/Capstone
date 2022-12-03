@@ -23,7 +23,6 @@ abstract public class AbilityTemplate : MonoBehaviour
 
     [Header("SFX")]
     public AudioSource audioOnCreate;
-    public AudioSource audioOnDestroy;
 
     [HideInInspector] public float damageMultiplier = 1;
     [HideInInspector] public string parentTag;

@@ -15,11 +15,6 @@ public class DeimosBasic : AbilityTemplate
 
     public override void OnDestroy()
     {
-        if (audioOnDestroy != null)
-        {
-            //play
-            audioOnDestroy.Play();
-        }
     }
 
     public override void OnTriggerEnter(Collider other)

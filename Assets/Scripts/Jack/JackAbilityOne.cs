@@ -21,11 +21,6 @@ public class JackAbilityOne : AbilityTemplate
     {
         var temp = Instantiate(createOnDestroy, this.transform.position, this.transform.rotation);
         temp.GetComponent<JackTrap>().owner = parent;
-        if (audioOnDestroy != null)
-        {
-            //play
-            audioOnDestroy.Play();
-        }
     }
 
     public override void OnTriggerEnter(Collider other)

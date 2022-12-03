@@ -18,11 +18,6 @@ public class DeimosUltimateAbility : AbilityTemplate
 
     public override void OnDestroy()
     {
-        if (audioOnDestroy != null)
-        {
-            //play
-            audioOnDestroy.Play();
-        }
     }
 
     bool hasTriggered = false;
@@ -43,16 +38,11 @@ public class DeimosUltimateAbility : AbilityTemplate
             if (!player.CCImmune)
             {
                 //make debuff
-                //Effect apply = new(true, 5, 0, 0, 0, 0, 0, .25f, false);
+                Effect apply =  new(true, 4, 0, 0, 0, 0, .75f, .75f, false);
                 Effect apply2 = new(true, 2, 0, 0, 0, 0, 0, 1, true);
                 //apply debuff
+                player.effects.Add(apply);
                 player.effects.Add(apply2);
-                //player.effects.Add(apply);
-                //get direction & speed
-                float speed = player.speed;
-                speed *= player.characterController.GetDirection() ? 1 : -1;
-                //force movement away
-                player.StartCoroutine(player.characterController.ForcedMovement(speed,2));
             }
             //set the trigger so that the object knows it has triggered
             hasTriggered = true;

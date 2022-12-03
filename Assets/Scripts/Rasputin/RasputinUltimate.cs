@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class RasputinUltimate : AbilityTemplate
 {
+    /// <summary>
+    /// TO DO
+    ///     Add a sphere that appears around him during the revive to push opponents away (4-5units?)
+    ///     maybe the sphere expands while he is reviving? (deimos ultimate)
+    /// </summary>
     [SerializeField] float firstReviveHealthValue = 50;
     [SerializeField] float secondReviveHealthValue = 25;
 

@@ -72,7 +72,7 @@ public class JackLowHealth : HealthStateTemplate
         if (jumpTimer < 0)
         {
             jumpTimer = Random.Range(minJumpTime, maxJumpTime);
-            Debug.Log("Jump Time! Is Grounded: " + Owner.characterController.m_Grounded);
+            //Debug.Log("Jump Time! Is Grounded: " + Owner.characterController.m_Grounded);
             return true;
         }
         return false;

@@ -1887,8 +1887,8 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: ca1b5850334a6c0488b9e60e453dbea5, type: 3}
   - {fileID: 21300000, guid: 6145598dc3334da49822f0a1af09c550, type: 3}
-  - {fileID: 21300000, guid: 6b170357207577c41b00545bd4e03445, type: 3}
   - {fileID: 21300000, guid: 20b8bcac7cc35974e9ee72758f863efe, type: 3}
+  - {fileID: 21300000, guid: 6b170357207577c41b00545bd4e03445, type: 3}
   timeBetweenChangesMin: 2.5
   timeBetweenChangesMax: 3.5
 --- !u!1 &2041371600

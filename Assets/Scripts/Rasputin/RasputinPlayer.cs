@@ -48,6 +48,9 @@ public class RasputinPlayer : RasputinTemplate
 
     public override void CharacterRequiredUpdates()
     {
+        //Figure out a way so that drinking doesn't make him immortal
+            //maybe checking hp before triggering effects?
+
         //reduce CD
         currentBasicAttackCooldown -= Time.deltaTime;
         currentAbilityOneCooldown -= Time.deltaTime;
@@ -56,6 +59,11 @@ public class RasputinPlayer : RasputinTemplate
 
         TriggerEffects();
 
+        if (health.GetCurrent() <= 0)
+        {
+            OnDeath();
+        }
+
         if (HealthSlider != null)
         {
             HealthSlider.size = health.GetCurrent() / health.GetMax();
@@ -63,11 +71,6 @@ public class RasputinPlayer : RasputinTemplate
         if (EnergySlider != null)
         {
             EnergySlider.size = energy.GetCurrent() / energy.GetMax();
-        }
-
-        if (health.GetCurrent() <= 0)
-        {
-            OnDeath();
         }
     }
 }

@@ -23,12 +23,6 @@ public class ArtemisUltimate : AbilityTemplate
     {
         var temp = Instantiate(onHitEffect, this.transform.position, this.transform.rotation);
         temp.GetComponent<ArtemisLightning>().owner = parent;
-        //
-        if (audioOnDestroy != null)
-        {
-            //play
-            audioOnDestroy.Play();
-        }
     }
 
     public override void OnTriggerEnter(Collider other)

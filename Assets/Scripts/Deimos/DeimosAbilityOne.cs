@@ -21,13 +21,6 @@ public class DeimosAbilityOne : AbilityTemplate
         Vector3 position = new(transform.position.x, 0, 0);
         var temp = Instantiate(createOnDestroy, position, this.transform.rotation);
         temp.GetComponent<DeimosExplosion>().owner = parent;
-
-        if (audioOnDestroy != null)
-        {
-            //play
-            audioOnDestroy.Play();
-        }
-
     }
 
     public override void OnTriggerEnter(Collider other)

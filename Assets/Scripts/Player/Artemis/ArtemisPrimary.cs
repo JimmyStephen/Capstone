@@ -35,13 +35,6 @@ public class ArtemisPrimary : AbilityTemplate
     {
         //remove immunity
         parent.GetComponent<CharacterTemplate>().isImmune = false;
-        //Debug.Log("Immune End");
-        //
-        if (audioOnDestroy != null)
-        {
-            //play
-            audioOnDestroy.Play();
-        }
     }
 
     public override void OnTriggerEnter(Collider other)

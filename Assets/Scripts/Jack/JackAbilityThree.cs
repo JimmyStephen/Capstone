@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class JackAbilityThree : AbilityTemplate
 {
+    //before use***
+        //make sure the enemy is within a certain range (4 units?)
+            //if you arent within the range, the ability is canceled since they are out of range
+            //if they are within range, cast the ability and continue to here
+
+    //Get location of opponent
+        //Get direction it is facing
+            //check behind it to see if there is a wall
+                //if no wall, teleport there
+                //if wall, teleport in front of them
+    //after teleport immediatly make an attack dealing a large amount of damage
+
     public override void OnCreation()
     {
         //throw new System.NotImplementedException();
@@ -32,12 +44,6 @@ public class JackAbilityThree : AbilityTemplate
 
     public override void OnDestroy()
     {
-        //        throw new System.NotImplementedException();
-        if (audioOnDestroy != null)
-        {
-            //play
-            audioOnDestroy.Play();
-        }
     }
 
     public override void OnTriggerEnter(Collider other)
