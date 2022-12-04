@@ -38,7 +38,7 @@ public class ArtemisBasic : AbilityTemplate
             ct.health.Damage(damageDealt * damageMultiplier);
 
             //knockback
-            ct.effects.Add(new(false, 1, 0, 0, 0, 0, 0, 0, true));
+            ct.effects.Add(new(false, 1, 0, 0, 0, 0, 0, 1, true));
             ct.characterController.ForcedMove(ct.characterController.GetDirection() ? -knockbackForce : knockbackForce, 0);
             Destroy(this.gameObject, .05f);
         }

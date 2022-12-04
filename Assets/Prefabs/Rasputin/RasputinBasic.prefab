@@ -135,9 +135,8 @@ MonoBehaviour:
   EnergyDamage: 0
   Speed: 0
   destroyAfterDuration: 1
-  destroyAfterSeconds: 1.25
+  destroyAfterSeconds: 0.75
   audioOnCreate: {fileID: -824015838069219243}
-  audioOnDestroy: {fileID: 0}
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}
@@ -151,7 +150,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4ff97ff94d9f0fd4e89fa73dc8d2a9d3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 20b203ca5ba9e9345b8893a274809c08, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

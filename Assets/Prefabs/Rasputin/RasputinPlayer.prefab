@@ -2711,7 +2711,7 @@ MonoBehaviour:
   animationOneDuration: 1.5
   animationTwoDuration: 3.5
   animationThreeDuration: 4
-  basicAttackDelay: 0
+  basicAttackDelay: 0.5
   abilityOneDelay: 1.75
   abilityTwoDelay: 0
   abilityThreeDelay: 0

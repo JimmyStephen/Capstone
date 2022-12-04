@@ -29,7 +29,7 @@ public class RasputinAbilityOne : AbilityTemplate
         {
             if (!ct.effectImmune)
             {
-                Effect effect = new(true, effectDuration, 0, 0, 0, 0, reducedDamage, 0, false);
+                Effect effect = new(true, effectDuration, 0, 0, 0, 0, reducedDamage, 1, false);
                 ct.effects.Add(effect);
             }
             Destroy(this.gameObject, .05f);

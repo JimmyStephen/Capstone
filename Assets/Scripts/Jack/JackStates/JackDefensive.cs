@@ -47,10 +47,10 @@ public class JackDefensive : State
     {
         if (Owner.CheckForDebuff())
         {
-            return 3;
+            return 4;
         }
 
-        int[] abilityOptions = new int[] { 1, 2, 3, 4 };
+        int[] abilityOptions = new int[] { 1, 2, 4 };
         abilityOptions = Shuffle(abilityOptions);
 
         int retVal = 4;
@@ -64,9 +64,6 @@ public class JackDefensive : State
                     break;
                 case 2:
                     if (UseAbilityTwo()) retVal = 2;
-                    break;
-                case 3:
-                    if (UseAbilityThree()) retVal = 3;
                     break;
                 default:
                     retVal = 4;
@@ -105,7 +102,7 @@ public class JackDefensive : State
     public override bool UseAbilityThree()
     {
         //conditions to use
-        //enemy close
-        return (Owner.currentAbilityThreeCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 3);
+        //enemy in range
+        return (Owner.currentAbilityThreeCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < Owner.abilityThreeProjectile.GetComponent<JackAbilityThree>().Range);
     }
 }

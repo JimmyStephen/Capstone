@@ -57,12 +57,15 @@ public class RasputinPlayer : RasputinTemplate
         currentAbilityTwoCooldown -= Time.deltaTime;
         animationTimer -= Time.deltaTime;
 
-        TriggerEffects();
-
         if (health.GetCurrent() <= 0)
         {
             OnDeath();
         }
+        else
+        {
+            TriggerEffects();
+        }
+
 
         if (HealthSlider != null)
         {

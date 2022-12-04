@@ -121,7 +121,7 @@ MonoBehaviour:
   slowDuration: 4
   stunDuration: 1
   dotTotalDamage: 0
-  slowPercent: -0.5
+  slowPercent: 1
   createOnTrigger: {fileID: 95544548186499656, guid: 14c7f64c4f29da84b8db3e2b176dee89, type: 3}
   audioOnTrigger: {fileID: -6598713473168817975}
   owner: {fileID: 0}
@@ -137,7 +137,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: abbe38f1d9fa2554c96502a81698afc1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

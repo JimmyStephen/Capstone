@@ -85,15 +85,31 @@ public class JackAggressive : State
     }
 
     float abilityTimer = 0;
+    bool nextAbilityBasic = false;
     public override int UseAbility()
     {
         if (Owner.CheckForDebuff())
         {
-            return 3;
+            if (UseAbilityThree())
+            {
+                return 3;
+            }
+            else if (Owner.CheckForStun())
+            {
+                return 4;
+            }
         }
 
         if (abilityTimer > 0)
         {
+            return UseBasicAbility() ? 0 : 4;
+        }
+
+        if(nextAbilityBasic)
+        {
+            Debug.Log("Use Basic Combo");
+            nextAbilityBasic = false;
+            CheckDirection();
             return UseBasicAbility() ? 0 : 4;
         }
         //0 basic
@@ -101,7 +117,7 @@ public class JackAggressive : State
         //2 secondary ability
         //3 ult
         //4 none
-        int[] abilityOptions = new int[] { 0, 1, 2, 4 };
+        int[] abilityOptions = new int[] { 0, 0, 1, 2, 3, 3, 3, 4 };
         abilityOptions = Shuffle(abilityOptions);
 
         int retVal = 4;
@@ -118,6 +134,9 @@ public class JackAggressive : State
                     break;
                 case 2:
                     if (UseAbilityTwo()) retVal = 2;
+                    break;
+                case 3:
+                    if (UseAbilityThree()) retVal = 3;
                     break;
                 default:
                     retVal = 4;
@@ -155,7 +174,9 @@ public class JackAggressive : State
     public override bool UseAbilityThree()
     {
         //conditions to use
-        //enemy close
-        return (Owner.currentAbilityThreeCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < 3);
+        //enemy in range
+        bool retVal = (Owner.currentAbilityThreeCooldown <= 0 && Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x) < Owner.abilityThreeProjectile.GetComponent<JackAbilityThree>().Range);
+        nextAbilityBasic = retVal;
+        return retVal;
     }
 }

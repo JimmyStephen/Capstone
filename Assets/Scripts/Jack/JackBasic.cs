@@ -41,7 +41,7 @@ public class JackBasic : AbilityTemplate
             ct.health.Damage(damageDealt * damageMultiplier);
 
             //weak poison (5dmg)
-            ct.effects.Add(new Effect(true, 5, 1, 0, 0, 0, 0, 0, false));
+            ct.effects.Add(new Effect(true, 5, 1, 0, 0, 0, 0, 1, false));
             Destroy(this.gameObject, .05f);
         }
     }

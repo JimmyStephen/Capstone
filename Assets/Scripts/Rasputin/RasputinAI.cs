@@ -94,8 +94,15 @@ public class RasputinAI : RasputinTemplate
         currentAbilityThreeCooldown -= Time.deltaTime;
         animationTimer -= Time.deltaTime;
         attackTimer -= Time.deltaTime;
-
-        TriggerEffects();
+        
+        if (health.GetCurrent() <= 0)
+        {
+            OnDeath();
+        }
+        else
+        {
+            TriggerEffects();
+        }
 
         if (HealthSlider != null)
         {
@@ -104,12 +111,6 @@ public class RasputinAI : RasputinTemplate
         if (EnergySlider != null)
         {
             EnergySlider.size = energy.GetCurrent() / energy.GetMax();
-        }
-
-
-        if (health.GetCurrent() <= 0)
-        {
-            OnDeath();
         }
     }
 

@@ -61,7 +61,6 @@ public class JackAI : JackTemplate
             //check for stun
             if (CheckForStun())
             {
-                AbilityThree();
                 characterController.Move(0, false, false);
                 animator.SetFloat("Speed", 0);
                 return;

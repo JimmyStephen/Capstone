@@ -38,7 +38,7 @@ public class ArtemisLightning : MonoBehaviour
                 player.energy.Damage(energyDamage);
                 if (!player.effectImmune && !player.CCImmune)
                 {
-                    player.effects.Add(new Effect(true, stunDuration, 0, 0, 0, 0, 1, 0, true));
+                    player.effects.Add(new Effect(true, stunDuration, 0, 0, 0, 0, 1, 1, true));
                 }
             }
         }

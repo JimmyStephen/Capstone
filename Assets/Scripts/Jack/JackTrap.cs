@@ -40,7 +40,7 @@ public class JackTrap : MonoBehaviour
         //dot (if needed)
         if (applyDot)
         {
-            effectsToApply.Add(new Effect(true, dotDuration, (dotTotalDamage / dotDuration), 0, 0, 0, 0, 0, false));
+            effectsToApply.Add(new Effect(true, dotDuration, (dotTotalDamage / dotDuration), 0, 0, 0, 0, 1, false));
         }
         //slow (if needed)
         if (applySlow)
@@ -50,7 +50,7 @@ public class JackTrap : MonoBehaviour
         //stun (if needed)
         if (applyStun)
         {
-            effectsToApply.Add(new Effect(true, stunDuration, 0, 0, 0, 0, 0, 0, true));
+            effectsToApply.Add(new Effect(true, stunDuration, 0, 0, 0, 0, 0, 1, true));
         }
 
         if (destroyAfterDuration) Destroy(this.gameObject, trapDuration);

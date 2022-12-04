@@ -92,6 +92,9 @@ public abstract class CharacterTemplate : MonoBehaviour
         temp.GetComponent<AbilityTemplate>().damageMultiplier = owner.GetComponent<CharacterTemplate>().currentDamageMultiplier;
     }
 
+    /// <summary>
+    /// Triggers all the effects
+    /// </summary>
     public void TriggerEffects()
     {
         currentDamageMultiplier = 1;
@@ -125,6 +128,10 @@ public abstract class CharacterTemplate : MonoBehaviour
             effects.Remove(e);
         }
     }
+    /// <summary>
+    /// Checks if there are any stuns affecting the character
+    /// </summary>
+    /// <returns>If there are any stuns</returns>
     public bool CheckForStun()
     {
         foreach (Effect effect in effects)
@@ -136,6 +143,10 @@ public abstract class CharacterTemplate : MonoBehaviour
         }
         return false;
     }
+    /// <summary>
+    /// Checks if there are any debuffs affecting the character
+    /// </summary>
+    /// <returns>If there are debuffs</returns>
     public bool CheckForDebuff()
     {
         foreach (Effect effect in effects)
@@ -147,6 +158,30 @@ public abstract class CharacterTemplate : MonoBehaviour
         }
         return false;
     }
+    /// <summary>
+    /// Removes all effects clasified as debuffs
+    /// </summary>
+    /// <returns>If the method succeeded</returns>
+    public bool CleanseDebuffs()
+    {
+        //cleanse all debuffs
+        List<Effect> effects = new();
+        foreach (var e in effects)
+        {
+            if (e.CheckIsDebuff())
+            {
+                effects.Add(e);
+            }
+        }
+
+        foreach (var e in effects)
+        {
+            effects.Remove(e);
+        }
+
+        return true;
+    }
+
 
     public void SetDisplay(Scrollbar healthSlider, Scrollbar energySlider)
     {

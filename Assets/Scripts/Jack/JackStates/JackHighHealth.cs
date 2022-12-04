@@ -50,6 +50,7 @@ public class JackHighHealth : HealthStateTemplate
     }
     public override void OnUpdate()
     {
+        Debug.Log(sMachine.currentState.Name);
         //distance update
         distance.value = Mathf.Abs(Owner.transform.position.x - Owner.opponent.transform.position.x);
         if (distance.value < closeDistance)

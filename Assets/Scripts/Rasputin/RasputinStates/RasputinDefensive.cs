@@ -46,7 +46,7 @@ public class RasputinDefensive : State
     {
         int retVal = 4;
 
-        int[] abilityOptions = new int[] { 0, 1, 2, 2, 4 };
+        int[] abilityOptions = new int[] { 0, 0, 1, 2, 2, 4 };
         abilityOptions = Shuffle(abilityOptions);
         for (int i = 0; i < abilityOptions.Length; i++)
         {
