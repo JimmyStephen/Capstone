@@ -137,7 +137,6 @@ MonoBehaviour:
   destroyAfterDuration: 0
   destroyAfterSeconds: 1
   audioOnCreate: {fileID: 2640642798740899100}
-  audioOnDestroy: {fileID: 0}
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}
@@ -157,7 +156,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

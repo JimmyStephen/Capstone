@@ -185,7 +185,6 @@ MonoBehaviour:
   destroyAfterDuration: 1
   destroyAfterSeconds: 0.5
   audioOnCreate: {fileID: -5059907424275488539}
-  audioOnDestroy: {fileID: 0}
   damageMultiplier: 1
   parentTag: 
   parent: {fileID: 0}
@@ -202,7 +201,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d67277ebd668ff241a2d42075d26eebf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
